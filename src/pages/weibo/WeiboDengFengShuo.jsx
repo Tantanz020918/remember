@@ -1,10 +1,25 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
-import { WeiboFrame, WeiboProfileHeader, WeiboPostDetail, WeiboComment, WeiboLikeItem } from '../../browser/WeiboFrame'
+import { WeiboFrame, WeiboProfileHeader, WeiboPostDetail } from '../../browser/WeiboFrame'
 import { ImagePlaceholder } from '../../components/ui'
+
+const COMMENTS = [
+  { author: '琴声悠扬', time: '03-14 21:00', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '剪得好棒！' },
+  { author: '音乐迷', time: '03-14 22:10', authorFrom: '#ffe0f0', authorTo: '#f58ec2', content: '这个转场太绝了！' },
+  { author: '小花', time: '03-15 08:44', authorFrom: '#ffe7b3', authorTo: '#ffb86b', content: '梦和会喜欢的！' },
+]
 
 export function WeiboDengFengShuo() {
   const navigate = useGameNavigate()
+
+  const LIKES = [
+    { name: '微博用户139293', time: '2023-05-18', onClick: () => navigate(33) },
+    { name: '琴声悠扬', time: '2017-03-14' },
+    { name: '音乐迷', time: '2017-03-14' },
+    { name: '小花', time: '2017-03-14' },
+    { name: '星语者', time: '2017-03-14' },
+    { name: '梦幻泡泡', time: '2017-03-14' },
+  ]
 
   return (
     <BrowserFrame>
@@ -35,33 +50,8 @@ export function WeiboDengFengShuo() {
             </div>
           }
           likes={{ repost: 5, comment: 3, like: 42 }}
-          comments={
-            <>
-              <WeiboComment author="琴声悠扬" time="03-14 21:00" authorFrom="#d4f0c2" authorTo="#8cd07d">
-                剪得好棒！
-              </WeiboComment>
-              <WeiboComment author="音乐迷" time="03-14 22:10" authorFrom="#ffe0f0" authorTo="#f58ec2">
-                这个转场太绝了！
-              </WeiboComment>
-              <WeiboComment author="小花" time="03-15 08:44" authorFrom="#ffe7b3" authorTo="#ffb86b">
-                梦和会喜欢的！
-              </WeiboComment>
-            </>
-          }
-          onLikeTab={
-            <>
-              <WeiboLikeItem
-                name="微博用户139293"
-                time="2023-05-18"
-                onClick={() => navigate(33)}
-              />
-              <WeiboLikeItem name="琴声悠扬" time="2017-03-14" />
-              <WeiboLikeItem name="音乐迷" time="2017-03-14" />
-              <WeiboLikeItem name="小花" time="2017-03-14" />
-              <WeiboLikeItem name="星语者" time="2017-03-14" />
-              <WeiboLikeItem name="梦幻泡泡" time="2017-03-14" />
-            </>
-          }
+          commentsData={COMMENTS}
+          likesData={LIKES}
         />
       </WeiboFrame>
     </BrowserFrame>

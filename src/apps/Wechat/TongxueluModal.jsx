@@ -1,28 +1,19 @@
-import { Keyword } from '../../components/ui'
+import { Keyword, Modal, Tooltip } from '../../components/ui'
 
 export function TongxueluModal({ onClose }) {
   return (
-    <div
-      className="fixed inset-0 bg-black/70 flex items-center justify-center z-[1000]"
-      onClick={onClose}
-    >
-      <div
-        className="max-w-[90%] max-h-[90%]"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Modal onClose={onClose} backdropClass="bg-black/70">
+      <div className="max-w-[90%] max-h-[90%]">
         <div className="flex gap-4 p-6 rounded-lg bg-linear-to-br from-[#fff2cc] to-[#ffd8a8] shadow-2xl">
           <div className="flex-1 bg-[#fffdf5] px-6 py-8 shadow font-serif text-[15px] leading-loose relative min-h-[320px] min-w-[260px]">
             <p>好姐妹一bei子，</p>
             <p>
               你有了电脸一定要来{' '}
-              <span className="relative inline-block group align-baseline">
+              <Tooltip text="这里好像写错字了，应该是个游戏">
                 <Keyword>
                   <span className="italic">ao比鸟</span>
                 </Keyword>
-                <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 px-2 py-1 rounded-md bg-neutral-900/90 text-white text-[11px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg">
-                  这里好像写错字了，应该是个游戏
-                </span>
-              </span>{' '}
+              </Tooltip>{' '}
               加我好友，
             </p>
             <p>
@@ -46,6 +37,6 @@ export function TongxueluModal({ onClose }) {
           </button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

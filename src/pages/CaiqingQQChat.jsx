@@ -1,6 +1,22 @@
 import { useState } from 'react'
-import { Keyword, Avatar, ImagePlaceholder } from '../components/ui'
+import { Avatar, ImagePlaceholder } from '../components/ui'
 import { spriteForUser } from '../assets/imageUrls'
+import { CAIQING_REQUESTS } from '../data/qqData'
+import { JuniorChat } from '../data/qqJuniorChat'
+
+const TABS = [
+  { key: 'chats', label: '消息' },
+  { key: 'requests', label: '好友申请' },
+]
+
+const CHAT_LIST = [
+  { key: 'junior', avatarName: '学妹', name: '化学小白', time: '2020.9', preview: '学姐，你的化学笔记可以借给我吗？' },
+]
+
+// CaiqingQQChat displays "采晴 → 梦和" instead of CAIQING_REQUESTS' "雨季 → 梦和"
+const REQUESTS = CAIQING_REQUESTS.map((r) =>
+  r.outgoing ? { ...r, from: r.from.replace('雨季', '采晴') } : r,
+)
 
 export function CaiqingQQChat() {
   const [tab, setTab] = useState('chats')
@@ -17,42 +33,42 @@ export function CaiqingQQChat() {
       </div>
       <div className="w-[280px] bg-white border-r border-sky-100 flex flex-col">
         <div className="flex border-b border-sky-100 text-xs">
-          <div className={`flex-1 text-center py-2.5 cursor-pointer ${tab === 'chats' ? 'bg-sky-50 font-bold text-sky-600' : 'text-neutral-500'}`} onClick={() => setTab('chats')}>消息</div>
-          <div className={`flex-1 text-center py-2.5 cursor-pointer ${tab === 'requests' ? 'bg-sky-50 font-bold text-sky-600' : 'text-neutral-500'}`} onClick={() => setTab('requests')}>好友申请</div>
+          {TABS.map((t) => (
+            <div
+              key={t.key}
+              className={`flex-1 text-center py-2.5 cursor-pointer ${tab === t.key ? 'bg-sky-50 font-bold text-sky-600' : 'text-neutral-500'}`}
+              onClick={() => setTab(t.key)}
+            >
+              {t.label}
+            </div>
+          ))}
         </div>
         {tab === 'chats' && (
           <div className="flex-1 overflow-y-auto">
-            <div className={`flex gap-2.5 px-3 py-2.5 cursor-pointer border-b border-neutral-100 ${selectedChat === 'junior' ? 'bg-sky-100/70' : ''}`} onClick={() => setSelectedChat('junior')}>
-              <Avatar name="学妹" size={42} />
-              <div className="flex-1 min-w-0">
-                <div className="flex justify-between"><span className="font-semibold">化学小白</span><span className="text-neutral-400 text-[11px]">2020.9</span></div>
-                <div className="text-neutral-500 text-[11px] mt-0.5 truncate">学姐，你的化学笔记可以借给我吗？</div>
+            {CHAT_LIST.map((c) => (
+              <div
+                key={c.key}
+                className={`flex gap-2.5 px-3 py-2.5 cursor-pointer border-b border-neutral-100 ${selectedChat === c.key ? 'bg-sky-100/70' : ''}`}
+                onClick={() => setSelectedChat(c.key)}
+              >
+                <Avatar name={c.avatarName} size={42} />
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between"><span className="font-semibold">{c.name}</span><span className="text-neutral-400 text-[11px]">{c.time}</span></div>
+                  <div className="text-neutral-500 text-[11px] mt-0.5 truncate">{c.preview}</div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         )}
         {tab === 'requests' && (
           <div className="flex-1 overflow-y-auto p-3 space-y-3 text-xs">
-            <div className="bg-red-50 border border-red-100 rounded-lg p-3">
-              <div className="flex justify-between"><span className="font-bold">薄荷夏天（梦和）</span><span className="text-neutral-400">2015.3</span></div>
-              <div className="text-neutral-600 mt-1">申请理由：我真的没想到会这样，听我解释采晴。</div>
-              <div className="text-red-500 mt-1">✕ 已拒绝</div>
-            </div>
-            <div className="bg-red-50 border border-red-100 rounded-lg p-3">
-              <div className="flex justify-between"><span className="font-bold">薄荷夏天（梦和）</span><span className="text-neutral-400">2015.3</span></div>
-              <div className="text-neutral-600 mt-1">申请理由：求求你了采晴，我不能没有你。</div>
-              <div className="text-red-500 mt-1">✕ 已拒绝</div>
-            </div>
-            <div className="bg-sky-50 border border-sky-100 rounded-lg p-3">
-              <div className="flex justify-between"><span className="font-bold">采晴 → 梦和</span><span className="text-neutral-400">2017.10</span></div>
-              <div className="text-neutral-600 mt-1">申请理由：梦和，或许我们可以聊一下。</div>
-              <div className="text-amber-500 mt-1">⏳ 对方未处理</div>
-            </div>
-            <div className="bg-sky-50 border border-sky-100 rounded-lg p-3">
-              <div className="flex justify-between"><span className="font-bold">采晴 → 梦和</span><span className="text-neutral-400">2018.1</span></div>
-              <div className="text-neutral-600 mt-1">申请理由：梦和，我想跟你谈谈。</div>
-              <div className="text-amber-500 mt-1">⏳ 对方未处理</div>
-            </div>
+            {REQUESTS.map((r, i) => (
+              <div key={i} className={`p-3 rounded-lg border ${r.outgoing ? 'bg-sky-50 border-sky-100' : 'bg-red-50 border-red-100'}`}>
+                <div className="flex justify-between"><span className="font-bold">{r.from}</span><span className="text-neutral-400">{r.time}</span></div>
+                <div className="text-neutral-600 mt-1">申请理由：{r.reason}</div>
+                <div className={`mt-1 ${r.statusColor}`}>{r.outgoing ? '⏳' : '✕'} {r.status}</div>
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -61,15 +77,7 @@ export function CaiqingQQChat() {
           <>
             <div className="px-4 py-3 border-b border-sky-100 bg-white font-bold">化学小白</div>
             <div className="flex-1 px-5 py-4 overflow-y-auto">
-              <div className="text-center text-neutral-400 text-[11px] my-2.5">2020/09/15</div>
-              <div className="flex gap-2.5 my-2.5">
-                <Avatar name="学妹" size={36} />
-                <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">学姐，你的化学笔记可以借给我吗？</div>
-              </div>
-              <div className="flex gap-2.5 my-2.5 flex-row-reverse">
-                <ImagePlaceholder sprite={spriteForUser('雨季')} width={36} height={36} round label={false} />
-                <div className="bg-sky-100 px-3 py-2 rounded text-sm">微信聊，现在不用qq了，我的微信是：<Keyword>CcqQ3927</Keyword></div>
-              </div>
+              <JuniorChat />
             </div>
           </>
         )}

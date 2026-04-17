@@ -1,53 +1,12 @@
 import { useState } from 'react'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
-import { Keyword, ImagePlaceholder } from '../../components/ui'
+import { Keyword, ImagePlaceholder, Avatar, Modal } from '../../components/ui'
 import { QQProfilePopup } from './QQProfilePopup'
-import { Avatar } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
+import { ADMINS, MEMBERS, RUYUE_CHATS, FANQUAN_CHAT, GROUP_MEMBER_COUNT } from '../../data/qqData'
+import { FanquanMessages } from '../../data/qqFanquanMessages'
 
-const RUYUE_CHATS = [
-  { key: 'fanquan', name: '沐季千柠工作室粉丝群', preview: '[群公告] 新戏人物设定', time: '刚刚' },
-  { key: 'jizhou', name: '计粥人机群🤖', preview: '超级小鼠妇（四孩爸版）：喜欢豆狗', time: '18:03' },
-  { key: 'erciyuan1', name: '二次元交流大本营', preview: '今天新番更新 GET！', time: '17:12' },
-  { key: 'erciyuan2', name: '漫画推荐分享群', preview: '[图片]', time: '16:48' },
-  { key: 'mail', name: 'QQ 邮箱提醒', preview: '招聘专员给你发了新邮件', time: '11:03' },
-]
-
-const ADMINS = [
-  { name: '沐季千柠（群主）', from: '#ffd1dc', to: '#ff9aa2', profileKey: 'zhubo' },
-  { name: '编剧+女主', from: '#d4f0c2', to: '#8cd07d', profileKey: 'bianju' },
-  { name: '男主·陆远', from: '#c1e8ff', to: '#6ec4f7' },
-  { name: '女配·花痴A', from: '#ffe0f0', to: '#f58ec2' },
-]
-
-const MEMBERS = [
-  { name: '糖糖不吃糖', from: '#c1e8ff', to: '#6ec4f7' },
-  { name: '奥比小王子', from: '#ffe7b3', to: '#ffb86b' },
-  { name: '清风', from: '#e4d4ff', to: '#a97bf5' },
-  { name: '小鱼干', from: '#fff4b3', to: '#f5c542' },
-  { name: '云朵软糖', from: '#ffd6e7', to: '#c5e1ff' },
-  { name: '星星点灯', from: '#d0f5e8', to: '#4fc3a1' },
-  { name: '梦幻泡泡', from: '#ffe0f0', to: '#f58ec2' },
-  { name: '路人甲', from: '#ffd1dc', to: '#ff9aa2' },
-  { name: '阳光少年', from: '#c5e1a5', to: '#66bb6a' },
-  { name: '冰淇淋酱', from: '#b3e5fc', to: '#4fc3f7' },
-  { name: '暮光之城', from: '#e4d4ff', to: '#a97bf5' },
-  { name: '芒果布丁', from: '#fff4b3', to: '#f5c542' },
-]
-
-function GroupMessage({ avatarFrom, avatarTo, name, time, children }) {
-  return (
-    <div className="flex gap-2.5 my-2.5 items-start">
-      <ImagePlaceholder width={36} height={36} from={avatarFrom} to={avatarTo} round label={false} />
-      <div className="max-w-[70%]">
-        <div className="text-[11px] text-neutral-500 mb-1">
-          {name}<span className="ml-1.5 text-neutral-300">{time}</span>
-        </div>
-        <div className="bg-white px-3 py-2.5 rounded border border-sky-100 leading-relaxed">{children}</div>
-      </div>
-    </div>
-  )
-}
+const CHATS = [FANQUAN_CHAT, ...RUYUE_CHATS]
 
 export function QQGroupChat() {
   const [showAnnouncement, setShowAnnouncement] = useState(false)
@@ -69,7 +28,7 @@ export function QQGroupChat() {
           <input placeholder="搜索" className="w-full px-2.5 py-1.5 border border-sky-100 rounded-full bg-sky-50/60 text-xs outline-none" />
         </div>
         <div className="flex-1 overflow-y-auto">
-          {RUYUE_CHATS.map((c) => (
+          {CHATS.map((c) => (
             <div
               key={c.key}
               onClick={() => { if (c.key !== 'fanquan') navigate(3) }}
@@ -90,7 +49,7 @@ export function QQGroupChat() {
         <div className="px-4 py-3 bg-white border-b border-sky-100 flex justify-between items-center">
           <div className="font-bold text-sm">
             沐季千柠工作室粉丝群
-            <span className="text-neutral-500 ml-1.5 font-normal">({ADMINS.length + MEMBERS.length})</span>
+            <span className="text-neutral-500 ml-1.5 font-normal">({GROUP_MEMBER_COUNT})</span>
           </div>
           <div className="flex gap-3 text-neutral-500 text-base">
             <span>📞</span><span>📹</span><span>⋯</span>
@@ -98,19 +57,7 @@ export function QQGroupChat() {
         </div>
         <div className="flex-1 flex overflow-hidden">
           <div className="flex-1 px-5 py-4 overflow-y-auto bg-sky-50/40">
-            <div className="text-center text-neutral-400 text-[11px] my-2.5">2013 年 1 月 2 日 14:30</div>
-            <GroupMessage avatarFrom="#ffd1dc" avatarTo="#ff9aa2" name="沐季千柠" time="14:30">
-              大家看一下群公告里的新戏人物设定哈～
-            </GroupMessage>
-            <GroupMessage avatarFrom="#c1e8ff" avatarTo="#6ec4f7" name="糖糖不吃糖" time="14:32">
-              催更催更！上一部还没演完呢
-            </GroupMessage>
-            <GroupMessage avatarFrom="#d4f0c2" avatarTo="#8cd07d" name="编剧+女主" time="14:35">
-              剧本还在改，再等等～新戏的人物设定已经发在公告里了
-            </GroupMessage>
-            <GroupMessage avatarFrom="#ffe7b3" avatarTo="#ffb86b" name="奥比小王子" time="14:38">
-              期待新戏！
-            </GroupMessage>
+            <FanquanMessages />
           </div>
 
           <div className="w-[240px] bg-white border-l border-sky-100 overflow-y-auto">
@@ -119,7 +66,7 @@ export function QQGroupChat() {
               <a className="text-sky-700 font-bold cursor-pointer hover:underline" onClick={() => setShowAnnouncement(true)}>查看</a>
             </div>
             <div className="px-3.5 py-2.5 font-semibold text-xs text-neutral-600 border-b border-neutral-200">
-              群成员 {ADMINS.length + MEMBERS.length}
+              群成员 {GROUP_MEMBER_COUNT}
             </div>
             <div>
               <div className="px-3.5 py-1.5 text-[11px] text-neutral-400 bg-neutral-50">管理员</div>
@@ -148,8 +95,8 @@ export function QQGroupChat() {
       {profileKey && <QQProfilePopup profileKey={profileKey} onClose={() => setProfileKey(null)} />}
 
       {showAnnouncement && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000]" onClick={() => setShowAnnouncement(false)}>
-          <div className="bg-white px-6 py-5 rounded-[10px] min-w-[360px]" onClick={(e) => e.stopPropagation()}>
+        <Modal onClose={() => setShowAnnouncement(false)}>
+          <div className="bg-white px-6 py-5 rounded-[10px] min-w-[360px]">
             <h3 className="font-bold mb-2.5">群公告</h3>
             <div className="text-[11px] text-neutral-500 mb-2">发布者：编剧+女主 · 2013-01-02 21:05</div>
             <div className="leading-relaxed text-neutral-700">
@@ -164,7 +111,7 @@ export function QQGroupChat() {
               <button onClick={() => setShowAnnouncement(false)} className="px-4 py-1.5 bg-sky-500 text-white rounded border-none cursor-pointer text-[13px]">关闭</button>
             </div>
           </div>
-        </div>
+        </Modal>
       )}
     </div>
   )

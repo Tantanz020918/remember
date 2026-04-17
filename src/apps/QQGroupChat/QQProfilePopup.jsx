@@ -1,4 +1,4 @@
-import { ImagePlaceholder } from '../../components/ui'
+import { ImagePlaceholder, Modal } from '../../components/ui'
 
 const PROFILE_DATA = {
   caiqing: {
@@ -38,14 +38,8 @@ export function QQProfilePopup({ profileKey, onClose }) {
   if (!data) return null
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000]"
-      onClick={onClose}
-    >
-      <div
-        className="w-[340px] bg-white rounded-xl overflow-hidden shadow-2xl relative"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Modal onClose={onClose}>
+      <div className="w-[340px] bg-white rounded-xl overflow-hidden shadow-2xl relative">
         <div className="bg-linear-to-br from-sky-400 to-sky-600 text-white text-center pt-7 pb-5 px-5 relative">
           <div className="inline-block">
             <ImagePlaceholder
@@ -100,6 +94,6 @@ export function QQProfilePopup({ profileKey, onClose }) {
           ×
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }

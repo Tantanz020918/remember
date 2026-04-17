@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ImagePlaceholder } from '../components/ui'
 import { spriteForUser } from '../assets/imageUrls'
+import { BrowserFrame } from './BrowserFrame'
 
 // Probe a primary image URL; fall back to local on error. For CSS background-image
 // since onError doesn't fire on background-image, use Image() preloading.
@@ -110,7 +111,50 @@ export function WeiboPost({ author, time, authorSrc, authorFrom, authorTo, child
   )
 }
 
-export function WeiboPostDetail({ author, time, authorSrc, authorFrom, authorTo, content, comments, likes, onLikeTab }) {
+function renderSubComments(subs) {
+  if (!subs) return null
+  if (Array.isArray(subs)) {
+    return subs.map((s, i) => <WeiboSubComment key={i} author={s.author}>{s.content}</WeiboSubComment>)
+  }
+  return subs
+}
+
+function renderComments(comments, commentsData) {
+  if (comments) return comments
+  if (commentsData) {
+    return commentsData.map((c, i) => (
+      <WeiboComment
+        key={i}
+        author={c.author}
+        time={c.time}
+        authorFrom={c.authorFrom}
+        authorTo={c.authorTo}
+        onClick={c.onClick}
+        location={c.location}
+        replyCount={c.replyCount}
+        subComments={renderSubComments(c.subComments)}
+      >
+        {c.content}
+      </WeiboComment>
+    ))
+  }
+  return <div className="py-6 text-center text-neutral-400 text-sm">暂无评论</div>
+}
+
+function renderLikes(onLikeTab, likesData) {
+  if (onLikeTab) return onLikeTab
+  if (likesData) {
+    return likesData.map((l, i) => (
+      <WeiboLikeItem key={i} name={l.name} time={l.time} avatarSrc={l.avatarSrc} onClick={l.onClick} />
+    ))
+  }
+  return <div className="py-6 text-center text-neutral-400 text-sm">暂无</div>
+}
+
+export function WeiboPostDetail({
+  author, time, authorSrc, authorFrom, authorTo, content,
+  comments, commentsData, likes, onLikeTab, likesData,
+}) {
   const [tab, setTab] = useState('hot')
   const { src, sprite } = userAvatar(author, authorSrc)
 
@@ -140,10 +184,21 @@ export function WeiboPostDetail({ author, time, authorSrc, authorFrom, authorTo,
         <span className={`py-2.5 px-3 cursor-pointer ${tab === 'likes' ? 'text-orange-500 font-bold border-b-2 border-orange-500' : 'text-neutral-500'}`} onClick={() => setTab('likes')}>赞</span>
       </div>
       <div className="px-4">
-        {(tab === 'hot' || tab === 'time') && comments}
-        {tab === 'likes' && onLikeTab}
+        {(tab === 'hot' || tab === 'time') && renderComments(comments, commentsData)}
+        {tab === 'likes' && renderLikes(onLikeTab, likesData)}
       </div>
     </div>
+  )
+}
+
+// Full page shell: BrowserFrame > WeiboFrame > WeiboPostDetail
+export function WeiboPostPage(props) {
+  return (
+    <BrowserFrame>
+      <WeiboFrame>
+        <WeiboPostDetail {...props} />
+      </WeiboFrame>
+    </BrowserFrame>
   )
 }
 

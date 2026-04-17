@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { createPortal } from 'react-dom'
 import { useStore, TOTAL_PAGES, HIGHLIGHT_LABELS } from '../store'
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { useCurrentPage } from '../hooks/useCurrentPage'
 import { PAGES } from '../pages/registry'
+import { Modal } from './ui'
 
 export function TopBar() {
   const { visited, highlightMode, cycleHighlight, resetGame } = useStore()
@@ -76,15 +76,9 @@ export function TopBar() {
         )}
       </div>
 
-      {showResetConfirm && createPortal(
-        <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[2000]"
-          onClick={() => setShowResetConfirm(false)}
-        >
-          <div
-            className="bg-white text-neutral-800 rounded-lg shadow-2xl p-6 max-w-sm w-full mx-4"
-            onClick={(e) => e.stopPropagation()}
-          >
+      {showResetConfirm && (
+        <Modal onClose={() => setShowResetConfirm(false)} usePortal zIndexClass="z-[2000]">
+          <div className="bg-white text-neutral-800 rounded-lg shadow-2xl p-6 max-w-sm w-full mx-4">
             <div className="text-lg font-bold mb-2">⚠️ 清除数据</div>
             <div className="text-sm text-neutral-600 mb-5 leading-relaxed">
               点击后将删除所有记忆内容，从头开始游玩，确定吗？
@@ -104,8 +98,7 @@ export function TopBar() {
               </button>
             </div>
           </div>
-        </div>,
-        document.body,
+        </Modal>
       )}
     </div>
   )

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
-import { WeiboFrame, WeiboPostDetail } from '../../browser/WeiboFrame'
+import { WeiboPostPage } from '../../browser/WeiboFrame'
 import { PasswordLock } from '../../components/ui'
 
 const POEM = `月亮，你看我，我也看你。
@@ -17,61 +17,60 @@ function PostContent() {
   const { qqAccountSwitched } = useStore()
   const [showChoice, setShowChoice] = useState(false)
 
-  return (
-    <WeiboFrame>
-      <WeiboPostDetail
-        author="微博用户139293"
-        time="2022-01-04 23:15"
-        authorFrom="#dfe6e9"
-        authorTo="#b2bec3"
-        content={
-          <div>
-            <div className="text-sm leading-loose text-neutral-700 space-y-3">
-              <p>在我18岁那年，我最重要的女孩离开了我，而我不求她的原谅，因为我伤她太深。</p>
-              <p>4年过去了，我已经习惯在墨尔本的生活，但再也无法和新的朋友深交，害怕再次伤害他人。</p>
-              <p>我很迷茫，不知道她们是否愿意给我机会让我解开这个心结。</p>
-              <p className="font-semibold">如月，采晴，你们会原谅我吗？我一直很恐惧知道答案。</p>
-            </div>
-            <div className="mt-6 border-t border-neutral-100 pt-4">
-              {!showChoice ? (
-                <button
-                  onClick={() => setShowChoice(true)}
-                  className="px-4 py-2 bg-neutral-100 rounded text-sm cursor-pointer hover:bg-neutral-200 border-none"
-                >
-                  💬 发表评论
-                </button>
-              ) : (
-                <div className="space-y-3">
-                  <div className="text-sm text-neutral-500 mb-2">选择你的回应：</div>
-                  <button
-                    onClick={() => navigate(35)}
-                    disabled={!qqAccountSwitched}
-                    className={`block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border ${
-                      qqAccountSwitched
-                        ? 'bg-green-50 border-green-200 cursor-pointer hover:bg-green-100'
-                        : 'bg-neutral-100 border-neutral-200 text-neutral-400 cursor-not-allowed'
-                    }`}
-                  >
-                    「我们原谅你。」
-                    {!qqAccountSwitched && (
-                      <div className="text-xs text-red-400 mt-1">⚠️ 未获得采晴联系方式，无法代表她发言</div>
-                    )}
-                  </button>
-                  <button
-                    onClick={() => navigate(36)}
-                    className="block w-full text-left px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-lg text-sm cursor-pointer hover:bg-neutral-100"
-                  >
-                    「不作回应。」
-                  </button>
-                </div>
+  const content = (
+    <div>
+      <div className="text-sm leading-loose text-neutral-700 space-y-3">
+        <p>在我18岁那年，我最重要的女孩离开了我，而我不求她的原谅，因为我伤她太深。</p>
+        <p>4年过去了，我已经习惯在墨尔本的生活，但再也无法和新的朋友深交，害怕再次伤害他人。</p>
+        <p>我很迷茫，不知道她们是否愿意给我机会让我解开这个心结。</p>
+        <p className="font-semibold">如月，采晴，你们会原谅我吗？我一直很恐惧知道答案。</p>
+      </div>
+      <div className="mt-6 border-t border-neutral-100 pt-4">
+        {!showChoice ? (
+          <button
+            onClick={() => setShowChoice(true)}
+            className="px-4 py-2 bg-neutral-100 rounded text-sm cursor-pointer hover:bg-neutral-200 border-none"
+          >
+            💬 发表评论
+          </button>
+        ) : (
+          <div className="space-y-3">
+            <div className="text-sm text-neutral-500 mb-2">选择你的回应：</div>
+            <button
+              onClick={() => navigate(35)}
+              disabled={!qqAccountSwitched}
+              className={`block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border ${
+                qqAccountSwitched
+                  ? 'bg-green-50 border-green-200 cursor-pointer hover:bg-green-100'
+                  : 'bg-neutral-100 border-neutral-200 text-neutral-400 cursor-not-allowed'
+              }`}
+            >
+              「我们原谅你。」
+              {!qqAccountSwitched && (
+                <div className="text-xs text-red-400 mt-1">⚠️ 未获得采晴联系方式，无法代表她发言</div>
               )}
-            </div>
+            </button>
+            <button
+              onClick={() => navigate(36)}
+              className="block w-full text-left px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-lg text-sm cursor-pointer hover:bg-neutral-100"
+            >
+              「不作回应。」
+            </button>
           </div>
-        }
-        likes={{ repost: 0, comment: 0, like: 0 }}
-        comments={<div className="py-6 text-center text-neutral-400 text-sm">暂无评论</div>}
-      />
-    </WeiboFrame>
+        )}
+      </div>
+    </div>
+  )
+
+  return (
+    <WeiboPostPage
+      author="微博用户139293"
+      time="2022-01-04 23:15"
+      authorFrom="#dfe6e9"
+      authorTo="#b2bec3"
+      content={content}
+      likes={{ repost: 0, comment: 0, like: 0 }}
+    />
   )
 }
 

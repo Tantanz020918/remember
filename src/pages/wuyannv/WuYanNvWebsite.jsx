@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { Keyword, PasswordLock } from '../../components/ui'
+import { Keyword, PasswordLock, Toast, useToast } from '../../components/ui'
 import { MazeGame } from '../../components/MazeGame'
 
 // ===================== 九宫格心形密码 =====================
@@ -284,32 +284,17 @@ function PasswordBookTab() {
 // ===================== 迷宫 tab =====================
 function MazeTab() {
   const { mazeCompleted, setFlag } = useStore()
-  const [toastMounted, setToastMounted] = useState(false)
-  const [toastVisible, setToastVisible] = useState(false)
+  const toast = useToast()
 
   const handleComplete = useCallback(() => {
     setFlag('mazeCompleted', true)
-    setToastMounted(true)
-    // Fade in after mount
-    setTimeout(() => setToastVisible(true), 20)
-    // Start fade out
-    setTimeout(() => setToastVisible(false), 2500)
-    // Unmount after fade out
-    setTimeout(() => setToastMounted(false), 3000)
-  }, [setFlag])
+    toast.show(<>恭喜你成功了！奖励：<b>key</b></>)
+  }, [setFlag, toast])
 
   return (
     <div className="py-6 px-4 relative">
       <MazeGame onComplete={handleComplete} completed={mazeCompleted} />
-      {toastMounted && (
-        <div
-          className={`fixed top-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-medium z-[2000] transition-opacity duration-500 ${
-            toastVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          🎉 恭喜你成功了！奖励：<b>key</b>
-        </div>
-      )}
+      <Toast message={toast.message} visible={toast.visible} />
     </div>
   )
 }
