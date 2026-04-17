@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Avatar, ImagePlaceholder, Modal } from '../../components/ui'
+import { Avatar, ImagePlaceholder, Keyword, Modal } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
 import { CAIQING_REQUESTS } from '../../data/qqData'
 
@@ -81,7 +81,7 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
                   <div className="text-white/70 text-xs">QQ 12831682861</div>
                 </div>
                 <div className="px-4 py-2 space-y-1.5 text-sm">
-                  <div className="flex py-1 border-b border-neutral-100"><b className="w-14 text-neutral-500 font-normal text-xs">签名</b><span className="text-xs">曾沿着雪路浪游 为何为好事泪流</span></div>
+                  <div className="flex py-1 border-b border-neutral-100"><b className="w-14 text-neutral-500 font-normal text-xs">签名</b><span className="text-xs"><Keyword>曾沿着雪路浪游 为何为好事泪流</Keyword></span></div>
                   <div className="flex py-1"><b className="w-14 text-neutral-500 font-normal text-xs">空间</b>
                     <span className="text-sky-600 text-xs cursor-pointer hover:underline font-bold" onClick={onVisitCaiqingSpace}>访问 →</span>
                   </div>
@@ -107,9 +107,7 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
                 <div className={`mt-1 ${r.statusColor}`}>{r.outgoing ? '⏳' : '✕'} {r.status}</div>
               </div>
             ))}
-            <div className="mt-3">
-              <button onClick={onClose} className="w-full py-1.5 bg-neutral-100 rounded border-none cursor-pointer text-xs text-neutral-500">关闭</button>
-            </div>
+           
           </div>
         )}
       </div>

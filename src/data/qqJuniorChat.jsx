@@ -3,7 +3,7 @@ import { spriteForUser } from '../assets/imageUrls'
 
 const MESSAGES = [
   { from: 'student', text: '学姐，你的化学笔记可以借给我吗？' },
-  { from: 'caiqing', text: <>微信聊，现在不用qq了，我的微信是：<Keyword>CcqQ3927</Keyword></> },
+  { from: 'caiqing', text: <>微信聊，现在不用qq了，我的微信是：xxxx</> },
 ]
 
 export const JUNIOR_CHAT_DATE = '2020/09/15'

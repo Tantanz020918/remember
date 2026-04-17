@@ -38,7 +38,7 @@ const CHATS = {
           翻出小学的<Keyword>同学录</Keyword>了
           <div className="mt-1.5">
             <ImagePlaceholder
-              name="同学录（点击查看大图）"
+              name={<>同学录<br></br><Keyword>（点击查看大图）</Keyword></>}
               width={180}
               height={120}
               from="#fff3b0"

@@ -54,7 +54,7 @@ export const CASTING_FLOORS_PAGE_1 = [
   },
   {
     avatarFrom: '#ffd1dc', avatarTo: '#ff9aa2', userName: '梦幻泡泡', meta: '6 楼',
-    content: <p>我想当女配！我有超多红宝石，场景布置交给我也行～</p>,
+    content: <p>我想当女配！我有红宝石，场景布置交给我也行～</p>,
   },
   {
     avatarFrom: '#c8f0b8', avatarTo: '#8ed687', userName: '星星点灯', meta: '7 楼',
@@ -62,7 +62,7 @@ export const CASTING_FLOORS_PAGE_1 = [
   },
   {
     ...OWNER, meta: '8 楼 · 楼主',
-    content: <p>剧名暂时保密哦～等正式开拍了会公布的！大家先准备好衣服和红宝石～</p>,
+    content: <p>剧名暂时保密哦～等正式开拍了会公布的！～</p>,
     subReplies: [
       { userName: '星星点灯', replyTo: '沐季千柠', content: '好好好！等你开拍我去围观！' },
     ],

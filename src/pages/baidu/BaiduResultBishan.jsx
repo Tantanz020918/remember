@@ -1,5 +1,5 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
+import { StoryLink, DeadLink, ImagePlaceholder, Keyword } from '../../components/ui'
 import { BaiduResultLayout, BaiduResultItem } from './BaiduResultLayout'
 
 export function BaiduResultBishan() {
@@ -12,7 +12,7 @@ export function BaiduResultBishan() {
           image={<ImagePlaceholder name="璧山区风景" width={120} height={80} from="#bfe8f5" to="#7cc6e5" />}
           sub={
             <>
-              · <StoryLink to={6}><b>教育设施</b></StoryLink> · <DeadLink>旅游景点</DeadLink> ·{' '}
+              · <StoryLink to={6}>教育设施</StoryLink> · <DeadLink>旅游景点</DeadLink> ·{' '}
               <DeadLink>特色美食：璧山兔 / 来凤鱼</DeadLink> · <DeadLink>其他信息</DeadLink>
             </>
           }

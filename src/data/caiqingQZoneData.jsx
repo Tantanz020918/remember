@@ -30,7 +30,7 @@ export const TIMELINE_POSTS = [
         最近学了一些新东西，给自己建了一个小网站，就用<Keyword>我最喜欢的那首歌</Keyword>当网站名吧~~
         <div className="mt-2 bg-neutral-900/50 rounded p-2">
           <Comment author="路人">是什么东东？</Comment>
-          <Comment author="雨季">看来你还不够了解我~我都写着呢</Comment>
+          <Comment author="雨季">看来你还不够了解我~多看看我的个人资料吧</Comment>
         </div>
       </>
     ),

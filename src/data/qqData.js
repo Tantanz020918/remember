@@ -1,6 +1,6 @@
 export const ADMINS = [
-  { name: '沐季千柠（群主）', from: '#ffd1dc', to: '#ff9aa2', profileKey: 'zhubo' },
-  { name: '编剧+女主', from: '#d4f0c2', to: '#8cd07d', profileKey: 'bianju' },
+  { name: '沐季千柠（群主）', from: '#ffd1dc', to: '#ff9aa2' },
+  { name: '编剧+女主', from: '#d4f0c2', to: '#8cd07d' },
   { name: '男主·陆远', from: '#c1e8ff', to: '#6ec4f7' },
   { name: '女配·花痴A', from: '#ffe0f0', to: '#f58ec2' },
 ]
@@ -34,10 +34,10 @@ export const CAIQING_CHATS = [
 ]
 
 export const CAIQING_REQUESTS = [
-  { from: '薄荷夏天（梦和）', time: '2015.3', reason: '我真的没想到会这样，听我解释采晴。', status: '已拒绝', statusColor: 'text-red-500' },
-  { from: '薄荷夏天（梦和）', time: '2015.3', reason: '求求你了采晴，我不能没有你。', status: '已拒绝', statusColor: 'text-red-500' },
-  { from: '雨季 → 梦和', time: '2017.10', reason: '梦和，或许我们可以聊一下。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
-  { from: '雨季 → 梦和', time: '2018.1', reason: '梦和，我想跟你谈谈。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
+  { from: '申请添加「如梦令」为好友', time: '2018.1', reason: '梦和，我想跟你谈谈。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
+  { from: '申请添加「如梦令」为好友', time: '2017.10', reason: '梦和，或许我们可以聊一下。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
+  { from: '「如梦令」申请添加你为好友', time: '2015.3', reason: '求求你了采晴，我不能没有你。', status: '已拒绝', statusColor: 'text-red-500' },
+  { from: '「如梦令」申请添加你为好友', time: '2015.3', reason: '我真的没想到会这样，听我解释采晴。', status: '已拒绝', statusColor: 'text-red-500' },
 ]
 
 export const GROUP_MEMBER_COUNT = ADMINS.length + MEMBERS.length

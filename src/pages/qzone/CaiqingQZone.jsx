@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, ImagePlaceholder, PasswordLock, StoryLink } from '../../components/ui'
+
 import { spriteForUser } from '../../assets/imageUrls'
 import { TIMELINE_POSTS, GUESTBOOK, ALBUM_COLORS, RECENT_VISITORS, SIDEBAR_ALBUM } from '../../data/caiqingQZoneData'
 
@@ -109,6 +110,9 @@ function QZoneContent() {
           <ImagePlaceholder sprite={spriteForUser('雨季')} width={90} height={90} round label={false} className="border-3 border-neutral-800 shadow-lg" />
           <div className="pb-2">
             <h2 className="text-xl font-bold text-white drop-shadow-md">雨季</h2>
+            <div className="text-xs text-neutral-200 mt-1 drop-shadow-md">
+              <Keyword>曾沿着雪路浪游 为何为好事泪流</Keyword>
+            </div>
           </div>
         </div>
         <div className="absolute top-4 right-6 text-neutral-400 text-xs flex gap-4">

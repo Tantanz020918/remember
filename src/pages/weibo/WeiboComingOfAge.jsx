@@ -12,7 +12,7 @@ const COMMENTS = [
       { author: '路人', content: '唉，有钱人的烦恼~~' },
     ],
   },
-  { author: '琴声悠扬', time: '02-28 21:30', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '公主裙太好看了！' },
+  { author: '琴声悠扬', time: '02-28 21:30', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '太美了~~' },
   { author: '小花', time: '03-01 08:44', authorFrom: '#ffe7b3', authorTo: '#ffb86b', content: '期待更多钢琴视频！' },
 ]
 

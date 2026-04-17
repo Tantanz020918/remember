@@ -11,7 +11,7 @@ export function TongxueluModal({ onClose }) {
               你有了电脸一定要来{' '}
               <Tooltip text="这里好像写错字了，应该是个游戏">
                 <Keyword>
-                  <span className="italic">ao比鸟</span>
+                  <span className="italic text-[20px]">ao比鸟</span>
                 </Keyword>
               </Tooltip>{' '}
               加我好友，

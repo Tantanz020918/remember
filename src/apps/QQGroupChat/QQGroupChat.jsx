@@ -1,16 +1,13 @@
-import { useState } from 'react'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
-import { Keyword, ImagePlaceholder, Avatar, Modal } from '../../components/ui'
-import { QQProfilePopup } from './QQProfilePopup'
+import { ImagePlaceholder, Avatar } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
-import { ADMINS, MEMBERS, RUYUE_CHATS, FANQUAN_CHAT, GROUP_MEMBER_COUNT } from '../../data/qqData'
+import { RUYUE_CHATS, FANQUAN_CHAT } from '../../data/qqData'
 import { FanquanMessages } from '../../data/qqFanquanMessages'
+import { QQAnnouncementBanner } from '../QQ/QQAnnouncementBanner'
 
 const CHATS = [FANQUAN_CHAT, ...RUYUE_CHATS]
 
 export function QQGroupChat() {
-  const [showAnnouncement, setShowAnnouncement] = useState(false)
-  const [profileKey, setProfileKey] = useState(null)
   const navigate = useGameNavigate()
 
   return (
@@ -47,72 +44,16 @@ export function QQGroupChat() {
       {/* Main content */}
       <div className="flex-1 flex flex-col bg-sky-50/40">
         <div className="px-4 py-3 bg-white border-b border-sky-100 flex justify-between items-center">
-          <div className="font-bold text-sm">
-            沐季千柠工作室粉丝群
-            <span className="text-neutral-500 ml-1.5 font-normal">({GROUP_MEMBER_COUNT})</span>
-          </div>
+          <div className="font-bold text-sm">沐季千柠工作室粉丝群</div>
           <div className="flex gap-3 text-neutral-500 text-base">
             <span>📞</span><span>📹</span><span>⋯</span>
           </div>
         </div>
-        <div className="flex-1 flex overflow-hidden">
-          <div className="flex-1 px-5 py-4 overflow-y-auto bg-sky-50/40">
-            <FanquanMessages />
-          </div>
-
-          <div className="w-[240px] bg-white border-l border-sky-100 overflow-y-auto">
-            <div className="px-3.5 py-2.5 font-semibold text-xs text-neutral-600 border-b border-neutral-200 flex justify-between">
-              <span>群公告</span>
-              <a className="text-sky-700 font-bold cursor-pointer hover:underline" onClick={() => setShowAnnouncement(true)}>查看</a>
-            </div>
-            <div className="px-3.5 py-2.5 font-semibold text-xs text-neutral-600 border-b border-neutral-200">
-              群成员 {GROUP_MEMBER_COUNT}
-            </div>
-            <div>
-              <div className="px-3.5 py-1.5 text-[11px] text-neutral-400 bg-neutral-50">管理员</div>
-              {ADMINS.map((a) => (
-                <div
-                  key={a.name}
-                  className="flex items-center gap-2 px-3.5 py-1.5 cursor-pointer hover:bg-sky-50/60"
-                  onClick={() => a.profileKey && setProfileKey(a.profileKey)}
-                >
-                  <ImagePlaceholder width={28} height={28} round label={false} from={a.from} to={a.to} />
-                  <span className="text-xs">{a.name}</span>
-                </div>
-              ))}
-              <div className="px-3.5 py-1.5 text-[11px] text-neutral-400 bg-neutral-50">成员</div>
-              {MEMBERS.map((m) => (
-                <div key={m.name} className="flex items-center gap-2 px-3.5 py-1.5 hover:bg-sky-50/60">
-                  <ImagePlaceholder width={28} height={28} round label={false} from={m.from} to={m.to} />
-                  <span className="text-xs">{m.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <QQAnnouncementBanner onViewDetails={() => navigate(16)} />
+        <div className="flex-1 px-5 py-4 overflow-y-auto bg-sky-50/40">
+          <FanquanMessages />
         </div>
       </div>
-
-      {profileKey && <QQProfilePopup profileKey={profileKey} onClose={() => setProfileKey(null)} />}
-
-      {showAnnouncement && (
-        <Modal onClose={() => setShowAnnouncement(false)}>
-          <div className="bg-white px-6 py-5 rounded-[10px] min-w-[360px]">
-            <h3 className="font-bold mb-2.5">群公告</h3>
-            <div className="text-[11px] text-neutral-500 mb-2">发布者：编剧+女主 · 2013-01-02 21:05</div>
-            <div className="leading-relaxed text-neutral-700">
-              新戏「<Keyword>永远的姐妹</Keyword>」人物设定已经整理好啦，有意见可提出——
-              <div className="mt-2.5">
-                <a className="text-sky-700 font-bold cursor-pointer hover:underline" onClick={() => { setShowAnnouncement(false); navigate(16) }}>
-                  点击查看详情 &gt;&gt;
-                </a>
-              </div>
-            </div>
-            <div className="mt-3">
-              <button onClick={() => setShowAnnouncement(false)} className="px-4 py-1.5 bg-sky-500 text-white rounded border-none cursor-pointer text-[13px]">关闭</button>
-            </div>
-          </div>
-        </Modal>
-      )}
     </div>
   )
 }

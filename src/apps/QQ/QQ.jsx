@@ -4,20 +4,16 @@ import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { useCurrentPage } from '../../hooks/useCurrentPage'
 import { Avatar, ImagePlaceholder, Toast, useToast } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
-import { QQProfilePopup } from '../QQGroupChat/QQProfilePopup'
-import { RUYUE_CHATS, CAIQING_CHATS, FANQUAN_CHAT, GROUP_MEMBER_COUNT } from '../../data/qqData'
-import { QQAnnouncementModal } from './QQAnnouncementModal'
+import { RUYUE_CHATS, CAIQING_CHATS, FANQUAN_CHAT } from '../../data/qqData'
 import { QQAddDialog } from './QQAddDialog'
 import { QQSwitchAccountDialog } from './QQSwitchAccountDialog'
-import { QQMemberPanel } from './QQMemberPanel'
 import { QQChatBody } from './QQChatBody'
+import { QQAnnouncementBanner } from './QQAnnouncementBanner'
 
 export function QQ() {
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [showSwitchDialog, setShowSwitchDialog] = useState(false)
-  const [showAnnouncement, setShowAnnouncement] = useState(false)
   const [selectedChat, setSelectedChat] = useState(null)
-  const [profileKey, setProfileKey] = useState(null)
   const toast = useToast()
   const { qqGroupJoined, qqAccountSwitched, qqAccounts, setFlag } = useStore()
   const navigate = useGameNavigate()
@@ -47,6 +43,7 @@ export function QQ() {
   const onJoinGroup = () => {
     setFlag('qqGroupJoined', true)
     setShowAddDialog(false)
+    toast.show('加群成功')
   }
 
   const chatList = isCaiqing ? CAIQING_CHATS : [
@@ -55,7 +52,7 @@ export function QQ() {
   ]
 
   const currentChat = chatList.find((c) => c.key === selectedChat)
-  const showMemberPanel = selectedChat === 'fanquan' && qqGroupJoined && !isCaiqing
+  const showAnnouncementBanner = selectedChat === 'fanquan' && qqGroupJoined && !isCaiqing
 
   const onSelectChat = (c) => {
     setSelectedChat(c.key)
@@ -106,43 +103,24 @@ export function QQ() {
       {/* Main */}
       <div className="flex-1 flex flex-col bg-sky-50/40 min-w-0">
         <div className="flex justify-between items-center px-4 py-3 border-b border-sky-100 bg-white">
-          <div className="font-bold">
-            {currentChat?.name || (isCaiqing ? '雨季' : '姚如月')}
-            {selectedChat === 'fanquan' && qqGroupJoined && (
-              <span className="text-neutral-500 ml-1.5 font-normal text-xs">({GROUP_MEMBER_COUNT})</span>
-            )}
-          </div>
+          <div className="font-bold">{currentChat?.name || (isCaiqing ? '雨季' : '姚如月')}</div>
           <div className="text-neutral-500 flex gap-3"><span>🔍</span><span>⋯</span></div>
         </div>
-        <div className="flex-1 flex overflow-hidden min-h-0">
-          <div className="flex-1 flex flex-col min-w-0">
-            <div className="flex-1 px-5 py-4 overflow-y-auto">
-              <QQChatBody selectedChat={selectedChat} qqGroupJoined={qqGroupJoined} isCaiqing={isCaiqing} />
-            </div>
-            <div className="border-t border-sky-100 px-4 pt-1.5 pb-2.5 bg-white min-h-[100px]">
-              <div className="flex gap-3.5 text-neutral-600 text-base py-1.5">
-                <span>😀</span><span>🖼</span><span>✂</span><span>📁</span><span>🎤</span>
-              </div>
-              <textarea className="w-full border-none outline-none resize-none font-sans text-[13px] min-h-[40px]" />
-            </div>
+        {showAnnouncementBanner && (
+          <QQAnnouncementBanner onViewDetails={() => navigate(16)} />
+        )}
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden min-h-0">
+          <div className="flex-1 px-5 py-4 overflow-y-auto">
+            <QQChatBody selectedChat={selectedChat} qqGroupJoined={qqGroupJoined} isCaiqing={isCaiqing} />
           </div>
-          {showMemberPanel && (
-            <QQMemberPanel
-              onOpenAnnouncement={() => setShowAnnouncement(true)}
-              onSelectProfile={setProfileKey}
-            />
-          )}
+          <div className="border-t border-sky-100 px-4 pt-1.5 pb-2.5 bg-white min-h-[100px]">
+            <div className="flex gap-3.5 text-neutral-600 text-base py-1.5">
+              <span>😀</span><span>🖼</span><span>✂</span><span>📁</span><span>🎤</span>
+            </div>
+            <textarea className="w-full border-none outline-none resize-none font-sans text-[13px] min-h-[40px]" />
+          </div>
         </div>
       </div>
-
-      {profileKey && <QQProfilePopup profileKey={profileKey} onClose={() => setProfileKey(null)} />}
-
-      {showAnnouncement && (
-        <QQAnnouncementModal
-          onClose={() => setShowAnnouncement(false)}
-          onViewDetails={() => { setShowAnnouncement(false); navigate(16) }}
-        />
-      )}
 
       {showAddDialog && (
         <QQAddDialog

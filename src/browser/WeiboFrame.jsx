@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ImagePlaceholder } from '../components/ui'
 import { spriteForUser } from '../assets/imageUrls'
 import { BrowserFrame } from './BrowserFrame'
@@ -156,12 +157,18 @@ export function WeiboPostDetail({
   comments, commentsData, likes, onLikeTab, likesData,
 }) {
   const [tab, setTab] = useState('hot')
+  const navigate = useNavigate()
   const { src, sprite } = userAvatar(author, authorSrc)
 
   return (
     <div className="bg-white">
       <div className="px-4 py-3 border-b border-neutral-100 flex items-center gap-3">
-        <span className="text-neutral-500 cursor-pointer">&lt; 返回</span>
+        <span
+          className="text-neutral-500 cursor-pointer hover:text-neutral-700"
+          onClick={() => navigate(-1)}
+        >
+          &lt; 返回
+        </span>
       </div>
       <div className="p-4 border-b border-neutral-100">
         <div className="flex items-center gap-3 mb-3">
