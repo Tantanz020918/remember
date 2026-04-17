@@ -39,7 +39,7 @@ export const SCRIPT_FLOORS = [
         </p>
         <p className="italic text-neutral-500 px-3.5 py-2 bg-pink-50/70 border-l-[3px] border-[#e891b0] my-2">
           （内心独白）对不起，月儿，如果你需要我，我还是愿意做你的朋友。
-          我们三个人，应该是<Keyword>永远的姐妹</Keyword>。
+          我们三个人，应该是永远的姐妹。
         </p>
         <p>最后，在慕容梦和18岁的生日宴席上，三人重归于好，陆远也在一次球赛后对慕容梦和表白成功。全剧终。</p>
         <div className="mt-3.5 text-center text-neutral-400 text-[11px]">

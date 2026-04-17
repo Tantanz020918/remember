@@ -16,7 +16,7 @@ export const CASTING_FLOORS_PAGE_1 = [
     meta: '1 楼 · 2012-08-20 14:32',
     content: (
       <>
-        <p>大家好！我是沐季千柠工作室的，想拍一部奥比岛言情短剧，需要招：</p>
+        <p>大家好！这里是沐季千柠工作室，想拍一部奥比岛言情短剧，需要招：</p>
         <p>编剧 1 位、女主 1 位、男主 1 位、配角若干。有意者楼下回复～</p>
         <div className="my-2">
           <ImagePlaceholder name="剧照预告" width={320} height={180} from="#ffe0a3" to="#ffb3d9" />

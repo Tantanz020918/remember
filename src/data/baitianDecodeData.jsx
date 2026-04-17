@@ -1,3 +1,5 @@
+import { Keyword } from "../components/ui";
+
 export const DECODE_FLOORS = [
   {
     avatarFrom: '#ffe7b3', avatarTo: '#ffb86b', userName: '小糊涂', userLv: 'Lv.3',
@@ -18,7 +20,7 @@ export const DECODE_FLOORS = [
     content: (
       <>
         <p>这是典型的编码错误，UTF-8 的文字被用 GBK 的方式打开了，所以变成了乱码。</p>
-        <p className="mt-2">你可以去网上搜一下「在线乱码恢复工具」或者「UTF-8 转 GBK 乱码恢复」，把这段乱码贴进去就能看到原文了。</p>
+        <p className="mt-2">你可以去网上搜一下<Keyword>在线乱码恢复工具</Keyword>，把这段乱码贴进去就能看到原文了。</p>
       </>
     ),
   },

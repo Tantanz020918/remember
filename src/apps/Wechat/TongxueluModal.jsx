@@ -9,11 +9,9 @@ export function TongxueluModal({ onClose }) {
             <p>好姐妹一bei子，</p>
             <p>
               你有了电脸一定要来{' '}
-              <Tooltip text="这里好像写错字了，应该是个游戏">
                 <Keyword>
                   <span className="italic text-[20px]">ao比鸟</span>
                 </Keyword>
-              </Tooltip>{' '}
               加我好友，
             </p>
             <p>
