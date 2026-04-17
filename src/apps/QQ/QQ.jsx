@@ -79,7 +79,8 @@ export function QQ() {
   const [showAnnouncement, setShowAnnouncement] = useState(false)
   const [profileKey, setProfileKey] = useState(null)
   const [toast, setToast] = useState('')
-  const { qqGroupJoined, qqAccountSwitched, qqAccounts, qingAdded, setFlag } = useStore()
+  const [toastVisible, setToastVisible] = useState(false)
+  const { qqGroupJoined, qqAccountSwitched, qqAccounts, setFlag } = useStore()
   const navigate = useGameNavigate()
   const currentPage = useCurrentPage()
 
@@ -140,7 +141,6 @@ export function QQ() {
   ]
 
   const currentChat = chatList.find((c) => c.key === selectedChat)
-  const avatarName = isCaiqing ? '雨季' : '姚如月'
 
   return (
     <div className="flex h-full text-[13px] bg-sky-50/50">
@@ -173,10 +173,11 @@ export function QQ() {
                 setSelectedChat(c.key)
                 if (c.key === 'fanquan') navigate(15)
                 else if (currentPage === 15) navigate(3)
-                if (c.key === 'junior' && isCaiqing && !qingAdded) {
-                  setFlag('qingAdded', true)
+                if (c.key === 'junior' && isCaiqing) {
                   setToast('获得采晴的联系方式')
-                  setTimeout(() => setToast(''), 2500)
+                  setToastVisible(true)
+                  setTimeout(() => setToastVisible(false), 2500)
+                  setTimeout(() => setToast(''), 3000)
                 }
               }}
               className={`flex gap-2.5 px-3 py-2.5 cursor-pointer border-b border-neutral-100 ${selectedChat === c.key ? 'bg-sky-100/70' : 'hover:bg-sky-50/60'}`}
@@ -520,7 +521,9 @@ export function QQ() {
       )}
 
       {toast && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-medium z-[2000]">
+        <div
+          className={`fixed top-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-medium z-[2000] transition-opacity duration-500 ${toastVisible ? 'opacity-100' : 'opacity-0'}`}
+        >
           🎉 {toast}
         </div>
       )}

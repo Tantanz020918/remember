@@ -23,14 +23,10 @@ const INITIAL_STATE = {
   diaryUnlocked: false,
   fansPost1Unlocked: false,
   lockedPostUnlocked: false,
-  qingAdded: false,
 
   // weibo state
   followedMenghe: false,
 
-  // wechat
-  caiqingWechatAdded: false,
-  mamaAdded: false,
 }
 
 export const useStore = create((set) => ({

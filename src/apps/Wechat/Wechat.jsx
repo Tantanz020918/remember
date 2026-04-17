@@ -16,19 +16,12 @@ export function Wechat() {
   const [view, setView] = useState('chats')
   const [chatKey, setChatKey] = useState('qing')
   const [showBigImg, setShowBigImg] = useState(false)
-  const { qingAdded, mamaAdded } = useStore()
 
   const chatList = [
-    { key: 'qing', name: '青青', preview: '你是在璧山读的小学吗？', time: '14:22', unread: 0 },
-    { key: 'zhou', name: '设计-周雪', preview: '[图片]', time: '昨天', unread: 0 },
-    { key: 'mom', name: '妈妈', preview: '今年你是本命年啊', time: '昨天', unread: 0 },
-    { key: 'nail', name: '沁心美甲美睫', preview: '亲，只能提前三天内预约', time: '4.13', unread: 0 },
-    ...(qingAdded
-      ? [{ key: 'caiqing', name: '胡采晴', preview: '我等这一天等了十四年', time: '刚刚', unread: 2 }]
-      : []),
-    ...(mamaAdded
-      ? [{ key: 'mama', name: '梦和妈妈', preview: '……', time: '刚刚', unread: 0 }]
-      : []),
+    { key: 'qing', name: '青青', preview: '蛮可惜的~~', time: '14:22', unread: 0 },
+    { key: 'zhou', name: '设计-周雪', preview: '好，收到。', time: '昨天', unread: 0 },
+    { key: 'mom', name: '妈妈', preview: '爱你老妈', time: '16:48', unread: 0 },
+    { key: 'nail', name: '沁心美甲美睫', preview: '行', time: '4.13', unread: 0 },
   ]
 
   return (
@@ -159,7 +152,7 @@ export function Wechat() {
               </div>
             </Message>
             <Message mine name="姚如月">
-              好想她们啊……
+              这俩是我当时最好的姐妹，好想念她们呜呜呜
             </Message>
             <Message name="青青">
               你是在<Keyword>璧山</Keyword>读的小学吗？
@@ -246,19 +239,7 @@ export function Wechat() {
           </ChatFrame>
         )}
 
-        {view === 'chats' && chatKey === 'caiqing' && qingAdded && (
-          <ChatFrame name="胡采晴">
-            <Message name="胡采晴">……我等这一天等了十四年。</Message>
-            <Message name="胡采晴">[待补充]</Message>
-          </ChatFrame>
-        )}
-
-        {view === 'chats' && chatKey === 'mama' && mamaAdded && (
-          <ChatFrame name="梦和妈妈">
-            <Message name="梦和妈妈">[待补充]</Message>
-          </ChatFrame>
-        )}
-
+       
         {view === 'moments' && <Moments />}
 
       </div>
