@@ -1,0 +1,130 @@
+import useGameStore from '../store/gameStore';
+
+export default function CluePanel() {
+  const clues = useGameStore((s) => s.discoveredClues);
+  const open = useGameStore((s) => s.cluePanelOpen);
+  const toggle = useGameStore((s) => s.toggleCluePanel);
+  const setShowEndingChoice = useGameStore((s) => s.setShowEndingChoice);
+
+  return (
+    <>
+      {/* Toggle button */}
+      <div
+        onClick={toggle}
+        style={{
+          position: 'fixed',
+          bottom: 80,
+          left: 16,
+          width: 48,
+          height: 48,
+          borderRadius: '50%',
+          background: clues.length > 0 ? 'rgba(0,122,255,0.8)' : 'rgba(60,60,60,0.8)',
+          backdropFilter: 'blur(10px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          zIndex: 9991,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          fontSize: 20,
+          transition: 'all 0.2s',
+        }}
+        title={`线索板 (${clues.length})`}
+      >
+        🔍
+        {clues.length > 0 && (
+          <span style={{
+            position: 'absolute', top: -4, right: -4,
+            background: '#FF3B30', borderRadius: 10,
+            fontSize: 11, fontWeight: 700,
+            minWidth: 18, height: 18,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '0 4px',
+          }}>
+            {clues.length}
+          </span>
+        )}
+      </div>
+
+      {/* Panel */}
+      {open && (
+        <div style={{
+          position: 'fixed',
+          bottom: 80,
+          left: 72,
+          width: 340,
+          maxHeight: 420,
+          background: 'rgba(30,30,30,0.92)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255,255,255,0.12)',
+          borderRadius: 12,
+          zIndex: 9991,
+          boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+          display: 'flex',
+          flexDirection: 'column',
+          animation: 'slideUp 0.2s ease',
+        }}>
+          <div style={{
+            padding: '12px 16px',
+            borderBottom: '1px solid rgba(255,255,255,0.08)',
+            fontWeight: 600,
+            fontSize: 14,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+            <span>线索板</span>
+            <span style={{ fontSize: 12, opacity: 0.5 }}>{clues.length} 条线索</span>
+          </div>
+          <div style={{ flex: 1, overflow: 'auto', padding: 8 }}>
+            {clues.length === 0 ? (
+              <div style={{ padding: 20, textAlign: 'center', opacity: 0.4, fontSize: 13 }}>
+                还没有发现线索……<br />探索各个应用，寻找真相。
+              </div>
+            ) : (
+              clues.map((c, i) => (
+                <div key={c.id} style={{
+                  padding: '8px 12px',
+                  marginBottom: 4,
+                  background: 'rgba(255,255,255,0.05)',
+                  borderRadius: 8,
+                  fontSize: 13,
+                  lineHeight: 1.5,
+                  borderLeft: '3px solid var(--accent)',
+                }}>
+                  <span style={{ opacity: 0.4, marginRight: 6 }}>#{i + 1}</span>
+                  {c.text}
+                </div>
+              ))
+            )}
+          </div>
+          {clues.length >= 5 && (
+            <div style={{
+              padding: '10px 16px',
+              borderTop: '1px solid rgba(255,255,255,0.08)',
+            }}>
+              <button
+                onClick={() => setShowEndingChoice(true)}
+                style={{
+                  width: '100%',
+                  padding: '8px 16px',
+                  background: 'var(--accent)',
+                  border: 'none',
+                  borderRadius: 8,
+                  color: '#fff',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                做出选择……
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
