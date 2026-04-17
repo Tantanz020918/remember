@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, ImagePlaceholder, PasswordLock, StoryLink } from '../../components/ui'
-import { BESTIE_1, GAME, THEME_PARK, HANDMADE, HAMSTER } from '../../assets/imageUrls'
+import { GAME, THEME_PARK, HANDMADE, HAMSTER, spriteForUser } from '../../assets/imageUrls'
 
 const PUBLIC_JOURNALS = [
   {
@@ -66,7 +66,7 @@ const PUBLIC_JOURNALS = [
 function QZonePost({ time, avatar, name, children }) {
   return (
     <div className="border-b border-neutral-700/30 py-4 flex gap-3">
-      {avatar && <ImagePlaceholder src={BESTIE_1.src} fallbackSrc={BESTIE_1.fallbackSrc} width={40} height={40} round label={false} />}
+      {avatar && <ImagePlaceholder sprite={spriteForUser('雨季')} width={40} height={40} round label={false} />}
       <div className="flex-1">
         {name && <div className="text-amber-300 text-xs font-bold mb-1">{name}</div>}
         <div className="text-sm leading-relaxed text-neutral-300">{children}</div>
@@ -111,7 +111,7 @@ function QZoneContent() {
       {/* Banner + avatar */}
       <div className="relative h-44 bg-linear-to-br from-neutral-800 via-neutral-700 to-amber-900/30">
         <div className="absolute bottom-4 left-6 flex items-end gap-4">
-          <ImagePlaceholder name="闺蜜头像1" src={BESTIE_1.src} fallbackSrc={BESTIE_1.fallbackSrc} width={90} height={90} round label={false} className="border-3 border-neutral-800 shadow-lg" />
+          <ImagePlaceholder sprite={spriteForUser('雨季')} width={90} height={90} round label={false} className="border-3 border-neutral-800 shadow-lg" />
           <div className="pb-2">
             <h2 className="text-xl font-bold text-white drop-shadow-md">雨季</h2>
           </div>

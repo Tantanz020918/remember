@@ -1,6 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ImagePlaceholder } from '../components/ui'
 import { spriteForUser } from '../assets/imageUrls'
+
+// Probe a primary image URL; fall back to local on error. For CSS background-image
+// since onError doesn't fire on background-image, use Image() preloading.
+function useImageFallback(imageObj) {
+  const primary = typeof imageObj === 'object' ? imageObj?.src : imageObj
+  const fallback = typeof imageObj === 'object' ? imageObj?.fallbackSrc : null
+  const [url, setUrl] = useState(primary)
+  useEffect(() => {
+    setUrl(primary)
+    if (!primary || !fallback) return
+    const probe = new Image()
+    probe.onerror = () => setUrl(fallback)
+    probe.src = primary
+  }, [primary, fallback])
+  return url
+}
 
 export function WeiboFrame({ children }) {
   return (
@@ -24,7 +40,7 @@ export function WeiboProfileHeader({
   verified,
   children,
 }) {
-  const resolvedBg = typeof bgImage === 'object' ? bgImage?.src : bgImage
+  const resolvedBg = useImageFallback(bgImage)
   const bannerStyle = resolvedBg
     ? { backgroundImage: `url(${resolvedBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }
     : { background: `linear-gradient(135deg, ${bgFrom}, ${bgTo})` }
