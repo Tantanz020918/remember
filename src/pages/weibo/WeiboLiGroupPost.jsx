@@ -1,6 +1,7 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboPostDetail, WeiboComment, WeiboSubComment } from '../../browser/WeiboFrame'
+import { Keyword } from '../../components/ui'
 
 export function WeiboLiGroupPost() {
   const navigate = useGameNavigate()
@@ -50,7 +51,7 @@ export function WeiboLiGroupPost() {
                 这谁，不认识。
               </WeiboComment>
               <WeiboComment author="老粉" time="06-15 09:30" authorFrom="#ffd1dc" authorTo="#ff9aa2">
-                她好像把自己粉丝都清掉了。
+                她好像把自己<Keyword>粉丝都清掉了</Keyword>。
               </WeiboComment>
             </>
           }

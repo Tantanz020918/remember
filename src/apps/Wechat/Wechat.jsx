@@ -10,29 +10,13 @@ import { TongxueluModal } from './TongxueluModal'
 const RAIL_ICONS = [
   { key: 'chats', icon: '💬' },
   { key: 'moments', icon: '🌐' },
-  { key: 'add', icon: '➕' },
 ]
 
 export function Wechat() {
   const [view, setView] = useState('chats')
   const [chatKey, setChatKey] = useState('qing')
   const [showBigImg, setShowBigImg] = useState(false)
-  const [addInput, setAddInput] = useState('')
-  const [addResult, setAddResult] = useState('')
-  const { qingAdded, mamaAdded, setFlag } = useStore()
-
-  const onSearchFriend = () => {
-    const value = addInput.trim()
-    if (value === 'qingqing_0826') {
-      setFlag('qingAdded', true)
-      setAddResult('添加成功！胡采晴已通过你的好友请求。')
-    } else if (value === 'lmh_mama') {
-      setFlag('mamaAdded', true)
-      setAddResult('已发送好友请求。')
-    } else if (value) {
-      setAddResult('未找到该用户。')
-    }
-  }
+  const { qingAdded, mamaAdded } = useStore()
 
   const chatList = [
     { key: 'qing', name: '青青', preview: '你是在璧山读的小学吗？', time: '14:22', unread: 0 },
@@ -138,7 +122,16 @@ export function Wechat() {
           <ChatFrame name="青青">
             <div className="text-center text-neutral-400 text-[11px] my-3">一周前</div>
             <Message mine name="姚如月">
-              搬家完去做个美甲，上次做的<Keyword>生日款</Keyword>很好看，就是款式复杂差点没赶上生日宴
+              下周搬家完准备去做个美甲，指甲又长长了
+            </Message>
+              <Message name="青青">
+              <div >还是去上次那家吗？</div>
+            </Message>
+            <Message mine name="姚如月">
+             对，上次做的<Keyword>生日款</Keyword>很好看，就是款式复杂差点没赶上生日宴
+            </Message>
+              <Message name="青青">
+              <div >确实，难免的</div>
             </Message>
             <div className="text-center text-neutral-400 text-[11px] my-3">昨天</div>
             <Message name="青青">
@@ -153,7 +146,7 @@ export function Wechat() {
               搬家真的好累
             </Message>
             <Message mine name="姚如月">
-              翻出小学的同学录了——
+              翻出小学的<Keyword>同学录</Keyword>了
               <div className="mt-1.5">
                 <ImagePlaceholder
                   name="同学录（点击查看大图）"
@@ -174,21 +167,41 @@ export function Wechat() {
             <Message mine name="姚如月">
               是的，但我快升六年级的时候就转学走了。
             </Message>
+            <Message name="青青">
+              蛮可惜的~~
+            </Message>
           </ChatFrame>
         )}
 
         {view === 'chats' && chatKey === 'mom' && (
           <ChatFrame name="妈妈">
-            <Message name="妈妈">今天冷，多穿点。</Message>
-            <Message mine name="姚如月">
-              好。
-            </Message>
+            <div className="text-center text-neutral-400 text-[11px] my-3">1.13</div>
+           <Message name="妈妈">降温了，多穿点。</Message>
+            <Message mine name="姚如月">好，你们也注意保暖</Message>
+                        <div className="text-center text-neutral-400 text-[11px] my-3">2.10</div>
+           <Message name="妈妈">闺女，票买了没？</Message>
+            <Message mine name="姚如月">买好了，16号下午2点到</Message>
+            <Message name="妈妈">知道了</Message>
+            <div className="text-center text-neutral-400 text-[11px] my-3">3.2</div>
             <Message name="妈妈">
               今年你是<Keyword>本命年</Keyword>啊，记得穿点红色，妈妈给你寄了袜子。
             </Message>
-            <Message mine name="姚如月">
-              收到啦～
-            </Message>
+            <Message mine name="姚如月">收到啦～爱你妈妈</Message>
+            <Message name="妈妈">你爸爸前两天血压又高了，我让他少喝酒。</Message>
+            <Message mine name="姚如月">爸是老毛病了，让他注意点，我晚点打电话给他念叨。</Message>
+            <div className="text-center text-neutral-400 text-[11px] my-3">16:39</div>
+             <Message name="妈妈">闺女，新家安顿好了吗？</Message>
+            <Message mine name="姚如月">安顿得差不多啦，就是东西还没归位。</Message>
+            <Message name="妈妈">要不要妈妈周末过去帮你收拾？</Message>
+            <Message mine name="姚如月">不用啦，我自己慢慢弄就好啦～</Message>
+            <Message name="妈妈">记得按时吃饭，别老点外卖。</Message>
+            <Message mine name="姚如月">嗯嗯，我今天煮了粥～</Message>
+            <Message name="妈妈">那就好，吃好才有精神上班。</Message>
+            
+            <Message name="妈妈">傻孩子😊 五一回来吗？</Message>
+            <Message mine name="姚如月">看情况，如果不加班就回</Message>
+            <Message name="妈妈">哎好，妈妈给你炖排骨汤🥘</Message>
+            <Message mine name="姚如月">爱你老妈</Message>
           </ChatFrame>
         )}
 
@@ -196,10 +209,13 @@ export function Wechat() {
           <ChatFrame name="设计-周雪">
             <div className="text-center text-neutral-400 text-[11px] my-3">昨天</div>
             <Message mine name="姚如月">
-              我明天要搬家，今天帮我走查完哈，晚上我修一波。
+              雪姐，我明天要搬家，今天帮我走查完哈，晚上我修一波。
+            </Message>
+             <Message name="设计-周雪">
+              ok，马上开始走查
             </Message>
             <Message name="设计-周雪">
-              ok，首页 hero 区间距再大 8px，标题字重换成 medium。详情页卡片阴影偏硬。
+              首页 hero 区间距再大 8px，标题字重换成 medium。详情页卡片阴影偏硬。
               <div className="mt-1">
                 <ImagePlaceholder name="设计走查截图" width={160} height={100} from="#e4d4ff" to="#c1d3ff" />
               </div>
@@ -216,12 +232,17 @@ export function Wechat() {
             <Message mine name="姚如月">
               预约周六的美甲～
             </Message>
-            <Message name="沁心美甲美睫">好的亲，周六见！</Message>
+            <Message name="沁心美甲美睫">好的亲，下午四点钟可以吗？</Message>
+            <Message mine name="姚如月">早点吧，1点行不行</Message>
+            <Message name="沁心美甲美睫">可以的宝子，帮你约上啦</Message>
             <div className="text-center text-neutral-400 text-[11px] my-3">4.13</div>
             <Message mine name="姚如月">
-              预约周六的美甲。
+              我要预约这周六的美甲
             </Message>
             <Message name="沁心美甲美睫">亲，只能提前三天内预约哦。</Message>
+            <Message mine name="姚如月">
+              行
+            </Message>
           </ChatFrame>
         )}
 
@@ -239,33 +260,6 @@ export function Wechat() {
         )}
 
         {view === 'moments' && <Moments />}
-
-        {view === 'add' && (
-          <div className="px-16 py-10">
-            <h3 className="font-bold mb-3.5 text-base">添加朋友</h3>
-            <div className="flex gap-2">
-              <input
-                className="flex-1 px-2.5 py-2 border border-neutral-300 rounded text-[13px] outline-none"
-                placeholder="请输入微信号/手机号"
-                value={addInput}
-                onChange={(e) => setAddInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && onSearchFriend()}
-              />
-              <button
-                className="px-5 py-2 bg-[#07c160] text-white border-none rounded cursor-pointer"
-                onClick={onSearchFriend}
-              >
-                搜索
-              </button>
-            </div>
-            {addResult && (
-              <div className="mt-5 p-3 bg-sky-50 rounded text-neutral-700">{addResult}</div>
-            )}
-            <div className="mt-8 text-neutral-400 text-xs">
-              你也可以通过扫一扫、面对面建群等方式添加朋友。
-            </div>
-          </div>
-        )}
 
       </div>
 

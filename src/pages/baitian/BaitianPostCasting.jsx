@@ -43,8 +43,8 @@ export function BaitianPostCasting() {
                   />
                 </div>
                 <p className="mt-2">⚠️ 要求：</p>
-                <p>1. 必须有<Keyword>绝版衣服</Keyword>（越多越好，拍剧需要换装）</p>
-                <p>2. 必须有<Keyword>红宝石</Keyword>（场景布置需要道具）</p>
+                <p>1. 必须有绝版衣服（越多越好，拍剧需要换装）</p>
+                <p>2. 必须有红宝石（需要改名字）</p>
                 <p>3. 有拍摄经验的优先～</p>
                 <p className="mt-2">校园纯爱向，欢迎热爱言情的小伙伴加入！</p>
               </ForumFloor>
@@ -76,7 +76,7 @@ export function BaitianPostCasting() {
                 userName="奥比小王子"
                 meta="3 楼"
               >
-                <p>男主+1，我很帅的！红宝石有 200 多颗够不够？</p>
+                <p>男主+1，我有所有男装，绝版都有</p>
               </ForumFloor>
               <ForumFloor
                 avatarName=""
@@ -173,7 +173,7 @@ export function BaitianPostCasting() {
                   },
                 ]}
               >
-                <p>楼主我朋友也想来，他红宝石超多的！</p>
+                <p>楼主我朋友也想来</p>
               </ForumFloor>
               <ForumFloor
                 avatarName="闺蜜头像 2"

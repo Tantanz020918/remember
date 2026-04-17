@@ -78,7 +78,8 @@ export function QQ() {
   const [switchError, setSwitchError] = useState('')
   const [showAnnouncement, setShowAnnouncement] = useState(false)
   const [profileKey, setProfileKey] = useState(null)
-  const { qqGroupJoined, qqAccountSwitched, qqAccounts, setFlag } = useStore()
+  const [toast, setToast] = useState('')
+  const { qqGroupJoined, qqAccountSwitched, qqAccounts, qingAdded, setFlag } = useStore()
   const navigate = useGameNavigate()
   const currentPage = useCurrentPage()
 
@@ -172,6 +173,11 @@ export function QQ() {
                 setSelectedChat(c.key)
                 if (c.key === 'fanquan') navigate(15)
                 else if (currentPage === 15) navigate(3)
+                if (c.key === 'junior' && isCaiqing && !qingAdded) {
+                  setFlag('qingAdded', true)
+                  setToast('获得采晴的联系方式')
+                  setTimeout(() => setToast(''), 2500)
+                }
               }}
               className={`flex gap-2.5 px-3 py-2.5 cursor-pointer border-b border-neutral-100 ${selectedChat === c.key ? 'bg-sky-100/70' : 'hover:bg-sky-50/60'}`}
             >
@@ -231,44 +237,30 @@ export function QQ() {
             <>
               <div className="text-center text-neutral-400 text-[11px] my-2.5">今天</div>
               <div className="flex gap-2.5 my-2.5">
-                <Avatar name="峡谷小王" size={32} />
+                <Avatar name="我要锻炼" size={32} />
                 <div>
-                  <div className="text-[11px] text-neutral-400 mb-0.5">峡谷小王</div>
-                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">晚上谁开黑？最近都在玩啥？</div>
+                  <div className="text-[11px] text-neutral-400 mb-0.5">我要锻炼</div>
+                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">脑壳痛</div>
                 </div>
               </div>
               <div className="flex gap-2.5 my-2.5">
-                <Avatar name="原批下山" size={32} />
+                <Avatar name="cecea" size={32} />
                 <div>
-                  <div className="text-[11px] text-neutral-400 mb-0.5">原批下山</div>
-                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">原神新版本爽到，新角色抽到了</div>
+                  <div className="text-[11px] text-neutral-400 mb-0.5">cecea</div>
+                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">那你还上号不</div>
                 </div>
               </div>
               <div className="flex gap-2.5 my-2.5">
-                <Avatar name="吃鸡选手" size={32} />
+                <Avatar name="我要锻炼" size={32} />
                 <div>
-                  <div className="text-[11px] text-neutral-400 mb-0.5">吃鸡选手</div>
-                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">吃鸡吃鸡，差一个四排</div>
+                  <div className="text-[11px] text-neutral-400 mb-0.5">我要锻炼</div>
+                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">不来了，我睡一下</div>
                 </div>
               </div>
               <div className="flex gap-2.5 my-2.5">
-                <Avatar name="LOL老咸鱼" size={32} />
+                <Avatar name="超级小鼠妇）" size={32} />
                 <div>
-                  <div className="text-[11px] text-neutral-400 mb-0.5">LOL老咸鱼</div>
-                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">LoL 新赛季打排位，被虐哭了 T_T</div>
-                </div>
-              </div>
-              <div className="flex gap-2.5 my-2.5">
-                <Avatar name="峡谷小王" size={32} />
-                <div>
-                  <div className="text-[11px] text-neutral-400 mb-0.5">峡谷小王</div>
-                  <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">王者荣耀新英雄出了没？有空一起上分</div>
-                </div>
-              </div>
-              <div className="flex gap-2.5 my-2.5">
-                <Avatar name="超级小鼠妇（四孩爸版）" size={32} />
-                <div>
-                  <div className="text-[11px] text-neutral-400 mb-0.5">超级小鼠妇（四孩爸版）</div>
+                  <div className="text-[11px] text-neutral-400 mb-0.5">超级小鼠妇</div>
                   <div className="bg-white px-3 py-2 rounded border border-sky-100 text-sm">喜欢豆狗</div>
                 </div>
               </div>
@@ -524,6 +516,12 @@ export function QQ() {
             </div>
             <button onClick={() => setShowSwitchDialog(false)} className="mt-3 w-full py-1.5 bg-neutral-100 rounded border-none cursor-pointer text-xs text-neutral-500">取消</button>
           </div>
+        </div>
+      )}
+
+      {toast && (
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-sm font-medium z-[2000]">
+          🎉 {toast}
         </div>
       )}
     </div>

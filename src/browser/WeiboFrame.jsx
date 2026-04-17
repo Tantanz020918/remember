@@ -42,7 +42,7 @@ export function WeiboProfileHeader({
 }) {
   const resolvedBg = useImageFallback(bgImage)
   const bannerStyle = resolvedBg
-    ? { backgroundImage: `url(${resolvedBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+    ? { backgroundImage: `url(${resolvedBg})`, backgroundSize: 'cover', backgroundPosition: 'center 25%' }
     : { background: `linear-gradient(135deg, ${bgFrom}, ${bgTo})` }
 
   const sprite = !avatarSrc && !name?.includes('闺蜜头像') ? spriteForUser(name) : null
@@ -80,7 +80,6 @@ export function WeiboProfileHeader({
 
 function userAvatar(name, overrideSrc) {
   if (overrideSrc) return { src: overrideSrc, sprite: null }
-  if (name === '梦和MH') return { src: null, sprite: null } // 梦和自己不用随机精灵
   if (name?.includes('闺蜜头像')) return { src: null, sprite: null }
   return { src: null, sprite: spriteForUser(name) }
 }

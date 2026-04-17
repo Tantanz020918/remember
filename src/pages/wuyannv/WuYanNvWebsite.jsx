@@ -188,19 +188,43 @@ function DiaryTab() {
   return (
     <div className="py-6 px-8 max-w-lg mx-auto space-y-6">
       <div>
-        <div className="text-neutral-400 text-xs mb-1">2020</div>
+        <div className="text-neutral-400 text-xs mb-1">2020.11</div>
         <div className="text-sm text-neutral-700 leading-relaxed">
-          现在时曾想起，还是会感到后悔。我已经失去了半颗心，又丢掉了半颗心。再次发出好友申请时，不再有任何回音，你究竟去哪了呢，为什么世界上再未见过你的痕迹。
+          现在时曾想起，还是会感到后悔。我再次发出好友申请时，不再有任何回音，你究竟去哪了呢，为什么世界上再未见过你的痕迹。
         </div>
       </div>
       <div>
         <div className="text-neutral-400 text-xs mb-1">2018.3</div>
         <div className="text-sm text-neutral-700 leading-relaxed">
-          表达了深深的怨恨与不解。为什么我对你掏心掏肺，你却在背后捅我一刀？
+          不解。为什么我对你掏心掏肺，你却在背后捅我一刀？
         </div>
       </div>
       <div>
-        <div className="text-neutral-400 text-xs mb-1">2016</div>
+        <div className="text-neutral-400 text-xs mb-1">2017.6</div>
+        <div className="text-sm text-neutral-700 leading-relaxed">
+          感觉有点长胖了，心累……蓝瘦香菇
+        </div>
+      </div>
+      <div>
+        <div className="text-neutral-400 text-xs mb-1">2017.1</div>
+        <div className="text-sm text-neutral-700 leading-relaxed">
+          好久没更新了~~~~不知道有没有陌生人进来看，感觉日记被别人看到有点羞耻
+        </div>
+      </div>
+       <div>
+        <div className="text-neutral-400 text-xs mb-1">2016.8</div>
+        <div className="text-sm text-neutral-700 leading-relaxed">
+          翻到了以前和如月、梦和一起写的小说，差点没给我笑死，我们每个人都给自己想了一个公主和精灵，而且画得特别丑
+        </div>
+      </div>
+       <div>
+        <div className="text-neutral-400 text-xs mb-1">2016.7</div>
+        <div className="text-sm text-neutral-700 leading-relaxed">
+          重庆真的太热了！！！！根本出不了门
+        </div>
+      </div>
+      <div>
+        <div className="text-neutral-400 text-xs mb-1">2016.1</div>
         <div className="text-sm text-neutral-700 leading-relaxed">
           姐姐教我新建了一个网站，感觉好酷。
         </div>

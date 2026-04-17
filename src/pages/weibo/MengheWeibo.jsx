@@ -3,7 +3,7 @@ import { useStore } from '../../store'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboProfileHeader, WeiboPost } from '../../browser/WeiboFrame'
 import { ImagePlaceholder } from '../../components/ui'
-import { FLIPPED, BESTIE_2, CEREMONY_18 } from '../../assets/imageUrls'
+import { FLIPPED, CEREMONY_18 } from '../../assets/imageUrls'
 
 export function MengheWeibo() {
   const { followedMenghe, setFlag } = useStore()
@@ -15,11 +15,10 @@ export function MengheWeibo() {
         <WeiboProfileHeader
           name="梦和MH"
           bio="🎹 音乐是唯一的语言"
-          followCount="128"
-          fansCount="2.1万"
+          followCount="12"
+          fansCount="146"
           postCount="346"
           bgImage={FLIPPED}
-          avatarSrc={BESTIE_2.src}
         >
           {!followedMenghe ? (
             <button onClick={() => setFlag('followedMenghe', true)} className="px-5 py-1.5 bg-orange-500 text-white rounded-full text-sm cursor-pointer hover:bg-orange-600 border-none font-medium">+ 关注</button>
@@ -30,13 +29,13 @@ export function MengheWeibo() {
 
         {followedMenghe && (
           <>
-            <WeiboPost author="梦和MH" authorSrc={BESTIE_2.src} time="2018-03-10" onClick={() => navigate(30)}>
+            <WeiboPost author="梦和MH" time="2018-03-10" onClick={() => navigate(30)}>
               <div className="flex items-center gap-1 mb-1">
                 <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded">仅粉丝可见</span>
               </div>
               [点击查看]
             </WeiboPost>
-            <WeiboPost author="梦和MH" authorSrc={BESTIE_2.src} time="2018-03-06" onClick={() => navigate(31)}>
+            <WeiboPost author="梦和MH" time="2018-03-06" onClick={() => navigate(31)}>
               <div className="flex items-center gap-1 mb-1">
                 <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded">仅粉丝可见</span>
               </div>
@@ -45,16 +44,16 @@ export function MengheWeibo() {
           </>
         )}
 
-        <WeiboPost author="梦和MH" authorSrc={BESTIE_2.src} time="2018-02-28" onClick={() => navigate(29)}>
+        <WeiboPost author="梦和MH" time="2018-02-28" onClick={() => navigate(29)}>
           🎂 成人礼。十八岁的我，和世界和解了吗？
           <div className="mt-2">
             <ImagePlaceholder name="成人礼照片" src={CEREMONY_18.src} fallbackSrc={CEREMONY_18.fallbackSrc} width={360} height={220} />
           </div>
         </WeiboPost>
-        <WeiboPost author="梦和MH" authorSrc={BESTIE_2.src} time="2017-12-31">
+        <WeiboPost author="梦和MH" time="2017-12-31">
           最后一天了。希望明年一切都好。🎹
         </WeiboPost>
-        <WeiboPost author="梦和MH" authorSrc={BESTIE_2.src} time="2017-08-15">
+        <WeiboPost author="梦和MH" time="2017-08-15">
           新学的曲子～肖邦夜曲第20号，弹得不好，大家多多包涵。
           <div className="mt-2"><ImagePlaceholder name="钢琴视频" width={300} height={180} from="#667eea" to="#764ba2" /></div>
         </WeiboPost>

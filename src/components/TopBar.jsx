@@ -1,15 +1,23 @@
 import { useState } from 'react'
-import { useStore, TOTAL_PAGES } from '../store'
+import { createPortal } from 'react-dom'
+import { useStore, TOTAL_PAGES, HIGHLIGHT_LABELS } from '../store'
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { useCurrentPage } from '../hooks/useCurrentPage'
 import { PAGES } from '../pages/registry'
 
 export function TopBar() {
-  const { visited, boldKeywords, toggleBold } = useStore()
+  const { visited, highlightMode, cycleHighlight, resetGame } = useStore()
   const navigate = useGameNavigate()
   const pageId = useCurrentPage()
   const [open, setOpen] = useState(false)
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
   const current = PAGES[pageId]
+
+  const handleReset = () => {
+    resetGame()
+    setShowResetConfirm(false)
+    navigate(1)
+  }
 
   return (
     <div className="relative h-7 bg-neutral-900/70 backdrop-blur-xl flex items-center justify-between px-4 text-white text-[13px] z-[100]">
@@ -21,8 +29,19 @@ export function TopBar() {
         <span className="cursor-pointer opacity-90 hover:opacity-100">视图</span>
       </div>
       <div className="flex items-center gap-4 relative">
-        <span className="cursor-pointer opacity-90 hover:opacity-100" onClick={toggleBold}>
-          {boldKeywords ? '🔆 高亮：开' : '🔅 高亮：关'}
+        <span
+          className="cursor-pointer opacity-90 hover:opacity-100 hover:text-red-300"
+          title="清除所有游戏数据"
+          onClick={() => setShowResetConfirm(true)}
+        >
+          🗑 清除数据
+        </span>
+        <span
+          className="cursor-pointer opacity-90 hover:opacity-100 w-[78px] text-center"
+          title="点击切换高亮模式"
+          onClick={cycleHighlight}
+        >
+          {HIGHLIGHT_LABELS[highlightMode]}
         </span>
         <span
           className="cursor-pointer bg-white/10 px-2 py-0.5 rounded w-[100px] text-center tabular-nums"
@@ -56,6 +75,38 @@ export function TopBar() {
           </div>
         )}
       </div>
+
+      {showResetConfirm && createPortal(
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[2000]"
+          onClick={() => setShowResetConfirm(false)}
+        >
+          <div
+            className="bg-white text-neutral-800 rounded-lg shadow-2xl p-6 max-w-sm w-full mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="text-lg font-bold mb-2">⚠️ 清除数据</div>
+            <div className="text-sm text-neutral-600 mb-5 leading-relaxed">
+              点击后将删除所有记忆内容，从头开始游玩，确定吗？
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                className="px-4 py-1.5 rounded border border-neutral-300 text-sm cursor-pointer hover:bg-neutral-100"
+                onClick={() => setShowResetConfirm(false)}
+              >
+                取消
+              </button>
+              <button
+                className="px-4 py-1.5 rounded bg-red-500 text-white border-none text-sm cursor-pointer hover:bg-red-600"
+                onClick={handleReset}
+              >
+                确定清除
+              </button>
+            </div>
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   )
 }

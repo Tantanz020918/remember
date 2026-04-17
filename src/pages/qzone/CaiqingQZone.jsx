@@ -4,65 +4,6 @@ import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, ImagePlaceholder, PasswordLock, StoryLink } from '../../components/ui'
 import { GAME, THEME_PARK, HANDMADE, HAMSTER, spriteForUser } from '../../assets/imageUrls'
 
-const PUBLIC_JOURNALS = [
-  {
-    title: '新网站上线啦',
-    date: '2017.11.15',
-    content: '折腾了两个星期，终于把自己的小网站搭好了。用了好多新学的东西，虽然还很粗糙，但能把喜欢的歌、喜欢的人都放进去，感觉超棒～以后会慢慢更新的。',
-    views: 42,
-    comments: 5,
-  },
-  {
-    title: '最近好迷 周杰伦',
-    date: '2017.3.22',
-    content: '最近不停地循环《晴天》《七里香》《反方向的钟》。越听越上头。感觉高中时代的那些歌都还在，只是自己长大了。',
-    views: 118,
-    comments: 9,
-  },
-  {
-    title: '考试周的崩溃日常',
-    date: '2016.10.30',
-    content: '有机化学快把我学傻了。图书馆从早到晚，眼睛都看花了。昨天做梦都在背苯环。熬过这周就好了呜呜呜。',
-    views: 86,
-    comments: 12,
-  },
-  {
-    title: '五一去外婆家',
-    date: '2016.5.3',
-    content: '回了一趟外婆家。院子里的枇杷熟了，黄澄澄一串串挂在枝头。外婆煮了我最爱吃的腊肉饭。时间在这里慢得像一条小溪。',
-    views: 54,
-    comments: 4,
-  },
-  {
-    title: '第一次做饭翻车',
-    date: '2015.11.8',
-    content: '宿舍有公用厨房，信心满满地去煎鸡蛋。结果……蛋黄糊了，蛋白却还是生的？？？室友笑我笑到岔气。下次一定要看好火候。',
-    views: 67,
-    comments: 15,
-  },
-  {
-    title: '大学开学第一周',
-    date: '2015.9.8',
-    content: '第一次离家这么远。军训晒黑了两个度，吃饭要自己打饭，晚上宿舍卧谈到一两点。好像突然就长大了。',
-    views: 93,
-    comments: 7,
-  },
-  {
-    title: '高考结束了',
-    date: '2015.6.9',
-    content: '考完的那一刻没有想象中的激动，反而有点空落落的。走出考场抬头看天，云很厚。三年啊，就这样结束了。',
-    views: 142,
-    comments: 20,
-  },
-  {
-    title: '深夜食堂——泡面改造计划',
-    date: '2014.4.17',
-    content: '晚自习回来饿到不行。煮了碗泡面，加了个蛋、几颗青菜、一勺老干妈。贼香！宿舍小姐妹一人分了一口。',
-    views: 38,
-    comments: 6,
-  },
-]
-
 function QZonePost({ time, avatar, name, children }) {
   return (
     <div className="border-b border-neutral-700/30 py-4 flex gap-3">
@@ -171,7 +112,7 @@ function QZoneContent() {
             <div className="bg-neutral-800 rounded-lg p-4">
               <div className="text-neutral-500 text-xs mb-3 border-b border-neutral-700 pb-2">全部动态</div>
               <QZonePost time="2018.3.15" avatar name="雨季">
-                <Keyword>七年前的一箭，终于一箭穿心。</Keyword>
+                七年前的一箭，终于一箭穿心。
                 <div className="mt-2 bg-neutral-900/50 rounded p-2">
                   <QZoneComment author="小花">怎么了？</QZoneComment>
                   <QZoneComment author="阳光">发生什么事了？</QZoneComment>
@@ -179,9 +120,7 @@ function QZoneContent() {
               </QZonePost>
               <QZonePost time="2017.11.2" avatar name="雨季">
                 最近学了一些新东西，给自己建了一个小网站，就用<Keyword>我最喜欢的那首歌</Keyword>当网站名吧~~
-                <div className="mt-2">
-                  <ImagePlaceholder name="手工作品" src={HANDMADE.src} fallbackSrc={HANDMADE.fallbackSrc} width={240} height={160} />
-                </div>
+                
                 <div className="mt-2 bg-neutral-900/50 rounded p-2">
                   <QZoneComment author="路人">是什么东东？</QZoneComment>
                   <QZoneComment author="雨季">看来你还不够了解我~我都写着呢</QZoneComment>
@@ -195,24 +134,18 @@ function QZoneContent() {
                 </div>
               </QZonePost>
               <QZonePost time="2013.8.20" avatar name="雨季">
-                暑假快结束了，不想开学不想开学。在家撸仓鼠😺
-                <div className="mt-2">
-                  <ImagePlaceholder name="仓鼠" src={HAMSTER.src} fallbackSrc={HAMSTER.fallbackSrc} width={240} height={160} />
-                </div>
+                暑假快结束了，不想开学不想开学
               </QZonePost>
               <QZonePost time="2012.6.20" avatar name="雨季">毕业了。我会很想你的，如月。</QZonePost>
               <QZonePost time="2011.7.5" avatar name="雨季">
                 如月走了以后，放学回家的路好安静。一个人买辣条都不香了。在家打奥比岛。
-                <div className="mt-2">
-                  <ImagePlaceholder name="奥比岛" src={GAME.src} fallbackSrc={GAME.fallbackSrc} width={240} height={160} />
-                </div>
               </QZonePost>
             </div>
           )}
 
           {tab === 'journal' && (
             <div className="bg-neutral-800 rounded-lg p-4 space-y-3">
-              {qqAccountSwitched && (
+              {qqAccountSwitched ? (
                 <div className="p-4 bg-neutral-900/50 rounded-lg border border-amber-700/40">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-amber-300">独白</span>
@@ -223,17 +156,11 @@ function QZoneContent() {
                     <div className="mt-2 text-sm">打开日志 →</div>
                   </StoryLink>
                 </div>
-              )}
-              {PUBLIC_JOURNALS.map((j) => (
-                <div key={j.title + j.date} className="p-4 bg-neutral-900/50 rounded-lg border border-neutral-700">
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-amber-300">{j.title}</span>
-                    <span className="text-neutral-500 text-xs">{j.date}</span>
-                  </div>
-                  <div className="text-neutral-400 text-sm mt-2 leading-relaxed">{j.content}</div>
-                  <div className="text-neutral-600 text-[11px] mt-2">阅读 {j.views} · 评论 {j.comments}</div>
+              ) : (
+                <div className="text-center text-neutral-500 py-12 text-sm">
+                  无日志，可能<Keyword>设置了私密</Keyword>
                 </div>
-              ))}
+              )}
             </div>
           )}
 

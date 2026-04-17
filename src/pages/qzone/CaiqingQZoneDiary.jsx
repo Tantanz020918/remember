@@ -36,7 +36,7 @@ export function CaiqingQZoneDiary() {
             </div>
           }
           errorHint="迷宫"
-          answer="5725"
+          answer="2575"
           onUnlock={() => setFlag('diaryUnlocked', true)}
           className="min-h-[400px]"
         />

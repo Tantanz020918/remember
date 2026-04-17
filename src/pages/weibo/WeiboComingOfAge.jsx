@@ -1,7 +1,7 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { WeiboFrame, WeiboPostDetail, WeiboComment, WeiboSubComment } from '../../browser/WeiboFrame'
 import { ImagePlaceholder } from '../../components/ui'
-import { BESTIE_2, CEREMONY_18 } from '../../assets/imageUrls'
+import { CEREMONY_18 } from '../../assets/imageUrls'
 
 export function WeiboComingOfAge() {
   return (
@@ -9,7 +9,6 @@ export function WeiboComingOfAge() {
       <WeiboFrame>
         <WeiboPostDetail
           author="梦和MH"
-          authorSrc={BESTIE_2.src}
           time="2018-02-28 18:30"
           content={
             <div>

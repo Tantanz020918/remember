@@ -1,5 +1,5 @@
-import { ImagePlaceholder } from '../../components/ui'
-import { MANICURE, CAT, HAMSTER, HANDMADE, spriteForUser } from '../../assets/imageUrls'
+import { ImagePlaceholder, Keyword } from '../../components/ui'
+import { MANICURE, CAT, HAMSTER, HANDMADE, spriteForUser, GAME } from '../../assets/imageUrls'
 
 function MomentItem({ name, text, imageName, imageSrc, imageFallbackSrc, imageFrom, imageTo, meta }) {
   return (
@@ -7,7 +7,7 @@ function MomentItem({ name, text, imageName, imageSrc, imageFallbackSrc, imageFr
       <ImagePlaceholder sprite={spriteForUser(name)} width={44} height={44} label={false} style={{ borderRadius: 6 }} />
       <div className="flex-1">
         <div className="font-bold text-[#576b95] mb-1">{name}</div>
-        <div className="mb-2 leading-relaxed">{text}</div>
+        <div className="mb-2 leading-relaxed whitespace-pre-line">{text}</div>
         {(imageSrc || imageName) && (
           <ImagePlaceholder
             name={imageName}
@@ -44,45 +44,65 @@ export function Moments() {
       </div>
       <MomentItem
         name="姚如月"
-        text="新室友到家了～小仓鼠终于肯出来见人了。"
-        imageName="小仓鼠"
-        imageSrc={HAMSTER.src}
-        imageFallbackSrc={HAMSTER.fallbackSrc}
-        meta="今天 15:02"
-      />
-      <MomentItem
-        name="青青"
-        text="今天剧追完了，好看 🎬"
-        imageName="剧照"
-        imageFrom="#c1d3ff"
-        imageTo="#e4d4ff"
-        meta="昨天 20:11"
-      />
-      <MomentItem
-        name="姚如月"
-        text="新家有窗就够了，邻居家的猫也爱来串门。"
+        text="搬家完好一阵才敢出来，胆小猫"
         imageName="窗台上的猫"
         imageSrc={CAT.src}
         imageFallbackSrc={CAT.fallbackSrc}
+        meta="今天 19:02"
+      />
+       <MomentItem
+        name="学姐"
+        text="📢五一泰国游有无拼团的！！！！！"
+        meta="4月12日"
+      />
+       <MomentItem
+        name="琳琳"
+        text="现在开始玩是不是太晚了"
+        meta="4月11日"
+             imageSrc={GAME.src}
+        imageFallbackSrc={GAME.fallbackSrc}
+        meta="今天 19:02"
+      />
+                
+      <MomentItem
+        name="青青"
+        text="乖宝宝亲死"
+        imageName="小仓鼠"
+        imageSrc={HAMSTER.src}
+        imageFallbackSrc={HAMSTER.fallbackSrc}
         meta="4月10日"
       />
       <MomentItem
         name="设计-周雪"
-        text="新作品出炉～熬了三个通宵终于交稿。"
-        imageName="新作品"
+        text="做手工真好玩~~~太可爱啦！！！"
+        imageName="手工"
         imageSrc={HANDMADE.src}
         imageFallbackSrc={HANDMADE.fallbackSrc}
         meta="4月8日"
       />
       <MomentItem
-        name="姚如月"
-        text="24 岁，生日快乐。"
-        imageName="生日美甲"
+        name="沁心美甲美睫"
+        text="大家快来做美甲，今日可约~"
+        imageName="美甲"
         imageSrc={MANICURE.src}
         imageFallbackSrc={MANICURE.fallbackSrc}
-        meta="3月7日"
+        meta="3月5日"
       />
-      <MomentItem name="沁心美甲美睫" text="祝大家马年吉祥。" meta="2月17日" />
+      <MomentItem
+        name="沁心美甲美睫"
+        text={<>
+        🎈ꫛꫀꪝ❥<br/>
+🐎<Keyword>马年到</Keyword>，鸿运照！<br/>
+🎉新的一年㊗你<br/>
+策马扬鞭、前程似锦、万事顺遂、步步高升<br/>
+所有美好皆 "奔腾" 而来✨🧨💰🎁</>}
+        meta="2月17日"
+      />
+      <MomentItem
+        name="老张"
+        text="杭州冷死了。。。。。。谁来救救我"
+        meta="2月5日"
+      />
     </div>
   )
 }
