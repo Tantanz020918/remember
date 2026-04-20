@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export const TOTAL_PAGES = 35
+export const TOTAL_PAGES = 36
 
 // Highlight modes for <Keyword>
 export const HIGHLIGHT_MODES = ['off', 'bold', 'full']
@@ -27,6 +27,9 @@ const INITIAL_STATE = {
 
   // weibo state
   followedMenghe: false,
+
+  // wechat state
+  caiqingWechatAdded: false,
 }
 
 export const useStore = create(
@@ -68,6 +71,7 @@ export const useStore = create(
         fansPost1Unlocked: s.fansPost1Unlocked,
         lockedPostUnlocked: s.lockedPostUnlocked,
         followedMenghe: s.followedMenghe,
+        caiqingWechatAdded: s.caiqingWechatAdded,
       }),
     },
   ),

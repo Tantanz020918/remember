@@ -1,22 +1,95 @@
 import { useState } from 'react'
-import { ImagePlaceholder } from '../../components/ui'
-import { BESTIE_1, spriteForUser } from '../../assets/imageUrls'
+import { useStore } from '../../store'
+import { ImagePlaceholder, Toast, useToast } from '../../components/ui'
+import { spriteForUser } from '../../assets/imageUrls'
 import { ChatFrame } from './ChatFrame'
 import { Moments } from './Moments'
 import { TongxueluModal } from './TongxueluModal'
-import { WECHAT_CHAT_LIST, WechatChat } from '../../data/wechatChats'
+import { WECHAT_CHAT_LIST, CAIQING_CHAT, WechatChat } from '../../data/wechatChats'
 
 const RAIL_ICONS = [
   { key: 'chats', icon: '💬' },
   { key: 'moments', icon: '🌐' },
+  { key: 'add', icon: '➕' },
 ]
 
-export function Wechat() {
-  const [view, setView] = useState('chats')
-  const [chatKey, setChatKey] = useState('qing')
-  const [showBigImg, setShowBigImg] = useState(false)
+function AddFriendView({ onAdded }) {
+  const [input, setInput] = useState('')
+  const [matched, setMatched] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const currentChat = WECHAT_CHAT_LIST.find((c) => c.key === chatKey)
+  const onSearch = () => {
+    const q = input.trim()
+    if (q === 'hucaiqing0826') {
+      setMatched(true)
+      setErrorMsg('')
+    } else {
+      setMatched(false)
+      setErrorMsg('没有找到该用户。')
+    }
+  }
+
+  return (
+    <div className="flex-1 bg-white p-6 overflow-y-auto">
+      <h3 className="font-bold mb-3 text-[15px]">添加朋友</h3>
+      <div className="flex gap-2">
+        <input
+          className="flex-1 px-3 py-2 border border-neutral-300 rounded text-sm outline-none focus:border-[#07c160]"
+          placeholder="微信号"
+          value={input}
+          onChange={(e) => { setInput(e.target.value); setErrorMsg('') }}
+          onKeyDown={(e) => e.key === 'Enter' && onSearch()}
+        />
+        <button
+          onClick={onSearch}
+          className="px-4 py-2 bg-[#07c160] text-white border-none rounded cursor-pointer text-sm"
+        >
+          搜索
+        </button>
+      </div>
+      {errorMsg && <div className="mt-3 text-red-500 text-sm">{errorMsg}</div>}
+
+      {matched && (
+        <div className="mt-4 p-4 bg-neutral-50 border border-neutral-200 rounded-lg flex gap-3 items-center">
+          <ImagePlaceholder
+            sprite={spriteForUser('采晴')}
+            width={48}
+            height={48}
+            label={false}
+            style={{ borderRadius: 6 }}
+          />
+          <div className="flex-1">
+            <div className="font-bold text-sm">采晴</div>
+            <div className="text-neutral-400 text-xs">微信号：hucaiqing0826</div>
+          </div>
+          <button
+            onClick={onAdded}
+            className="px-4 py-1.5 bg-[#07c160] text-white border-none rounded text-sm cursor-pointer"
+          >
+            添加
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export function Wechat() {
+  const { caiqingWechatAdded, setFlag } = useStore()
+  const [view, setView] = useState('chats')
+  const [chatKey, setChatKey] = useState(/** @type {string|null} */ ('qing'))
+  const [showBigImg, setShowBigImg] = useState(false)
+  const toast = useToast()
+
+  const chatList = caiqingWechatAdded ? [CAIQING_CHAT, ...WECHAT_CHAT_LIST] : WECHAT_CHAT_LIST
+  const currentChat = chatList.find((c) => c.key === chatKey)
+
+  const onAddCaiqing = () => {
+    setFlag('caiqingWechatAdded', true)
+    toast.show('已添加采晴为好友')
+    setView('chats')
+    setChatKey('caiqing')
+  }
 
   return (
     <div className="flex h-full text-[13px] bg-neutral-100">
@@ -42,7 +115,7 @@ export function Wechat() {
         <div className="w-10 h-10 flex items-center justify-center text-neutral-400">⚙</div>
       </div>
 
-      {/* Conversation list */}
+      {/* Conversation list (chats view) */}
       {view === 'chats' && (
         <div className="w-[280px] bg-neutral-200/80 border-r border-neutral-300 flex flex-col">
           <div className="flex gap-1.5 px-2.5 py-2.5 border-b border-neutral-300">
@@ -50,12 +123,16 @@ export function Wechat() {
               placeholder="搜索"
               className="flex-1 px-2.5 py-1 border border-neutral-300 bg-white rounded text-xs outline-none"
             />
-            <button className="w-6 h-6 bg-white border border-neutral-300 rounded cursor-pointer text-sm">
+            <button
+              onClick={() => setView('add')}
+              className="w-6 h-6 bg-white border border-neutral-300 rounded cursor-pointer text-sm"
+              title="添加朋友"
+            >
               ＋
             </button>
           </div>
           <div className="flex-1 overflow-y-auto">
-            {WECHAT_CHAT_LIST.map((c) => (
+            {chatList.map((c) => (
               <div
                 key={c.key}
                 onClick={() => setChatKey(c.key)}
@@ -63,24 +140,13 @@ export function Wechat() {
                   chatKey === c.key ? 'bg-neutral-300' : 'hover:bg-neutral-300/60'
                 }`}
               >
-                {c.key === 'caiqing' ? (
-                  <ImagePlaceholder
-                    src={BESTIE_1.src}
-                    fallbackSrc={BESTIE_1.fallbackSrc}
-                    width={44}
-                    height={44}
-                    label={false}
-                    style={{ borderRadius: 6 }}
-                  />
-                ) : (
-                  <ImagePlaceholder
-                    sprite={spriteForUser(c.name)}
-                    width={44}
-                    height={44}
-                    label={false}
-                    style={{ borderRadius: 6 }}
-                  />
-                )}
+                <ImagePlaceholder
+                  sprite={spriteForUser(c.name)}
+                  width={44}
+                  height={44}
+                  label={false}
+                  style={{ borderRadius: 6 }}
+                />
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-[13px]">{c.name}</span>
@@ -112,9 +178,12 @@ export function Wechat() {
         )}
 
         {view === 'moments' && <Moments />}
+
+        {view === 'add' && <AddFriendView onAdded={onAddCaiqing} />}
       </div>
 
       {showBigImg && <TongxueluModal onClose={() => setShowBigImg(false)} />}
+      <Toast message={toast.message} visible={toast.visible} />
     </div>
   )
 }

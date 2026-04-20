@@ -3,7 +3,7 @@ import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboPostPage } from '../../browser/WeiboFrame'
-import { PasswordLock } from '../../components/ui'
+import { PasswordLock, Tooltip } from '../../components/ui'
 
 
 const POEM = `月亮，你看我，我也看你。
@@ -15,6 +15,7 @@ const POEM = `月亮，你看我，我也看你。
 
 function PostContent() {
   const navigate = useGameNavigate()
+  const { caiqingWechatAdded } = useStore()
   const [showChoice, setShowChoice] = useState(false)
 
   const content = (
@@ -36,14 +37,40 @@ function PostContent() {
         ) : (
           <div className="space-y-3">
             <div className="text-sm text-neutral-500 mb-2">选择你的回应：</div>
-            <button
-              onClick={() => navigate(34)}
-              className="block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border bg-green-50 border-green-200 cursor-pointer hover:bg-green-100"
-            >
-              「我们原谅你。」
-            </button>
+
+            {/* 我们原谅你 —— 需已添加采晴微信 */}
+            {caiqingWechatAdded ? (
+              <button
+                onClick={() => navigate(34)}
+                className="block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border bg-green-50 border-green-200 cursor-pointer hover:bg-green-100"
+              >
+                「我们原谅你。」
+              </button>
+            ) : (
+              <Tooltip
+                text="需要知道她的态度，才能代表她回应"
+                wrapperClassName="block"
+              >
+                <button
+                  disabled
+                  className="block w-full text-left px-4 py-3 rounded-lg text-sm border bg-neutral-100 border-neutral-200 text-neutral-400 cursor-not-allowed"
+                >
+                  🔒 「我们原谅你。」
+                </button>
+              </Tooltip>
+            )}
+
+            {/* 我原谅你 —— 始终可选 */}
             <button
               onClick={() => navigate(35)}
+              className="block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border bg-amber-50 border-amber-200 cursor-pointer hover:bg-amber-100"
+            >
+              「我原谅你。」
+            </button>
+
+            {/* 不作回应 —— 始终可选 */}
+            <button
+              onClick={() => navigate(36)}
               className="block w-full text-left px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-lg text-sm cursor-pointer hover:bg-neutral-100"
             >
               「不作回应。」

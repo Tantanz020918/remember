@@ -30,7 +30,7 @@ import { WeiboFansPost2 } from './weibo/WeiboFansPost2'
 import { WeiboDengFengShuo } from './weibo/WeiboDengFengShuo'
 import { WeiboUser139293 } from './weibo/WeiboUser139293'
 import { LockedPost } from './weibo/LockedPost'
-import { EndingForgive, EndingSilence } from './ending/Ending'
+import { EndingForgive, EndingForgiveAlone, EndingSilence } from './ending/Ending'
 
 export const PAGES = {
   1:  { title: '桌面',                   path: null,                                       appType: 'desktop', render: () => null },
@@ -66,8 +66,9 @@ export const PAGES = {
   31: { title: '等风说',                 path: 'browser/weibo/dengfengshuo',                 appType: 'browser', render: () => <WeiboDengFengShuo /> },
   32: { title: '安眠',         path: 'browser/weibo/user139293',                   appType: 'browser', render: () => <WeiboUser139293 /> },
   33: { title: '加锁帖子',               path: 'browser/weibo/user139293/locked-post',       appType: 'browser', render: () => <LockedPost /> },
-  34: { title: '结局：原谅',             path: 'ending/forgive',                             appType: 'default', render: () => <EndingForgive /> },
-  35: { title: '结局：沉默',             path: 'ending/silence',                             appType: 'default', render: () => <EndingSilence /> },
+  34: { title: '结局：我们原谅你',       path: 'ending/forgive',                             appType: 'default', render: () => <EndingForgive /> },
+  35: { title: '结局：我原谅你',         path: 'ending/forgive-alone',                       appType: 'default', render: () => <EndingForgiveAlone /> },
+  36: { title: '结局：沉默',             path: 'ending/silence',                             appType: 'default', render: () => <EndingSilence /> },
 }
 
 export const PATH_TO_ID = {}

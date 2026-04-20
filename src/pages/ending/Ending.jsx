@@ -5,8 +5,8 @@ export function EndingForgive() {
   return (
     <div className="min-h-full flex flex-col items-center justify-center bg-linear-to-b from-neutral-900 to-neutral-800 text-white p-10">
       <div className="max-w-lg text-center space-y-6">
-        <div className="text-5xl mb-4">🌙</div>
-        <h1 className="text-2xl font-bold">结局一：原谅</h1>
+        <div className="text-5xl mb-4">🌕</div>
+        <h1 className="text-2xl font-bold">结局一：我们原谅你</h1>
         <p className="text-neutral-300 leading-loose">
           你以如月和采晴的名义写下了回复：「我们原谅你。」
         </p>
@@ -29,13 +29,45 @@ export function EndingForgive() {
   )
 }
 
+export function EndingForgiveAlone() {
+  const navigate = useGameNavigate()
+  return (
+    <div className="min-h-full flex flex-col items-center justify-center bg-linear-to-b from-neutral-900 to-neutral-800 text-white p-10">
+      <div className="max-w-lg text-center space-y-6">
+        <div className="text-5xl mb-4">🌘</div>
+        <h1 className="text-2xl font-bold">结局二：我原谅你</h1>
+        <p className="text-neutral-300 leading-loose">
+          你写下了一句简短的回复：「我原谅你。」
+        </p>
+        <p className="text-neutral-300 leading-loose">
+          只有你的名字，没有采晴。你还没能再联系上她，不知道她是否也愿意。
+        </p>
+        <p className="text-neutral-300 leading-loose">
+          墨尔本的清晨，女孩看到这条评论，哭着回复：「谢谢你。替我跟采晴说声对不起，如果你有一天能再见到她。」
+        </p>
+        <p className="text-neutral-400 text-sm leading-loose">
+          原谅是一个人的决定，但和解需要所有人。故事，也许还没完。
+        </p>
+        <div className="pt-6">
+          <button
+            onClick={() => navigate(1)}
+            className="px-6 py-2 bg-white/10 border border-white/20 rounded-full text-sm cursor-pointer hover:bg-white/20"
+          >
+            回到桌面
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function EndingSilence() {
   const navigate = useGameNavigate()
   return (
     <div className="min-h-full flex flex-col items-center justify-center bg-linear-to-b from-neutral-900 to-neutral-800 text-white p-10">
       <div className="max-w-lg text-center space-y-6">
         <div className="text-5xl mb-4">🌑</div>
-        <h1 className="text-2xl font-bold">结局二：沉默</h1>
+        <h1 className="text-2xl font-bold">结局三：沉默</h1>
         <p className="text-neutral-300 leading-loose">
           你关闭了页面，没有留下任何文字。
         </p>

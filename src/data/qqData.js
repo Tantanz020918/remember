@@ -1,3 +1,5 @@
+import { MINI_CHAT_LIST } from './qqMiniChats'
+
 export const ADMINS = [
   { name: '沐季千柠（群主）', from: '#ffd1dc', to: '#ff9aa2' },
   { name: '编剧+女主', from: '#d4f0c2', to: '#8cd07d' },
@@ -22,16 +24,15 @@ export const MEMBERS = [
 
 export const FANQUAN_CHAT = { key: 'fanquan', name: '沐季千柠工作室粉丝群', preview: '[群公告] 新戏人物设定', time: '刚刚' }
 
+// 聊天列表元数据全部从 qqMiniChats 的单一 CHATS 定义派生（name/time/preview 自动生成）。
 export const RUYUE_CHATS = [
-  { key: 'jizhou', name: '计粥人机群🤖', preview: '超级小鼠妇（四孩爸版）：喜欢豆狗', time: '18:03' },
-  { key: 'erciyuan1', name: '二次元交流大本营', preview: '今天新番更新 GET！', time: '17:12' },
-  { key: 'erciyuan2', name: '漫画推荐分享群', preview: '[图片]', time: '16:48' },
-  { key: 'mail', name: 'QQ 邮箱提醒', preview: '招聘专员给你发了新邮件', time: '11:03' },
+  MINI_CHAT_LIST.jizhou,
+  MINI_CHAT_LIST.erciyuan1,
+  MINI_CHAT_LIST.erciyuan2,
+  MINI_CHAT_LIST.mail,
 ]
 
-export const CAIQING_CHATS = [
-  { key: 'junior', name: '化学小白', preview: '学姐，你的化学笔记可以借给我吗？', time: '2020.9' },
-]
+export const CAIQING_CHATS = [MINI_CHAT_LIST.qzoneVisitor]
 
 export const CAIQING_REQUESTS = [
   { from: '申请添加「如梦令」为好友', time: '2018.1', reason: '梦和，我想跟你谈谈。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },

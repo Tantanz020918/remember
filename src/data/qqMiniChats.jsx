@@ -12,8 +12,12 @@ function ChatMessage({ avatar, name, content, bubbleClass = '' }) {
   )
 }
 
+// 每个聊天在一处定义：列表元数据（name/time）+ header + messages。
+// 预览优先读 `previewOverride`（JSX 内容必须用），否则自动取最后一条 content 字符串。
 const CHATS = {
   jizhou: {
+    name: '计粥人机群🤖',
+    time: '18:03',
     header: '今天',
     messages: [
       { avatar: '我要锻炼', name: '我要锻炼', content: '脑壳痛' },
@@ -25,6 +29,8 @@ const CHATS = {
     ],
   },
   erciyuan1: {
+    name: '二次元交流大本营',
+    time: '17:12',
     header: '今天',
     messages: [
       { avatar: '宅宅酱', name: '宅宅酱', content: '这季新番谁看了？' },
@@ -33,7 +39,10 @@ const CHATS = {
     ],
   },
   erciyuan2: {
+    name: '漫画推荐分享群',
+    time: '16:48',
     header: '今天',
+    previewOverride: '[图片]',
     messages: [
       { avatar: '漫迷小张', name: '漫迷小张', content: '求推荐治愈系短篇～' },
       { avatar: '阿喵', name: '阿喵', content: '《夜巡猫》强推！' },
@@ -45,7 +54,10 @@ const CHATS = {
     ],
   },
   mail: {
+    name: 'QQ 邮箱提醒',
+    time: '11:03',
     header: '今天 11:03',
+    previewOverride: '招聘专员给你发了新邮件',
     messages: [
       {
         avatar: 'QQ邮箱',
@@ -61,7 +73,41 @@ const CHATS = {
       },
     ],
   },
+  qzoneVisitor: {
+    name: 'QQ 空间',
+    time: '刚刚',
+    header: '今天',
+    previewOverride: '你有一位新访客！开通黄钻查看身份',
+    messages: [
+      {
+        avatar: 'QQ空间',
+        name: 'QQ 空间',
+        bubbleClass: 'max-w-[300px]',
+        content: (
+          <>
+            <div className="font-bold mb-1">你有一位新访客！</div>
+            <div className="text-xs text-neutral-500">开通 <span className="text-amber-500 font-semibold">黄钻</span> 即可查看来访者身份 →</div>
+          </>
+        ),
+      },
+    ],
+  },
 }
+
+function derivePreview(chat) {
+  if (chat.previewOverride) return chat.previewOverride
+  const last = chat.messages[chat.messages.length - 1]
+  const content = last?.content
+  return typeof content === 'string' ? content : '[消息]'
+}
+
+// 聊天列表元数据（按 key 访问），qqData.js 从这里取，不再单独维护 preview。
+export const MINI_CHAT_LIST = Object.fromEntries(
+  Object.entries(CHATS).map(([key, c]) => [
+    key,
+    { key, name: c.name, time: c.time, preview: derivePreview(c) },
+  ]),
+)
 
 export function MiniChatView({ chatKey }) {
   const chat = CHATS[chatKey]

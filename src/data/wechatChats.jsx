@@ -8,6 +8,9 @@ export const WECHAT_CHAT_LIST = [
   { key: 'nail', name: '沁心美甲美睫', preview: '行', time: '4.13', unread: 0 },
 ]
 
+// Added to the chat list only after 采晴 is added via "添加朋友" tab.
+export const CAIQING_CHAT = { key: 'caiqing', name: '采晴', preview: '如果你能找到她，一定告诉我。', time: '刚刚', unread: 0 }
+
 // Each item is either { date } or { mine?, name, text }
 // `text` may be a string, ReactNode, or (ctx) => ReactNode
 const CHATS = {
@@ -112,6 +115,25 @@ const CHATS = {
     { mine: true, name: '姚如月', text: '我要预约这周六的美甲' },
     { name: '沁心美甲美睫', text: '亲，只能提前三天内预约哦。' },
     { mine: true, name: '姚如月', text: '行' },
+  ],
+  caiqing: [
+    { date: '今天' },
+    { mine: true, name: '姚如月', text: '采晴！！真的是你吗？没想到这么多年了还能找到你 T^T' }, { name: '采晴', text: '呜呜呜如月！我也超想你！这么多年你都跑哪去了啊' },
+    { mine: true, name: '姚如月', text: '当年走得太匆忙，也没跟你们留联系方式。最近搬家翻到了小学的同学录才看到你留的 QQ 号，一路找过来的……' },
+    { name: '采晴', text: '我也是……你现在在哪里过得怎么样？' },
+    { mine: true, name: '姚如月', text: '在上班哈哈，上周刚搬了新家。你呢？' },
+    { name: '采晴', text: '哈哈我也是打工人一枚，你还记得我们当年一起写的那个公主精灵小说吗 😂' },
+    { mine: true, name: '姚如月', text: '记得记得，画得丑得要命……' },
+    { mine: true, name: '姚如月', text: '对了，梦和呢？你有她的联系方式吗？' },
+    { name: '采晴', text: '她啊……现在联系不上了。' },
+    { name: '采晴', text: '她本来就不是很经常用社交网络，后来也没留其他联系方式。我发 QQ 好友申请，她也一直不回复。' },
+    { mine: true, name: '姚如月', text: '你们……怎么就断联了？' },
+    { name: '采晴', text: '高三那年我们吵了一架，之后就没再说过话了。' },
+    { name: '采晴', text: '她当时一直在跟我道歉，说没想到她爸爸会直接把你爸妈调走，自己一直觉得很内疚。' },
+    { name: '采晴', text: '但我当时气在头上，根本没听她解释，就把她拉黑了。' },
+    { name: '采晴', text: '其实……这些年我一直都想跟她和好。' },
+    { mine: true, name: '姚如月', text: '原来是这样……' },
+    { name: '采晴', text: '如果你能找到她，一定告诉我。' },
   ],
 }
 
