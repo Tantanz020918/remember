@@ -2,18 +2,18 @@ import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboPostPage } from '../../browser/WeiboFrame'
-import { PasswordLock } from '../../components/ui'
+import { PasswordLock, Keyword } from '../../components/ui'
 
 function PostContent() {
   const navigate = useGameNavigate()
 
   const COMMENTS = [
     {
-      author: '等风说', time: '03-10 22:30', authorFrom: '#ffecd2', authorTo: '#fcb69f',
-      onClick: () => navigate(32),
+      author: <Keyword>等风说</Keyword>, authorName: '等风说', time: '03-10 22:30', authorFrom: '#ffecd2', authorTo: '#fcb69f',
+      onClick: () => navigate(31),
       content: '等你回来。',
       subComments: [
-        { author: '梦和MH', content: '真的很感谢你为我剪的视频，我会常回来看看。' },
+        { author: '梦和MH', content: <>真的很感谢你为我剪的视频，我会<Keyword>常回来看看</Keyword>。</> },
       ],
     },
     { author: '琴声悠扬', time: '03-10 23:01', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '你要去哪里啊？' },

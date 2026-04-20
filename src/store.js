@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export const TOTAL_PAGES = 36
+export const TOTAL_PAGES = 35
 
 // Highlight modes for <Keyword>
 export const HIGHLIGHT_MODES = ['off', 'bold', 'full']

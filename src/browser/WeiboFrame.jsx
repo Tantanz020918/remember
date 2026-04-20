@@ -82,12 +82,14 @@ export function WeiboProfileHeader({
 
 function userAvatar(name, overrideSrc) {
   if (overrideSrc) return { src: overrideSrc, sprite: null }
-  if (name?.includes('闺蜜头像')) return { src: null, sprite: null }
+  // name may be a ReactNode (e.g. <Keyword>...</Keyword>); only do string lookups.
+  if (typeof name !== 'string') return { src: null, sprite: null }
+  if (name.includes('闺蜜头像')) return { src: null, sprite: null }
   return { src: null, sprite: spriteForUser(name) }
 }
 
-export function WeiboPost({ author, time, authorSrc, authorFrom, authorTo, children, comments, likes, onClick }) {
-  const { src, sprite } = userAvatar(author, authorSrc)
+export function WeiboPost({ author, authorName, time, authorSrc, authorFrom, authorTo, children, comments, likes, onClick }) {
+  const { src, sprite } = userAvatar(authorName ?? author, authorSrc)
   return (
     <div className="bg-white p-4 mb-2">
       <div className="flex items-center gap-3 mb-3">
@@ -127,6 +129,7 @@ function renderComments(comments, commentsData) {
       <WeiboComment
         key={i}
         author={c.author}
+        authorName={c.authorName}
         time={c.time}
         authorFrom={c.authorFrom}
         authorTo={c.authorTo}
@@ -209,12 +212,12 @@ export function WeiboPostPage(props) {
   )
 }
 
-export function WeiboComment({ author, authorSrc, authorFrom, authorTo, time, location, children, replyCount, subComments, onClick }) {
-  const { src, sprite } = userAvatar(author, authorSrc)
+export function WeiboComment({ author, authorName, authorSrc, authorFrom, authorTo, time, location, children, replyCount, subComments, onClick }) {
+  const { src, sprite } = userAvatar(authorName ?? author, authorSrc)
   return (
     <div className="py-3 border-b border-neutral-100 last:border-b-0">
       <div className="flex gap-3">
-        <ImagePlaceholder name={author} src={src} sprite={sprite} width={36} height={36} round label={false} from={authorFrom || '#ffd1dc'} to={authorTo || '#c5e1ff'} />
+        <ImagePlaceholder name={authorName ?? author} src={src} sprite={sprite} width={36} height={36} round label={false} from={authorFrom || '#ffd1dc'} to={authorTo || '#c5e1ff'} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <span className={`text-orange-600 text-sm font-medium ${onClick ? 'cursor-pointer hover:underline' : ''}`} onClick={onClick}>

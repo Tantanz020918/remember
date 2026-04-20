@@ -10,7 +10,7 @@ export function BaiduSearchLiGroup() {
           李氏集团是璧山区规模最大的民营企业之一，业务涵盖房地产、教育捐助、商业运营等。多年来捐助多所学校建楼修路……
         </BaiduResultItem>
         <BaiduResultItem
-          title={<StoryLink to={27}>才发现李氏集团千金好久没更新了，是不是出事了？ - 微博</StoryLink>}
+          title={<StoryLink to={26}>才发现李氏集团千金好久没更新了，是不是出事了？ - 微博</StoryLink>}
           url="weibo.com"
         >
           网友讨论帖 · @梦和MH 的动态已经停更多年……

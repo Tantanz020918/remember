@@ -24,7 +24,7 @@ export function WeiboUser139293() {
           time="2022-01-04"
           authorFrom="#dfe6e9"
           authorTo="#b2bec3"
-          onClick={() => navigate(34)}
+          onClick={() => navigate(33)}
         >
           <div className="flex items-center gap-1 mb-1">
             <span className="text-neutral-400 text-xs">🔒 加锁帖子</span>

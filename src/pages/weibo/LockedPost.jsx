@@ -37,13 +37,13 @@ function PostContent() {
           <div className="space-y-3">
             <div className="text-sm text-neutral-500 mb-2">选择你的回应：</div>
             <button
-              onClick={() => navigate(35)}
+              onClick={() => navigate(34)}
               className="block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border bg-green-50 border-green-200 cursor-pointer hover:bg-green-100"
             >
               「我们原谅你。」
             </button>
             <button
-              onClick={() => navigate(36)}
+              onClick={() => navigate(35)}
               className="block w-full text-left px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-lg text-sm cursor-pointer hover:bg-neutral-100"
             >
               「不作回应。」

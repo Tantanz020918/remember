@@ -18,8 +18,8 @@ const QUERY_TO_PAGE = {
   金花小学: 7,
   奥比岛: 10,
   富士山下: 20,
-  梦之奖学金: 24,
-  李氏集团: 26,
+  梦之奖学金: 23,
+  李氏集团: 25,
 }
 
 export function BaiduHome() {

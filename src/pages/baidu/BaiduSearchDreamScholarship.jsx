@@ -7,7 +7,7 @@ export function BaiduSearchDreamScholarship() {
     <BrowserFrame>
       <BaiduResultLayout query="梦之奖学金" count="23,400">
         <BaiduResultItem
-          title={<StoryLink to={25}>「梦之奖学金」设立——助力璧山学子筑梦未来</StoryLink>}
+          title={<StoryLink to={24}>「梦之奖学金」设立——助力璧山学子筑梦未来</StoryLink>}
           url="bsnews.com.cn"
         >
           璧山本地企业李氏集团出资设立「梦之奖学金」，旨在鼓励优秀学生……
