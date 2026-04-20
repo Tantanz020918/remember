@@ -49,8 +49,8 @@ export function WeiboFansPost1() {
     <BrowserFrame>
       {!fansPost1Unlocked ? (
         <PasswordLock
-          prompt="🔒 粉丝可见帖子 · 我最爱的电影是什么？"
-          errorHint="注意看我的主页。"
+          prompt="🔒 粉丝可见帖子 · 我最爱的电影是什么？注意看我的主页"
+          errorHint="背景图"
           answer="怦然心动"
           onUnlock={() => setFlag('fansPost1Unlocked', true)}
           className="min-h-[400px]"

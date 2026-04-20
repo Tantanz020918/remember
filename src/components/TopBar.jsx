@@ -10,8 +10,13 @@ export function TopBar() {
   const navigate = useGameNavigate()
   const pageId = useCurrentPage()
   const [open, setOpen] = useState(false)
+  const [sortMode, setSortMode] = useState('time') // 'time' | 'id'
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const current = PAGES[pageId]
+
+  const sortedVisited = sortMode === 'id'
+    ? [...visited].sort((a, b) => a - b)
+    : visited
 
   const handleReset = () => {
     resetGame()
@@ -55,10 +60,16 @@ export function TopBar() {
             className="absolute top-8 right-28 w-72 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-1.5 max-h-96 overflow-y-auto z-[200]"
             onMouseLeave={() => setOpen(false)}
           >
-            <div className="px-3 py-1.5 text-[11px] text-white/50 uppercase">
-              已访问页面
+            <div className="px-3 py-1.5 flex justify-between items-center text-[11px] text-white/50">
+              <span className="uppercase">已访问页面</span>
+              <span
+                className="cursor-pointer text-sky-300 hover:text-sky-200 normal-case"
+                onClick={() => setSortMode(sortMode === 'time' ? 'id' : 'time')}
+              >
+                {sortMode === 'time' ? '按时间 ⇅' : '按编号 ⇅'}
+              </span>
             </div>
-            {visited.map((id) => (
+            {sortedVisited.map((id) => (
               <div
                 key={id}
                 className={`px-3 py-1.5 cursor-pointer truncate ${

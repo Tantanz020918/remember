@@ -211,9 +211,11 @@ function QZoneContent() {
             <div className="text-amber-300 text-2xl font-bold">0</div>
           </div>
           <div className="bg-neutral-800 rounded-lg overflow-hidden">
-            <div className="text-neutral-500 text-xs px-3 pt-2 pb-1">日历</div>
+            <div className="text-neutral-500 text-xs px-3 pt-2 pb-1">日历 · 2026.4</div>
             <div className="grid grid-cols-7 gap-0 px-2 pb-2 text-[10px] text-neutral-500 text-center">
               {['一','二','三','四','五','六','日'].map(d => <div key={d}>{d}</div>)}
+              {/* 2026-04-01 是周三，周一/周二留 2 个空格 */}
+              {[0, 1].map((i) => <div key={`pad-${i}`} />)}
               {Array.from({length: 30}, (_, i) => (
                 <div key={i} className={i + 1 === 15 ? 'text-amber-300' : ''}>{i + 1}</div>
               ))}

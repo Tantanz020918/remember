@@ -65,7 +65,7 @@ export const SCRIPT_FLOORS = [
   },
   {
     avatarFrom: '#e4d4ff', avatarTo: '#a97bf5', userName: '清风', meta: '4 楼',
-    content: <p>剧名好好听，期待更新！</p>,
+    content: <p>感觉剧情很有趣，期待更新！</p>,
   },
   {
     avatarFrom: '#fff4b3', avatarTo: '#f5c542', userName: '小鱼干', meta: '5 楼',
