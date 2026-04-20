@@ -1,6 +1,7 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
 import { BaiduResultLayout, BaiduResultItem } from './BaiduResultLayout'
+import { PageId } from '../pageIds'
 
 export function BaiduResultAobi() {
   return (
@@ -14,7 +15,7 @@ export function BaiduResultAobi() {
           奥比岛是一款面向少年儿童的虚拟社区游戏。
         </BaiduResultItem>
         <BaiduResultItem
-          title={<StoryLink to={11}><b>奥比岛圈 - 百田圈圈 · 玩家社区论坛存档</b></StoryLink>}
+          title={<StoryLink to={PageId.AOBI_HOME}><b>奥比岛圈 - 百田圈圈 · 玩家社区论坛存档</b></StoryLink>}
           url="aobi.baitian.cn"
         >
           奥比岛玩家论坛，保留了 2010 ~ 2015 年的用户动态、帖子和个人主页存档，是老玩家的回忆角落。

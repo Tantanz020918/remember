@@ -1,13 +1,14 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
 import { BaiduResultLayout, BaiduResultItem } from './BaiduResultLayout'
+import { PageId } from '../pageIds'
 
 export function BaiduResultJinhua() {
   return (
     <BrowserFrame>
       <BaiduResultLayout query="金花小学" count="51,300">
         <BaiduResultItem
-          title={<StoryLink to={8}><b>金花小学 - 官方网站</b></StoryLink>}
+          title={<StoryLink to={PageId.JINHUA_HOME}><b>金花小学 - 官方网站</b></StoryLink>}
           url="www.jinhuaxx.edu.cn"
           image={<ImagePlaceholder name="金花小学校门" width={120} height={80} from="#ffd54f" to="#81c784" />}
           sub={<>· <DeadLink>学校简介</DeadLink> · <DeadLink>师资力量</DeadLink> · <DeadLink>新闻动态</DeadLink></>}

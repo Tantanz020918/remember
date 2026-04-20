@@ -13,6 +13,7 @@ const COMMENTS = [
     ],
   },
   { author: '琴声悠扬', time: '02-28 21:30', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '太美了~~' },
+  { author: '凤凰涅槃', time: '02-28 22:30', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '我好像看到了x公司的老总和y公司的少爷，果然有钱人都跟有钱人玩' },
   { author: '小花', time: '03-01 08:44', authorFrom: '#ffe7b3', authorTo: '#ffb86b', content: '期待更多钢琴视频！' },
 ]
 

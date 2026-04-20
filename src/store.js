@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export const TOTAL_PAGES = 36
+export { TOTAL_PAGES } from './pages/pageIds'
 
 // Highlight modes for <Keyword>
 export const HIGHLIGHT_MODES = ['off', 'bold', 'full']
@@ -30,6 +30,12 @@ const INITIAL_STATE = {
 
   // wechat state
   caiqingWechatAdded: false,
+
+  // psychology reports seen
+  reportsQueried: false,
+
+  // once ending 1 is reached, a hidden moment shows in wechat 朋友圈 permanently
+  ending1Reached: false,
 }
 
 export const useStore = create(
@@ -72,6 +78,8 @@ export const useStore = create(
         lockedPostUnlocked: s.lockedPostUnlocked,
         followedMenghe: s.followedMenghe,
         caiqingWechatAdded: s.caiqingWechatAdded,
+        reportsQueried: s.reportsQueried,
+        ending1Reached: s.ending1Reached,
       }),
     },
   ),

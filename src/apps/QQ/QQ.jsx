@@ -5,6 +5,7 @@ import { useCurrentPage } from '../../hooks/useCurrentPage'
 import { Avatar, ImagePlaceholder, Toast, useToast } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
 import { RUYUE_CHATS, CAIQING_CHATS, FANQUAN_CHAT } from '../../data/qqData'
+import { PageId } from '../../pages/pageIds'
 import { QQAddDialog } from './QQAddDialog'
 import { QQSwitchAccountDialog } from './QQSwitchAccountDialog'
 import { QQChatBody } from './QQChatBody'
@@ -22,7 +23,7 @@ export function QQ() {
   const isCaiqing = qqAccountSwitched
 
   useEffect(() => {
-    if (currentPage === 15 && qqGroupJoined && !isCaiqing) {
+    if (currentPage === PageId.QQ_FANQUAN_GROUP && qqGroupJoined && !isCaiqing) {
       setSelectedChat('fanquan')
     }
   }, [currentPage, qqGroupJoined, isCaiqing])
@@ -31,8 +32,8 @@ export function QQ() {
     setFlag('qqAccountSwitched', account === 'caiqing')
     setShowSwitchDialog(false)
     setSelectedChat(null)
-    if (account === 'caiqing') navigate(22)
-    else navigate(3)
+    if (account === 'caiqing') navigate(PageId.QQ_CAIQING_CHAT)
+    else navigate(PageId.QQ)
   }
 
   const onLoginCaiqing = () => {
@@ -51,13 +52,20 @@ export function QQ() {
     ...RUYUE_CHATS,
   ]
 
+  // 未选中会话时默认选中第一条
+  useEffect(() => {
+    if (selectedChat === null && chatList[0]) {
+      setSelectedChat(chatList[0].key)
+    }
+  }, [chatList, selectedChat])
+
   const currentChat = chatList.find((c) => c.key === selectedChat)
   const showAnnouncementBanner = selectedChat === 'fanquan' && qqGroupJoined && !isCaiqing
 
   const onSelectChat = (c) => {
     setSelectedChat(c.key)
-    if (c.key === 'fanquan') navigate(15)
-    else if (currentPage === 15) navigate(3)
+    if (c.key === 'fanquan') navigate(PageId.QQ_FANQUAN_GROUP)
+    else if (currentPage === PageId.QQ_FANQUAN_GROUP) navigate(PageId.QQ)
   }
 
   return (
@@ -68,7 +76,7 @@ export function QQ() {
           <ImagePlaceholder sprite={spriteForUser(isCaiqing ? '雨季' : '姚如月')} width={36} height={36} round label={false} />
         </div>
         <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg bg-white/15 text-white">💬</div>
-        <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg text-white/80 hover:bg-white/10" title="QQ空间" onClick={() => isCaiqing && navigate(19)}>⭐</div>
+        <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg text-white/80 hover:bg-white/10" title="QQ空间" onClick={() => isCaiqing && navigate(PageId.CAIQING_QZONE)}>⭐</div>
         <div className="flex-1" />
         <div className="w-9 h-9 flex items-center justify-center text-white/80 cursor-pointer hover:bg-white/10 rounded-md text-xs" title="切换账号" onClick={() => setShowSwitchDialog(true)}>🔄</div>
         <div className="w-9 h-9 flex items-center justify-center text-white/80">⚙</div>
@@ -104,7 +112,7 @@ export function QQ() {
           <div className="text-neutral-500 flex gap-3"><span>🔍</span><span>⋯</span></div>
         </div>
         {showAnnouncementBanner && (
-          <QQAnnouncementBanner onViewDetails={() => navigate(16)} />
+          <QQAnnouncementBanner onViewDetails={() => navigate(PageId.POST_SCRIPT)} />
         )}
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden min-h-0">
           <div className="flex-1 px-5 py-4 overflow-y-auto">
@@ -124,7 +132,7 @@ export function QQ() {
           isCaiqing={isCaiqing}
           onClose={() => setShowAddDialog(false)}
           onJoinGroup={onJoinGroup}
-          onVisitCaiqingSpace={() => { setShowAddDialog(false); navigate(19) }}
+          onVisitCaiqingSpace={() => { setShowAddDialog(false); navigate(PageId.CAIQING_QZONE) }}
         />
       )}
 

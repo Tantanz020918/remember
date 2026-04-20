@@ -4,6 +4,7 @@ import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboProfileHeader, WeiboPost } from '../../browser/WeiboFrame'
 import { ImagePlaceholder, Keyword } from '../../components/ui'
 import { FLIPPED, CEREMONY_18 } from '../../assets/imageUrls'
+import { PageId } from '../pageIds'
 
 export function MengheWeibo() {
   const { followedMenghe, setFlag } = useStore()
@@ -29,13 +30,13 @@ export function MengheWeibo() {
 
         {followedMenghe && (
           <>
-            <WeiboPost author="梦和MH" time="2018-03-06" onClick={() => navigate(30)}>
+            <WeiboPost author="梦和MH" time="2018-03-06" onClick={() => navigate(PageId.WEIBO_FANS_POST_2)}>
               <div className="flex items-center gap-1 mb-1">
                 <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded">仅粉丝可见</span>
               </div>
               [点击查看]
             </WeiboPost>
-            <WeiboPost author="梦和MH" time="2018-03-10" onClick={() => navigate(29)}>
+            <WeiboPost author="梦和MH" time="2018-03-10" onClick={() => navigate(PageId.WEIBO_FANS_POST_1)}>
               <div className="flex items-center gap-1 mb-1">
                 <span className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded">仅粉丝可见</span>
               </div>
@@ -44,7 +45,7 @@ export function MengheWeibo() {
           </>
         )}
 
-        <WeiboPost author="梦和MH" time="2018-02-28" onClick={() => navigate(28)}>
+        <WeiboPost author="梦和MH" time="2018-02-28" onClick={() => navigate(PageId.WEIBO_COMING_OF_AGE)}>
           🎂 成人礼。十八岁的我，和世界和解了吗？
           <div className="mt-2">
             <ImagePlaceholder name="成人礼照片" src={CEREMONY_18.src} fallbackSrc={CEREMONY_18.fallbackSrc} width={360} height={220} />

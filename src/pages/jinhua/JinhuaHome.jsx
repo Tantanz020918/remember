@@ -1,6 +1,7 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
 import { NAV_ITEMS, NEWS_CARDS, NOTICES, TEAM_MEMBERS, QUICK_LINKS } from '../../data/jinhuaHomeData'
+import { PageId } from '../pageIds'
 
 function NewsCard({ imageFrom, imageTo, imageName, title, date }) {
   return (
@@ -53,7 +54,7 @@ export function JinhuaHome() {
           {NAV_ITEMS.map((n) => (
             <a key={n.label} className={`cursor-pointer ${n.active ? 'font-bold underline' : 'hover:opacity-80'}`}>{n.label}</a>
           ))}
-          <StoryLink to={9} className="text-white!">校友档案</StoryLink>
+          <StoryLink to={PageId.JINHUA_ALUMNI} className="text-white!">校友档案</StoryLink>
         </div>
         <ImagePlaceholder name="校园全景" width="100%" height={220} from="#4fc3f7" to="#66bb6a" style={{ width: '100%', borderRadius: 0 }} />
         <div className="grid grid-cols-[2fr_1fr] gap-5 px-7 py-5">
@@ -88,7 +89,7 @@ export function JinhuaHome() {
             <SidebarCard title="校友档案">
               <p className="text-xs text-neutral-600">
                 金花小学建校 70 余年，校友遍布各行各业。欢迎校友{' '}
-                <StoryLink to={9}>登记查询</StoryLink>。
+                <StoryLink to={PageId.JINHUA_ALUMNI}>登记查询</StoryLink>。
               </p>
             </SidebarCard>
             <SidebarCard title="快捷入口">

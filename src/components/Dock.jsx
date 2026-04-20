@@ -1,10 +1,11 @@
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { Tooltip } from './ui'
+import { PageId } from '../pages/pageIds'
 
 const DOCK_ITEMS = [
-  { label: '浏览器', icon: '🌐', pageId: 4 },
-  { label: '微信', icon: '💬', pageId: 2 },
-  { label: 'QQ', icon: '🐧', pageId: 3 },
+  { label: '浏览器', icon: '🌐', pageId: PageId.BROWSER },
+  { label: '微信', icon: '💬', pageId: PageId.WECHAT },
+  { label: 'QQ', icon: '🐧', pageId: PageId.QQ },
 ]
 
 export function Dock() {

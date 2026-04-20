@@ -1,6 +1,7 @@
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboPostPage } from '../../browser/WeiboFrame'
 import { Keyword } from '../../components/ui'
+import { PageId } from '../pageIds'
 
 export function WeiboLiGroupPost() {
   const navigate = useGameNavigate()
@@ -42,7 +43,7 @@ export function WeiboLiGroupPost() {
       content={
         <div>
           才发现李氏集团千金好久没更新了，是不是出事了？
-          <span className="text-orange-500 cursor-pointer ml-1" onClick={() => navigate(27)}>@梦和MH</span>
+          <span className="text-orange-500 cursor-pointer ml-1" onClick={() => navigate(PageId.MENGHE_WEIBO)}>@梦和MH</span>
         </div>
       }
       likes={{ repost: 3, comment: 7, like: 24 }}

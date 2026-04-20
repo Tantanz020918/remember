@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 import { PAGES } from '../pages/registry'
+import { PageId } from '../pages/pageIds'
 
 // Page IDs that implicitly switch the active QQ account.
 // Visiting these via the dropdown should sync qqAccountSwitched.
-const CAIQING_QQ_PAGES = new Set([22]) // 采晴的 QQ 聊天
-const RUYUE_QQ_PAGES = new Set([3, 15]) // 姚如月自己的 QQ / 粉丝群
+const CAIQING_QQ_PAGES = new Set([PageId.QQ_CAIQING_CHAT])
+const RUYUE_QQ_PAGES = new Set([PageId.QQ, PageId.QQ_FANQUAN_GROUP])
 
 export function useGameNavigate() {
   const routerNavigate = useNavigate()

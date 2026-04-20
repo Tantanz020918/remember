@@ -3,6 +3,7 @@ import { useStore, TOTAL_PAGES, HIGHLIGHT_LABELS } from '../store'
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { useCurrentPage } from '../hooks/useCurrentPage'
 import { PAGES } from '../pages/registry'
+import { PageId } from '../pages/pageIds'
 import { Modal } from './ui'
 
 export function TopBar() {
@@ -21,7 +22,7 @@ export function TopBar() {
   const handleReset = () => {
     resetGame()
     setShowResetConfirm(false)
-    navigate(1)
+    navigate(PageId.DESKTOP)
   }
 
   return (

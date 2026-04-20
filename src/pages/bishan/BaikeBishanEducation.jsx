@@ -1,5 +1,6 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
+import { PageId } from '../../pages/pageIds'
 
 export function BaikeBishanEducation() {
   return (
@@ -41,7 +42,7 @@ export function BaikeBishanEducation() {
           <h2 className="text-base mt-5 mb-2 pl-2.5 border-l-4 border-sky-500">三、小学</h2>
           <p className="leading-loose">
             <DeadLink>璧山区实验小学</DeadLink>、
-            <StoryLink to={7}>
+            <StoryLink to={PageId.SEARCH_JINHUA}>
               <Keyword>金花小学</Keyword>
             </StoryLink>
             、<DeadLink>河边小学</DeadLink>、<DeadLink>三合小学</DeadLink>、

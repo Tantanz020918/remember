@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, StoryLink, ImagePlaceholder } from '../../components/ui'
+import { PageId } from '../pageIds'
 
 export function JinhuaAlumni() {
   const [year, setYear] = useState('')
@@ -38,7 +39,7 @@ export function JinhuaAlumni() {
           </div>
         </div>
         <div className="flex gap-6 px-7 py-3 bg-[#c43f1f] text-white text-[13px]">
-          <StoryLink to={8} className="text-white!">
+          <StoryLink to={PageId.JINHUA_HOME} className="text-white!">
             首页
           </StoryLink>
           <a className="cursor-pointer hover:opacity-80">学校概况</a>

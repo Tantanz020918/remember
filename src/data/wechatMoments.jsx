@@ -2,13 +2,24 @@ import { Keyword } from '../components/ui'
 import { MANICURE, CAT, HAMSTER, HANDMADE, GAME } from '../assets/imageUrls'
 
 export const MOMENTS = [
+  // 达到结局一后解锁，永久显示
+  {
+    name: '姚如月',
+    text: '十五年前的三姐妹，再次相聚啦~~',
+    imageName: '三姐妹合影',
+    imageFrom: '#ffd1dc',
+    imageTo: '#c1e8ff',
+    meta: '4月19日',
+    location: '璧山',
+    hiddenUntilEnding1: true,
+  },
   {
     name: '姚如月',
     text: '搬家完好一阵才敢出来，胆小猫',
     imageName: '窗台上的猫',
     imageSrc: CAT.src,
     imageFallbackSrc: CAT.fallbackSrc,
-    meta: '今天 19:02',
+    meta: '4月15日',
   },
   { name: '学姐', text: '📢五一泰国游有无拼团的！！！！！', meta: '4月12日' },
   {
@@ -16,7 +27,7 @@ export const MOMENTS = [
     text: '现在开始玩是不是太晚了',
     imageSrc: GAME.src,
     imageFallbackSrc: GAME.fallbackSrc,
-    meta: '今天 19:02',
+    meta: '4月10日',
   },
   {
     name: '青青',

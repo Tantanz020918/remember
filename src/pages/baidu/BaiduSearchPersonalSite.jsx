@@ -1,6 +1,7 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
 import { BaiduResultLayout, BaiduResultItem } from './BaiduResultLayout'
+import { PageId } from '../pageIds'
 
 export function BaiduSearchPersonalSite() {
   return (
@@ -14,7 +15,7 @@ export function BaiduSearchPersonalSite() {
           《富士山下》是一首由陈奕迅演唱的歌曲，收录于专辑《What's Going On...?》。歌词：「曾沿着雪路浪游，为何为好事泪流」
         </BaiduResultItem>
         <BaiduResultItem
-          title={<StoryLink to={21}>富士山下埋葬的の❤ - 个人网站</StoryLink>}
+          title={<StoryLink to={PageId.PERSONAL_SITE}>富士山下埋葬的の❤ - 个人网站</StoryLink>}
           url="personal-site"
         >
           一个清新可爱的个人主页。需要密码访问。

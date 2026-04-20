@@ -1,6 +1,7 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { BaitianFrame } from '../../browser/BaitianFrame'
 import { Keyword, StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
+import { PageId } from '../pageIds'
 
 export function BaitianUserCaiqing() {
   return (
@@ -37,7 +38,7 @@ export function BaitianUserCaiqing() {
           </li>
           <li className="px-4 py-2.5 border-b border-dashed border-pink-100 flex items-center gap-2.5 text-[13px]">
             <span className="px-1.5 py-0.5 rounded text-[11px] text-white bg-orange-500">日</span>
-            <StoryLink to={14}>
+            <StoryLink to={PageId.POST_TRANSFER}>
               <Keyword>朋友转学了好伤心</Keyword>
             </StoryLink>
             <span className="ml-auto text-neutral-400 text-[11px]">2011-06-28 · 回复 27</span>
@@ -48,6 +49,10 @@ export function BaitianUserCaiqing() {
               【帮转】奥比岛言情大戏「<Keyword>待你回眸一笑</Keyword>」开播啦！
             </DeadLink>
             <span className="ml-auto text-neutral-400 text-[11px]">2013-03-08 · 回复 8</span>
+          </li>
+          <li className="px-4 py-2.5 border-b border-dashed border-pink-100 flex items-center gap-2.5 text-[13px]">
+            <StoryLink to={PageId.POST_PRINCESS}>【原创】公主设定</StoryLink>
+            <span className="ml-auto text-neutral-400 text-[11px]">2010-07-19 · 回复 1</span>
           </li>
           <li className="px-4 py-2.5 flex items-center gap-2.5 text-[13px]">
             <DeadLink>【晒图】今天换的新衣服，好看嘛？</DeadLink>

@@ -1,7 +1,19 @@
+import { useEffect } from 'react'
+import { useStore } from '../../store'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { PageId } from '../pageIds'
 
 export function EndingForgive() {
   const navigate = useGameNavigate()
+  const { setFlag } = useStore()
+
+  // 进入结局一即永久解锁隐藏朋友圈
+  useEffect(() => {
+    setFlag('ending1Reached', true)
+  }, [setFlag])
+
+  const onBack = () => navigate(PageId.WECHAT_MOMENTS)
+
   return (
     <div className="min-h-full flex flex-col items-center justify-center bg-linear-to-b from-neutral-900 to-neutral-800 text-white p-10">
       <div className="max-w-lg text-center space-y-6">
@@ -18,7 +30,7 @@ export function EndingForgive() {
         </p>
         <div className="pt-6">
           <button
-            onClick={() => navigate(1)}
+            onClick={onBack}
             className="px-6 py-2 bg-white/10 border border-white/20 rounded-full text-sm cursor-pointer hover:bg-white/20"
           >
             回到桌面
@@ -50,7 +62,7 @@ export function EndingForgiveAlone() {
         </p>
         <div className="pt-6">
           <button
-            onClick={() => navigate(1)}
+            onClick={() => navigate(PageId.DESKTOP)}
             className="px-6 py-2 bg-white/10 border border-white/20 rounded-full text-sm cursor-pointer hover:bg-white/20"
           >
             回到桌面
@@ -79,7 +91,7 @@ export function EndingSilence() {
         </p>
         <div className="pt-6">
           <button
-            onClick={() => navigate(1)}
+            onClick={() => navigate(PageId.DESKTOP)}
             className="px-6 py-2 bg-white/10 border border-white/20 rounded-full text-sm cursor-pointer hover:bg-white/20"
           >
             回到桌面

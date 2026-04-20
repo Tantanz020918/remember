@@ -4,6 +4,7 @@ import { spriteForUser } from '../../assets/imageUrls'
 import { RUYUE_CHATS, FANQUAN_CHAT } from '../../data/qqData'
 import { FanquanMessages } from '../../data/qqFanquanMessages'
 import { QQAnnouncementBanner } from '../QQ/QQAnnouncementBanner'
+import { PageId } from '../../pages/pageIds'
 
 const CHATS = [FANQUAN_CHAT, ...RUYUE_CHATS]
 
@@ -28,7 +29,7 @@ export function QQGroupChat() {
           {CHATS.map((c) => (
             <div
               key={c.key}
-              onClick={() => { if (c.key !== 'fanquan') navigate(3) }}
+              onClick={() => { if (c.key !== 'fanquan') navigate(PageId.QQ) }}
               className={`flex gap-2.5 px-3 py-2.5 cursor-pointer border-b border-neutral-100 ${c.key === 'fanquan' ? 'bg-sky-100/70' : 'hover:bg-sky-50/60'}`}
             >
               <Avatar name={c.name} size={42} />
@@ -49,7 +50,7 @@ export function QQGroupChat() {
             <span>📞</span><span>📹</span><span>⋯</span>
           </div>
         </div>
-        <QQAnnouncementBanner onViewDetails={() => navigate(16)} />
+        <QQAnnouncementBanner onViewDetails={() => navigate(PageId.POST_SCRIPT)} />
         <div className="flex-1 px-5 py-4 overflow-y-auto bg-sky-50/40">
           <FanquanMessages />
         </div>

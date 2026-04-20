@@ -1,4 +1,5 @@
 import { Keyword, ImagePlaceholder, StoryLink } from '../components/ui'
+import { PageId } from '../pages/pageIds'
 
 export const TRANSFER_FLOORS = [
   {
@@ -9,7 +10,7 @@ export const TRANSFER_FLOORS = [
     userName: '采晴0826',
     userLv: 'Lv.8',
     userSign: '【楼主】天天开心',
-    meta: <>1 楼 · <Keyword>2011-06-28</Keyword> 19:44</>,
+    meta: <>1 楼 · 2011-06-28 19:44</>,
     content: (
       <>
         <p>我最好的朋友前天转学走了。我们从一年级就一起，一起买辣条、一起出去玩，她爸妈管得比我松，所以总是她来找我玩。</p>
@@ -33,7 +34,7 @@ export const TRANSFER_FLOORS = [
       {
         userName: '采晴0826', replyTo: '星星点灯',
         content: (
-          <>有道理！我把QQ放在 <StoryLink to={17}>这个帖子</StoryLink> 里了！为了防止坏人乱加好友，我设置了密码。如月，如果你看到了一定要加我呀。</>
+          <>有道理！我把QQ放在 <StoryLink to={PageId.POST_ENCRYPTED}>这个帖子</StoryLink> 里了！为了防止坏人乱加好友，我设置了密码。如月，如果你看到了一定要加我呀。</>
         ),
       },
     ],

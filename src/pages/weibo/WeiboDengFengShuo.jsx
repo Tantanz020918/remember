@@ -2,6 +2,7 @@ import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboProfileHeader, WeiboPostDetail } from '../../browser/WeiboFrame'
 import { ImagePlaceholder, Keyword } from '../../components/ui'
+import { PageId } from '../pageIds'
 
 const COMMENTS = [
   { author: '琴声悠扬', time: '03-14 21:00', authorFrom: '#d4f0c2', authorTo: '#8cd07d', content: '剪得好棒！' },
@@ -13,7 +14,7 @@ export function WeiboDengFengShuo() {
   const navigate = useGameNavigate()
 
   const LIKES = [
-    { name: '安眠', time: <Keyword>2023-05-18</Keyword>, onClick: () => navigate(32) },
+    { name: '安眠', time: <Keyword>2023-05-18</Keyword>, onClick: () => navigate(PageId.WEIBO_ANMIAN) },
     { name: '琴声悠扬', time: '2017-03-14' },
     { name: '音乐迷', time: '2017-03-14' },
     { name: '小花', time: '2017-03-14' },

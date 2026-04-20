@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { BrowserFrame } from '../../browser/BrowserFrame'
+import { PageId } from '../pageIds'
 
 const HOT_ITEMS = [
   { rank: 1, text: '五一假期出行指南' },
@@ -14,12 +15,13 @@ const HOT_ITEMS = [
 ]
 
 const QUERY_TO_PAGE = {
-  璧山: 5,
-  金花小学: 7,
-  奥比岛: 10,
-  富士山下: 20,
-  梦之奖学金: 23,
-  李氏集团: 25,
+  璧山: PageId.SEARCH_BISHAN,
+  金花小学: PageId.SEARCH_JINHUA,
+  奥比岛: PageId.SEARCH_AOBI,
+  富士山下: PageId.SEARCH_PERSONAL_SITE,
+  梦之奖学金: PageId.SEARCH_DREAM_SCHOLARSHIP,
+  李氏集团: PageId.SEARCH_LI_GROUP,
+  荣德心理咨询所: PageId.SEARCH_RONGDE,
 }
 
 export function BaiduHome() {

@@ -11,14 +11,15 @@ import { BaitianHome } from './baitian/BaitianHome'
 import { BaitianUserCaiqing } from './baitian/BaitianUserCaiqing'
 import { BaitianPostCasting } from './baitian/BaitianPostCasting'
 import { BaitianPostTransfer } from './baitian/BaitianPostTransfer'
+import { BaitianPostPrincess } from './baitian/BaitianPostPrincess'
 import { BaitianPostScript } from './baitian/BaitianPostScript'
 import { BaitianPostEncrypted } from './baitian/BaitianPostEncrypted'
 import { ForumPostDecode } from './baitian/ForumPostDecode'
 import { CaiqingQZone } from './qzone/CaiqingQZone'
 import { BaiduSearchPersonalSite } from './baidu/BaiduSearchPersonalSite'
 import { PersonalSite } from './personalSite/PersonalSite'
-// CaiqingQQChat merged into QQ component — page 22 reuses QQ
-// CaiqingQZoneDiary merged into CaiqingQZone's Journal tab — page 23 removed
+// CaiqingQQChat merged into QQ component — PageId.QQ_CAIQING_CHAT reuses QQ
+// CaiqingQZoneDiary merged into CaiqingQZone's Journal tab
 import { BaiduSearchDreamScholarship } from './baidu/BaiduSearchDreamScholarship'
 import { NewsDreamScholarship } from './news/NewsDreamScholarship'
 import { BaiduSearchLiGroup } from './baidu/BaiduSearchLiGroup'
@@ -28,47 +29,56 @@ import { WeiboComingOfAge } from './weibo/WeiboComingOfAge'
 import { WeiboFansPost1 } from './weibo/WeiboFansPost1'
 import { WeiboFansPost2 } from './weibo/WeiboFansPost2'
 import { WeiboDengFengShuo } from './weibo/WeiboDengFengShuo'
-import { WeiboUser139293 } from './weibo/WeiboUser139293'
+import { WeiboAnmian } from './weibo/WeiboAnmian'
 import { LockedPost } from './weibo/LockedPost'
 import { EndingForgive, EndingForgiveAlone, EndingSilence } from './ending/Ending'
+import { BaiduSearchRongde } from './baidu/BaiduSearchRongde'
+import { RongdeCenter } from './rongde/RongdeCenter'
+import { WeiboLiGroupFamilyEdu } from './weibo/WeiboLiGroupFamilyEdu'
+import { PageId } from './pageIds'
 
 export const PAGES = {
-  1:  { title: '桌面',                   path: null,                                       appType: 'desktop', render: () => null },
-  2:  { title: '微信',                   path: 'wechat',                                   appType: 'wechat',  render: () => <Wechat /> },
-  3:  { title: 'QQ',                     path: 'qq',                                       appType: 'qq',      render: () => <QQ /> },
-  4:  { title: '浏览器',                 path: 'browser',                                  appType: 'browser', render: () => <BaiduHome /> },
-  5:  { title: '搜索「璧山」',           path: 'browser/search/bishan',                    appType: 'browser', render: () => <BaiduResultBishan /> },
-  6:  { title: '璧山区 · 教育设施',     path: 'browser/baike/bishan-education',            appType: 'browser', render: () => <BaikeBishanEducation /> },
-  7:  { title: '搜索「金花小学」',       path: 'browser/search/jinhua-primary',             appType: 'browser', render: () => <BaiduResultJinhua /> },
-  8:  { title: '金花小学官网',           path: 'browser/jinhua-primary',                    appType: 'browser', render: () => <JinhuaHome /> },
-  9:  { title: '金花小学 · 校友档案',   path: 'browser/jinhua-primary/alumni',              appType: 'browser', render: () => <JinhuaAlumni /> },
-  10: { title: '搜索「奥比岛」',         path: 'browser/search/aobi',                       appType: 'browser', render: () => <BaiduResultAobi /> },
-  11: { title: '奥比岛圈 · 首页',       path: 'browser/aobi',                              appType: 'browser', render: () => <BaitianHome /> },
-  12: { title: '奥比岛圈 · 采晴0826',   path: 'browser/aobi/user/caiqing0826',             appType: 'browser', render: () => <BaitianUserCaiqing /> },
-  13: { title: '奥比岛言情大戏招人',     path: 'browser/aobi/post/casting-call',            appType: 'browser', render: () => <BaitianPostCasting /> },
-  14: { title: '朋友转学了好伤心',       path: 'browser/aobi/post/friend-transferred',      appType: 'browser', render: () => <BaitianPostTransfer /> },
-  15: { title: '沐季千柠工作室粉丝群',   path: 'qq/group/mujiqianling',                     appType: 'qq',      render: () => <QQ /> },
-  16: { title: '永远的姐妹',             path: 'browser/aobi/post/eternal-sisters',         appType: 'browser', render: () => <BaitianPostScript /> },
-  17: { title: '百田加密帖子',           path: 'browser/aobi/post/encrypted-for-ruyue',     appType: 'browser', render: () => <BaitianPostEncrypted /> },
-  18: { title: '乱码科普帖',             path: 'browser/aobi/post/decode-guide',            appType: 'browser', render: () => <ForumPostDecode /> },
-  19: { title: '采晴的QQ空间',           path: 'browser/qzone/caiqing',                     appType: 'browser', render: () => <CaiqingQZone /> },
-  20: { title: '搜索「富士山下」',       path: 'browser/search/personal-site',              appType: 'browser', render: () => <BaiduSearchPersonalSite /> },
-  21: { title: '富士山下埋葬的の❤',     path: 'browser/personal-site',                      appType: 'browser', render: () => <PersonalSite /> },
-  22: { title: '采晴的QQ聊天',           path: 'qq/caiqing-chat',                            appType: 'qq',      render: () => <QQ /> },
-  23: { title: '搜索「梦之奖学金」',     path: 'browser/search/dream-scholarship',           appType: 'browser', render: () => <BaiduSearchDreamScholarship /> },
-  24: { title: '梦之奖学金新闻',         path: 'browser/news/dream-scholarship',             appType: 'browser', render: () => <NewsDreamScholarship /> },
-  25: { title: '搜索「李氏集团」',       path: 'browser/search/li-group',                    appType: 'browser', render: () => <BaiduSearchLiGroup /> },
-  26: { title: '微博 · 李氏集团千金',   path: 'browser/weibo/post/li-group-princess',       appType: 'browser', render: () => <WeiboLiGroupPost /> },
-  27: { title: '梦和MH 微博',           path: 'browser/weibo/menghe-mh',                    appType: 'browser', render: () => <MengheWeibo /> },
-  28: { title: '成人礼帖子',             path: 'browser/weibo/menghe-mh/coming-of-age',     appType: 'browser', render: () => <WeiboComingOfAge /> },
-  29: { title: '粉丝可见帖子①',         path: 'browser/weibo/menghe-mh/fans-post-1',       appType: 'browser', render: () => <WeiboFansPost1 /> },
-  30: { title: '粉丝可见帖子②',         path: 'browser/weibo/menghe-mh/fans-post-2',       appType: 'browser', render: () => <WeiboFansPost2 /> },
-  31: { title: '等风说',                 path: 'browser/weibo/dengfengshuo',                 appType: 'browser', render: () => <WeiboDengFengShuo /> },
-  32: { title: '安眠',         path: 'browser/weibo/user139293',                   appType: 'browser', render: () => <WeiboUser139293 /> },
-  33: { title: '加锁帖子',               path: 'browser/weibo/user139293/locked-post',       appType: 'browser', render: () => <LockedPost /> },
-  34: { title: '结局：我们原谅你',       path: 'ending/forgive',                             appType: 'default', render: () => <EndingForgive /> },
-  35: { title: '结局：我原谅你',         path: 'ending/forgive-alone',                       appType: 'default', render: () => <EndingForgiveAlone /> },
-  36: { title: '结局：沉默',             path: 'ending/silence',                             appType: 'default', render: () => <EndingSilence /> },
+  [PageId.DESKTOP]:                  { title: '桌面',                   path: null,                                       appType: 'desktop', render: () => null },
+  [PageId.WECHAT]:                   { title: '微信',                   path: 'wechat',                                   appType: 'wechat',  render: () => <Wechat /> },
+  [PageId.QQ]:                       { title: 'QQ',                     path: 'qq',                                       appType: 'qq',      render: () => <QQ /> },
+  [PageId.BROWSER]:                  { title: '浏览器',                 path: 'browser',                                  appType: 'browser', render: () => <BaiduHome /> },
+  [PageId.SEARCH_BISHAN]:            { title: '搜索「璧山」',           path: 'browser/search/bishan',                    appType: 'browser', render: () => <BaiduResultBishan /> },
+  [PageId.BISHAN_EDUCATION]:         { title: '璧山区 · 教育设施',     path: 'browser/baike/bishan-education',           appType: 'browser', render: () => <BaikeBishanEducation /> },
+  [PageId.SEARCH_JINHUA]:            { title: '搜索「金花小学」',       path: 'browser/search/jinhua-primary',            appType: 'browser', render: () => <BaiduResultJinhua /> },
+  [PageId.JINHUA_HOME]:              { title: '金花小学官网',           path: 'browser/jinhua-primary',                   appType: 'browser', render: () => <JinhuaHome /> },
+  [PageId.JINHUA_ALUMNI]:            { title: '金花小学 · 校友档案',   path: 'browser/jinhua-primary/alumni',            appType: 'browser', render: () => <JinhuaAlumni /> },
+  [PageId.SEARCH_AOBI]:              { title: '搜索「奥比岛」',         path: 'browser/search/aobi',                      appType: 'browser', render: () => <BaiduResultAobi /> },
+  [PageId.AOBI_HOME]:                { title: '奥比岛圈 · 首页',       path: 'browser/aobi',                             appType: 'browser', render: () => <BaitianHome /> },
+  [PageId.AOBI_USER_CAIQING]:        { title: '奥比岛圈 · 采晴0826',   path: 'browser/aobi/user/caiqing0826',            appType: 'browser', render: () => <BaitianUserCaiqing /> },
+  [PageId.POST_CASTING]:             { title: '奥比岛言情大戏招人',     path: 'browser/aobi/post/casting-call',           appType: 'browser', render: () => <BaitianPostCasting /> },
+  [PageId.POST_TRANSFER]:            { title: '朋友转学了好伤心',       path: 'browser/aobi/post/friend-transferred',     appType: 'browser', render: () => <BaitianPostTransfer /> },
+  [PageId.POST_PRINCESS]:            { title: '我画的三位公主',         path: 'browser/aobi/post/princess',               appType: 'browser', render: () => <BaitianPostPrincess /> },
+  [PageId.QQ_FANQUAN_GROUP]:         { title: '沐季千柠工作室粉丝群',   path: 'qq/group/mujiqianling',                    appType: 'qq',      render: () => <QQ /> },
+  [PageId.POST_SCRIPT]:              { title: '永远的姐妹',             path: 'browser/aobi/post/eternal-sisters',        appType: 'browser', render: () => <BaitianPostScript /> },
+  [PageId.POST_ENCRYPTED]:           { title: '百田加密帖子',           path: 'browser/aobi/post/encrypted-for-ruyue',    appType: 'browser', render: () => <BaitianPostEncrypted /> },
+  [PageId.POST_DECODE]:              { title: '乱码科普帖',             path: 'browser/aobi/post/decode-guide',           appType: 'browser', render: () => <ForumPostDecode /> },
+  [PageId.CAIQING_QZONE]:            { title: '采晴的 QQ 空间',         path: 'browser/qzone/caiqing',                    appType: 'browser', render: () => <CaiqingQZone /> },
+  [PageId.SEARCH_PERSONAL_SITE]:     { title: '搜索「富士山下」',       path: 'browser/search/personal-site',             appType: 'browser', render: () => <BaiduSearchPersonalSite /> },
+  [PageId.PERSONAL_SITE]:            { title: '富士山下埋葬的の❤',     path: 'browser/personal-site',                    appType: 'browser', render: () => <PersonalSite /> },
+  [PageId.QQ_CAIQING_CHAT]:          { title: '采晴的 QQ 聊天',         path: 'qq/caiqing-chat',                          appType: 'qq',      render: () => <QQ /> },
+  [PageId.SEARCH_DREAM_SCHOLARSHIP]: { title: '搜索「梦之奖学金」',     path: 'browser/search/dream-scholarship',         appType: 'browser', render: () => <BaiduSearchDreamScholarship /> },
+  [PageId.NEWS_DREAM_SCHOLARSHIP]:   { title: '梦之奖学金新闻',         path: 'browser/news/dream-scholarship',           appType: 'browser', render: () => <NewsDreamScholarship /> },
+  [PageId.SEARCH_LI_GROUP]:          { title: '搜索「李氏集团」',       path: 'browser/search/li-group',                  appType: 'browser', render: () => <BaiduSearchLiGroup /> },
+  [PageId.WEIBO_LI_GROUP_POST]:      { title: '微博 · 李氏集团千金',   path: 'browser/weibo/post/li-group-princess',     appType: 'browser', render: () => <WeiboLiGroupPost /> },
+  [PageId.MENGHE_WEIBO]:             { title: '梦和MH 微博',           path: 'browser/weibo/menghe-mh',                  appType: 'browser', render: () => <MengheWeibo /> },
+  [PageId.WEIBO_COMING_OF_AGE]:      { title: '成人礼帖子',             path: 'browser/weibo/menghe-mh/coming-of-age',    appType: 'browser', render: () => <WeiboComingOfAge /> },
+  [PageId.WEIBO_FANS_POST_1]:        { title: '粉丝可见帖子①',         path: 'browser/weibo/menghe-mh/fans-post-1',      appType: 'browser', render: () => <WeiboFansPost1 /> },
+  [PageId.WEIBO_FANS_POST_2]:        { title: '粉丝可见帖子②',         path: 'browser/weibo/menghe-mh/fans-post-2',      appType: 'browser', render: () => <WeiboFansPost2 /> },
+  [PageId.WEIBO_DENG_FENG_SHUO]:     { title: '等风说',                 path: 'browser/weibo/dengfengshuo',               appType: 'browser', render: () => <WeiboDengFengShuo /> },
+  [PageId.WEIBO_ANMIAN]:             { title: '安眠',                   path: 'browser/weibo/anmian',                     appType: 'browser', render: () => <WeiboAnmian /> },
+  [PageId.WEIBO_ANMIAN_LOCKED]:      { title: '安眠 · 原谅的请求',     path: 'browser/weibo/anmian/locked-post',         appType: 'browser', render: () => <LockedPost /> },
+  [PageId.SEARCH_RONGDE]:            { title: '搜索「荣德心理咨询所」', path: 'browser/search/rongde',                    appType: 'browser', render: () => <BaiduSearchRongde /> },
+  [PageId.RONGDE_CENTER]:            { title: '荣德心理咨询所',         path: 'browser/rongde',                           appType: 'browser', render: () => <RongdeCenter /> },
+  [PageId.ENDING_FORGIVE]:           { title: '结局：我们原谅你',       path: 'ending/forgive',                           appType: 'default', render: () => <EndingForgive /> },
+  [PageId.ENDING_FORGIVE_ALONE]:     { title: '结局：我原谅你',         path: 'ending/forgive-alone',                     appType: 'default', render: () => <EndingForgiveAlone /> },
+  [PageId.ENDING_SILENCE]:           { title: '结局：沉默',             path: 'ending/silence',                           appType: 'default', render: () => <EndingSilence /> },
+  [PageId.WEIBO_LI_GROUP_FAMILY_EDU]:{ title: '李氏集团家教观察',       path: 'browser/weibo/li-group-family-edu',        appType: 'browser', render: () => <WeiboLiGroupFamilyEdu /> },
+  [PageId.WECHAT_MOMENTS]:           { title: '微信 · 朋友圈',          path: 'wechat/moments',                           appType: 'wechat',  render: () => <Wechat initialView="moments" /> },
 }
 
 export const PATH_TO_ID = {}

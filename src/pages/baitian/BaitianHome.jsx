@@ -3,6 +3,7 @@ import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { BaitianFrame } from '../../browser/BaitianFrame'
 import { Keyword, StoryLink, DeadLink } from '../../components/ui'
+import { PageId } from '../pageIds'
 
 const POSTS = [
   {
@@ -15,7 +16,7 @@ const POSTS = [
   },
   {
     title: (
-      <StoryLink to={13}>
+      <StoryLink to={PageId.POST_CASTING}>
         【招募】奥比岛短剧招人啦～
       </StoryLink>
     ),
@@ -35,7 +36,7 @@ const POSTS = [
   },
   {
     title: (
-      <StoryLink to={18}>为什么我打开游戏一堆乱码？</StoryLink>
+      <StoryLink to={PageId.POST_DECODE}>为什么我打开游戏一堆乱码？</StoryLink>
     ),
     meta: '小糊涂 · 2013-04-22 · 回复 156',
   },
@@ -53,7 +54,7 @@ export function BaitianHome() {
   const submit = () => {
     const value = query.trim()
     if (value === '采晴0826') {
-      navigate(12)
+      navigate(PageId.AOBI_USER_CAIQING)
     } else {
       setErrorMsg('无搜索结果，用户可能隐藏了个人信息。')
     }

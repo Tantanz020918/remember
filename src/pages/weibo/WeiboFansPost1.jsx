@@ -3,6 +3,7 @@ import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboPostPage } from '../../browser/WeiboFrame'
 import { PasswordLock, Keyword } from '../../components/ui'
+import { PageId } from '../pageIds'
 
 function PostContent() {
   const navigate = useGameNavigate()
@@ -10,7 +11,7 @@ function PostContent() {
   const COMMENTS = [
     {
       author: <Keyword>等风说</Keyword>, authorName: '等风说', time: '03-10 22:30', authorFrom: '#ffecd2', authorTo: '#fcb69f',
-      onClick: () => navigate(31),
+      onClick: () => navigate(PageId.WEIBO_DENG_FENG_SHUO),
       content: '等你回来。',
       subComments: [
         { author: '梦和MH', content: <>真的很感谢你为我剪的视频，我会<Keyword>常回来看看</Keyword>。</> },

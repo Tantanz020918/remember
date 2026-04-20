@@ -15,7 +15,7 @@ export const TIMELINE_POSTS = [
     time: '2018.3.15',
     content: (
       <>
-        七年前的一箭，终于一箭穿心。
+        七年前的一箭，终于一箭穿心
         <div className="mt-2 bg-neutral-900/50 rounded p-2">
           <Comment author="小花">怎么了？</Comment>
           <Comment author="阳光">发生什么事了？</Comment>
@@ -31,6 +31,7 @@ export const TIMELINE_POSTS = [
         <div className="mt-2 bg-neutral-900/50 rounded p-2">
           <Comment author="路人">是什么东东？</Comment>
           <Comment author="雨季">看来你还不够了解我~多看看我的个人资料吧</Comment>
+          <Comment author="张条子">🐂🍺</Comment>
         </div>
       </>
     ),
@@ -48,8 +49,22 @@ export const TIMELINE_POSTS = [
     ),
   },
   { time: '2013.8.20', content: '暑假快结束了，不想开学不想开学' },
-  { time: '2012.6.20', content: '毕业了。我会很想你的，如月。' },
+  { time: '2012.6.21', content:  <>
+        毕业了，再见朋友们！璧中见！
+         <div className="mt-2 bg-neutral-900/50 rounded p-2">
+          <Comment author="Immer">要想我哦晴</Comment>
+          <Comment author="张条子">没考上怎么办</Comment>
+        </div>
+      </> },
+  { time: '2012.6.20', content: '成绩出来了，语文依旧不高哈哈哈哈哈' },
+  { time: '2011.7.12', content: <>好想如月啊啊啊啊啊。。。梦和今天又要练琴，没人和我玩！
+        <div className="mt-2 bg-neutral-900/50 rounded p-2">
+          <Comment author="抹茶子">那你过来找我玩呗</Comment>
+          <Comment author="雨季">太热了，算了</Comment>
+          <Comment author="抹茶子">晕</Comment>
+        </div></> },
   { time: '2011.7.5', content: '如月走了以后，放学回家的路好安静。一个人买辣条都不香了。在家打奥比岛。' },
+  { time: '2010.4.15', content: '跟小姐妹们一起喝奶茶~~~梦和说她爸不让她喝，所以我们是偷偷喝的呢' },
 ]
 
 export const GUESTBOOK = [

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useStore } from '../../store'
 import { ImagePlaceholder, Toast, useToast } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
@@ -74,14 +74,27 @@ function AddFriendView({ onAdded }) {
   )
 }
 
-export function Wechat() {
+export function Wechat({ initialView = 'chats' }) {
   const { caiqingWechatAdded, setFlag } = useStore()
-  const [view, setView] = useState('chats')
-  const [chatKey, setChatKey] = useState(/** @type {string|null} */ ('qing'))
+  const [view, setView] = useState(initialView)
+  const [chatKey, setChatKey] = useState(/** @type {string|null} */ (null))
   const [showBigImg, setShowBigImg] = useState(false)
   const toast = useToast()
 
+  // 当路由变化传入新的 initialView（例如 页 2 → 页 40）时，同步切 tab
+  useEffect(() => {
+    setView(initialView)
+  }, [initialView])
+
   const chatList = caiqingWechatAdded ? [CAIQING_CHAT, ...WECHAT_CHAT_LIST] : WECHAT_CHAT_LIST
+
+  // 未选中会话时默认选中第一条
+  useEffect(() => {
+    if (chatKey === null && chatList[0]) {
+      setChatKey(chatList[0].key)
+    }
+  }, [chatList, chatKey])
+
   const currentChat = chatList.find((c) => c.key === chatKey)
 
   const onAddCaiqing = () => {
