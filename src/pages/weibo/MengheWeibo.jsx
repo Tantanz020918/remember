@@ -2,7 +2,7 @@ import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useStore } from '../../store'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboProfileHeader, WeiboPost } from '../../browser/WeiboFrame'
-import { ImagePlaceholder } from '../../components/ui'
+import { ImagePlaceholder, Keyword } from '../../components/ui'
 import { FLIPPED, CEREMONY_18 } from '../../assets/imageUrls'
 
 export function MengheWeibo() {
@@ -21,7 +21,7 @@ export function MengheWeibo() {
           bgImage={FLIPPED}
         >
           {!followedMenghe ? (
-            <button onClick={() => setFlag('followedMenghe', true)} className="px-5 py-1.5 bg-orange-500 text-white rounded-full text-sm cursor-pointer hover:bg-orange-600 border-none font-medium">+ 关注</button>
+              <button onClick={() => setFlag('followedMenghe', true)} className="px-5 py-1.5 bg-orange-500 text-white rounded-full text-sm cursor-pointer hover:bg-orange-600 border-none"><Keyword>+ 关注</Keyword></button>
           ) : (
             <span className="px-5 py-1.5 bg-neutral-200 text-neutral-500 rounded-full text-sm">已关注</span>
           )}

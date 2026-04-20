@@ -19,15 +19,17 @@ export function WeiboLiGroupPost() {
       ],
     },
     {
+      author: '老粉', time: '06-15 09:30', authorFrom: '#ffd1dc', authorTo: '#ff9aa2',
+      content: <>她好像把自己<Keyword>粉丝都清掉了</Keyword>。</>,  subComments: [
+        { author: '张桃子', content: '怪不得她现在只有几十粉，为啥要清掉啊' },
+      ],
+    },
+    {
       author: '路过的', time: '06-14 18:22', authorFrom: '#e4d4ff', authorTo: '#a97bf5',
       content: '这谁，不认识。',
       subComments: [
         { author: '回复达人', content: '不认识还在这里发什么，以为自己很独特。' },
       ],
-    },
-    {
-      author: '老粉', time: '06-15 09:30', authorFrom: '#ffd1dc', authorTo: '#ff9aa2',
-      content: <>她好像把自己<Keyword>粉丝都清掉了</Keyword>。</>,
     },
   ]
 

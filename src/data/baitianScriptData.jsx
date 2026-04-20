@@ -6,7 +6,7 @@ export const SCRIPT_FLOORS = [
     avatarName: '闺蜜头像2',
     avatarFrom: '#c8f0b8',
     avatarTo: '#8ed687',
-    userName: '薄荷夏天',
+    userName: '梦の伤',
     userLv: 'Lv.6',
     userSign: '编剧+女主',
     meta: '发布于 2013-01-02 21:05',
@@ -58,7 +58,7 @@ export const SCRIPT_FLOORS = [
       <>
         <p>男主还招人吗！我超会打篮球的！</p>
         <div className="mt-1.5 pl-3 border-l-2 border-pink-200 text-xs text-neutral-500">
-          <span className="text-[#d16b8a] font-medium">薄荷夏天</span> 回复：已经有人啦，下部戏优先考虑你～
+          <span className="text-[#d16b8a] font-medium">梦の伤</span> 回复：已经有人啦，下部戏优先考虑你～
         </div>
       </>
     ),

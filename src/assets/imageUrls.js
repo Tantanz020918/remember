@@ -12,29 +12,58 @@ import catLocal from './imgs/others/cat.webp'
 import themeParkLocal from './imgs/others/theme-park.webp'
 import manicureLocal from './imgs/others/manicure.webp'
 
-const CDN = 'https://test.fukit.cn/autoupload/fr/b4gIuJ4azJXqOOPtrTQN79PVUUpAlzPwgP17t_pPbMmyl5f0KlZfm6UsKj-HyTuv/20260417'
+// CDN 链接结构：{CDN_PREFIX}/{key}/{path}
+// 图床每批上传会生成一个共享前缀 + 每张图一个随机 4 位 key。
+// 链接过期换图时，只需更新 CDN_PREFIX 和 IMAGES 里各条目的 key。
+const CDN_PREFIX = 'https://test.fukit.cn/autoupload/f/S9HLukMuH_jaG2-bgCx4dLKXl_QqVl-bpSwqP4fJO68/20260420'
 
-const img = (path, fallback) => ({ src: `${CDN}${path}`, fallbackSrc: fallback })
+const IMAGES = {
+  bestie_1:    { key: 'gf6j', path: '0X0/imgs/avatars/bestie_1.webp',     fallback: bestie1Local },
+  bestie_2:    { key: 'Ny6z', path: '0X0/imgs/avatars/bestie_2.webp',     fallback: bestie2Local },
+  sprite_1:    { key: 'NNBo', path: '0X0/imgs/avatars/sprite_1.webp',     fallback: sprite1Local },
+  sprite_2:    { key: 'cbPF', path: '0X0/imgs/avatars/sprite_2.webp',     fallback: sprite2Local },
+  flipped:     { key: 'eVLc', path: '0X0/imgs/flipped.webp',              fallback: flippedLocal },
+  ceremony_18: { key: '33wT', path: '0X0/imgs/others/18ceremony.webp',    fallback: ceremony18Local },
+  hamster:     { key: '1yGx', path: '0X0/imgs/others/hamster.webp',       fallback: hamsterLocal },
+  handmade:    { key: 'tNzt', path: '0X0/imgs/others/handmade-artical.webp', fallback: handmadeLocal },
+  game:        { key: 'p5Vy', path: '0X0/imgs/others/game.webp',          fallback: gameLocal },
+  cat:         { key: 'QJpD', path: '0X0/imgs/others/cat.webp',           fallback: catLocal },
+  theme_park:  { key: 'O5Ux', path: '0X0/imgs/others/theme-park.webp',    fallback: themeParkLocal },
+  manicure:    { key: 'WhMn', path: '0X0/imgs/others/manicure.webp',      fallback: manicureLocal },
+}
+
+/**
+ * 根据 IMAGES 里的逻辑名取图。
+ * 返回 { src, fallbackSrc }，供 <ImagePlaceholder> 等组件使用。
+ */
+export function getImage(name) {
+  const entry = IMAGES[name]
+  if (!entry) return { src: null, fallbackSrc: null }
+  return {
+    src: `${CDN_PREFIX}/${entry.key}/${entry.path}`,
+    fallbackSrc: entry.fallback,
+  }
+}
 
 // ===== 特殊固定图片 =====
-export const BESTIE_1 = img('/l2Z5/0X0/imgs/avatars/bestie_1.webp', bestie1Local)
-export const BESTIE_2 = img('/IxFv/0X0/imgs/avatars/bestie_2.webp', bestie2Local)
-export const FLIPPED = img('/A7Cq/0X0/imgs/flipped.webp', flippedLocal) // 梦和MH背景
-export const CEREMONY_18 = img('/W3w7/0X0/imgs/others/18ceremony.webp', ceremony18Local) // 成人礼
+export const BESTIE_1 = getImage('bestie_1')
+export const BESTIE_2 = getImage('bestie_2')
+export const FLIPPED = getImage('flipped') // 梦和MH背景
+export const CEREMONY_18 = getImage('ceremony_18') // 成人礼
 
 // ===== 可复用场景照片 =====
-export const HAMSTER = img('/icLz/0X0/imgs/others/hamster.webp', hamsterLocal)
-export const HANDMADE = img('/0BsX/0X0/imgs/others/handmade-artical.webp', handmadeLocal)
-export const GAME = img('/QiVI/0X0/imgs/others/game.webp', gameLocal)
-export const CAT = img('/T64X/0X0/imgs/others/cat.webp', catLocal)
-export const THEME_PARK = img('/tcmF/0X0/imgs/others/theme-park.webp', themeParkLocal)
-export const MANICURE = img('/48LD/0X0/imgs/others/manicure.webp', manicureLocal)
+export const HAMSTER = getImage('hamster')
+export const HANDMADE = getImage('handmade')
+export const GAME = getImage('game')
+export const CAT = getImage('cat')
+export const THEME_PARK = getImage('theme_park')
+export const MANICURE = getImage('manicure')
 
 // ===== 精灵图头像系统 =====
 // 共 2 张精灵图 × 5×5 = 50 个头像，索引从 1 到 50
 // 1~25 在 sprite_1，26~50 在 sprite_2
-const SPRITE_1 = img('/BuzU/0X0/imgs/avatars/sprite_1.webp', sprite1Local)
-const SPRITE_2 = img('/bDnU/0X0/imgs/avatars/sprite_2.webp', sprite2Local)
+const SPRITE_1 = getImage('sprite_1')
+const SPRITE_2 = getImage('sprite_2')
 const SHEETS = [SPRITE_1, SPRITE_2]
 const GRID = 5
 const CELLS_PER_SHEET = GRID * GRID

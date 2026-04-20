@@ -40,7 +40,7 @@ export const TRANSFER_FLOORS = [
   },
   {
     avatarName: '闺蜜头像 2', avatarFrom: '#c8f0b8', avatarTo: '#8ed687',
-    userName: '薄荷夏天', userLv: 'Lv.3', meta: '4 楼',
+    userName: '梦の伤', userLv: 'Lv.3', meta: '4 楼',
     content: <p>她能看到的概率也太小了吧~~~</p>,
   },
 ]
