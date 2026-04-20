@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   // puzzle progression
   encryptedPostUnlocked: false,
   caiqingSpaceUnlocked: false,
-  wuyannvUnlocked: false,
+  personalSiteUnlocked: false,
   mazeCompleted: false,
   diaryUnlocked: false,
   fansPost1Unlocked: false,

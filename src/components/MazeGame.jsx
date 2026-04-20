@@ -1,5 +1,50 @@
 import { useState, useCallback, useMemo, useRef } from 'react'
 
+function seededRandom(seed) {
+  const x = Math.sin(seed * 9301 + 49297) * 233280
+  return x - Math.floor(x)
+}
+
+const BUTTERFLY_PARTICLES = Array.from({ length: 30 }, (_, i) => ({
+  id: i,
+  left: seededRandom(i) * 100,
+  delay: seededRandom(i + 100) * 1.2,
+  duration: 2.5 + seededRandom(i + 200) * 2.5,
+  size: 14 + seededRandom(i + 300) * 18,
+  drift: (seededRandom(i + 400) - 0.5) * 40, // horizontal wobble in vw
+}))
+
+// Total life of a butterfly = max(delay + duration). Reset guard after this.
+const BUTTERFLY_LIFE_MS = 4000
+
+function ButterflyParticles() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[3000] overflow-hidden">
+      {BUTTERFLY_PARTICLES.map((b) => (
+        <div
+          key={b.id}
+          className="absolute"
+          style={{
+            left: `${b.left}%`,
+            bottom: '-30px',
+            fontSize: b.size,
+            animation: `butterflyRise ${b.duration}s ${b.delay}s ease-out forwards`,
+            '--drift': `${b.drift}vw`,
+          }}
+        >
+          🦋
+        </div>
+      ))}
+      <style>{`
+        @keyframes butterflyRise {
+          0%   { transform: translate(0, 0); opacity: 1; }
+          100% { transform: translate(var(--drift), -110vh); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  )
+}
+
 const COLS = 20
 const ROWS = 12
 
@@ -29,8 +74,10 @@ function buildWallMap(cells) {
 
 const CORRECT_SET = new Set(CORRECT_PATH.map(([r, c]) => `${r},${c}`))
 
-export function MazeGame({ onComplete, completed }) {
+export function MazeGame({ onComplete }) {
   const [selected, setSelected] = useState(new Set())
+  const [butterflies, setButterflies] = useState(false)
+  const butterflyTimer = useRef(null)
   const dragging = useRef(false)
   const dragMode = useRef('add')
   const dragVisited = useRef(new Set())
@@ -50,15 +97,28 @@ export function MazeGame({ onComplete, completed }) {
     return true
   }, [])
 
+  const triggerButterflies = useCallback(() => {
+    // While butterflies are flying, skip re-triggering.
+    if (butterflyTimer.current) return
+    setButterflies(true)
+    setTimeout(() => onComplete?.(), 100)
+    butterflyTimer.current = setTimeout(() => {
+      setButterflies(false)
+      butterflyTimer.current = null
+    }, BUTTERFLY_LIFE_MS)
+  }, [onComplete])
+
   const updateSelected = useCallback((updater) => {
     setSelected((prev) => {
       const next = updater(prev)
-      if (!completed && checkComplete(next)) {
-        setTimeout(() => onComplete?.(), 100)
+      // Fire every time the path transitions from incorrect → correct,
+      // so the toast replays after reset/redraw (not just the first time).
+      if (!checkComplete(prev) && checkComplete(next)) {
+        triggerButterflies()
       }
       return next
     })
-  }, [completed, checkComplete, onComplete])
+  }, [checkComplete, triggerButterflies])
 
   const handleDown = useCallback((r, c) => {
     dragging.current = true
@@ -106,7 +166,9 @@ export function MazeGame({ onComplete, completed }) {
 
   return (
     <div onPointerUp={handleUp} onPointerLeave={handleUp} className="select-none flex flex-col items-center">
+        {butterflies && <ButterflyParticles />}
         <button onClick={() => setSelected(new Set())} className="px-3 py-1 bg-neutral-200 rounded text-xs cursor-pointer">重置</button>
+        <span className="text-md mt-2">🦋小蝴蝶迷路了，你可以帮她找到正确的路吗？🦋</span>
         <span className="text-neutral-400 text-xs mt-2">点击或拖拽标记路径 · 🚩入口在左侧，🏁出口在右侧</span>
       <div className="inline-grid touch-none bg-white border border-neutral-300 rounded mt-4" style={{ gridTemplateColumns: `repeat(${COLS}, 28px)`, gridTemplateRows: `repeat(${ROWS}, 28px)` }}>
         {Array.from({ length: ROWS }, (_, r) =>

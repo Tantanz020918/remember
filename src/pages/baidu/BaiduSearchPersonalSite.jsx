@@ -2,7 +2,7 @@ import { BrowserFrame } from '../../browser/BrowserFrame'
 import { StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
 import { BaiduResultLayout, BaiduResultItem } from './BaiduResultLayout'
 
-export function BaiduSearchWuYanNv() {
+export function BaiduSearchPersonalSite() {
   return (
     <BrowserFrame>
       <BaiduResultLayout query="富士山下" count="1,240,000">
@@ -15,7 +15,7 @@ export function BaiduSearchWuYanNv() {
         </BaiduResultItem>
         <BaiduResultItem
           title={<StoryLink to={21}>富士山下埋葬的の❤ - 个人网站</StoryLink>}
-          url="wuyannv-qing.love"
+          url="personal-site"
         >
           一个清新可爱的个人主页。需要密码访问。
         </BaiduResultItem>

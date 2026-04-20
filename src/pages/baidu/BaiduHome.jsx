@@ -25,10 +25,17 @@ const QUERY_TO_PAGE = {
 export function BaiduHome() {
   const navigate = useGameNavigate()
   const [query, setQuery] = useState('')
+  const [noResult, setNoResult] = useState(false)
 
   const search = () => {
     const q = query.trim()
-    navigate(QUERY_TO_PAGE[q] || 4)
+    const pageId = QUERY_TO_PAGE[q]
+    if (pageId) {
+      setNoResult(false)
+      navigate(pageId)
+    } else {
+      setNoResult(true)
+    }
   }
 
   return (
@@ -58,7 +65,7 @@ export function BaiduHome() {
               className="flex-1 border-none outline-none px-5 py-3.5 text-[15px]"
               placeholder="搜索一下"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => { setQuery(e.target.value); setNoResult(false) }}
               onKeyDown={(e) => e.key === 'Enter' && search()}
             />
             <button
@@ -68,6 +75,11 @@ export function BaiduHome() {
               百度一下
             </button>
           </div>
+          {noResult && (
+            <div className="w-[640px] max-w-[90%] mt-2.5 text-neutral-500 text-[13px]">
+              没有找到与「{query.trim()}」相关的结果，请换个关键词试试。
+            </div>
+          )}
           <div className="w-[640px] max-w-[90%] mt-10">
             <div className="flex justify-between items-center py-2.5 font-semibold text-sm border-b border-neutral-200 mb-2.5">
               <span>百度热搜</span>

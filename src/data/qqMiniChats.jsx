@@ -19,7 +19,9 @@ const CHATS = {
       { avatar: '我要锻炼', name: '我要锻炼', content: '脑壳痛' },
       { avatar: 'cecea', name: 'cecea', content: '那你还上号不' },
       { avatar: '我要锻炼', name: '我要锻炼', content: '不来了，我睡一下' },
-      { avatar: '超级小鼠妇）', name: '超级小鼠妇', content: '喜欢豆狗' },
+      { avatar: '娃哈哈', name: '娃哈哈', content: '你们觉得豆狗怎么样，要抽吗' },
+      { avatar: '超级小鼠妇', name: '超级小鼠妇', content: '喜欢豆狗' },
+      { avatar: '豆', name: '豆人', content: '确实很可爱，而且强度在线' },
     ],
   },
   erciyuan1: {

@@ -103,10 +103,10 @@ function HeartGridLock({ onUnlock }) {
   const reset = () => { setEdges([]); setLastDot(null); setError(''); setSuccess(false) }
 
   return (
-    <div className="flex flex-col items-center justify-center p-10 min-h-[400px]">
+    <div className="p-10">
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-sm w-full text-center">
         <div className="text-lg font-bold text-sky-700 mb-2">富士山下埋葬的の❤</div>
-        <div className="text-neutral-500 text-sm mb-6">请画出访问密码</div>
+        <div className="text-neutral-500 text-sm mb-6">请点击画出访问密码</div>
         <div className="text-neutral-400 text-xs mb-4">提示：看网站名</div>
         <div className="relative mx-auto mb-4" style={{ width: GRID_SIZE, height: GRID_SIZE }}>
           <svg className="absolute inset-0" width={GRID_SIZE} height={GRID_SIZE}>
@@ -146,7 +146,7 @@ function HeartGridLock({ onUnlock }) {
   )
 }
 
-// ===================== 诗歌欢迎页 =====================
+// ===================== 诗歌 =====================
 const POEM_LINES = [
   '就这样地俯首道别吧',
   '世间哪有什麽真能回头的',
@@ -166,9 +166,9 @@ const POEM_LINES = [
   '如秋叶般的记忆',
 ]
 
-function WelcomeTab() {
+function Poem() {
   return (
-    <div className="py-10 px-8 max-w-lg mx-auto text-center">
+    <div className="text-center">
       {POEM_LINES.map((line, i) =>
         line === '' ? (
           <div key={i} className="h-4" />
@@ -234,30 +234,11 @@ function DiaryTab() {
 }
 
 // ===================== 密码本 tab =====================
-function PasswordBookTab() {
-  const [unlocked, setUnlocked] = useState(false)
-
-  if (!unlocked) {
-    return (
-      <PasswordLock
-        prompt={
-          <div>
-            <p className="mb-1">🔑 密码本</p>
-            <p className="text-sm text-neutral-500">提示坐标：（1,8）（7,8）（7,9）（11,2）</p>
-          </div>
-        }
-        errorHint="欢迎光临"
-        answer="别忘记我"
-        onUnlock={() => setUnlocked(true)}
-        className="min-h-[300px]"
-      />
-    )
-  }
-
+function PasswordList() {
   return (
-    <div className="py-6 px-8 max-w-lg mx-auto">
+    <div className="w-full">
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
-        <div className="text-amber-700 text-xs mb-2">⚠️ 玩家不要模仿这种行为，妥善保管自己的密码。</div>
+        <div className="text-amber-700 text-xs">⚠️ 玩家不要模仿这种行为，妥善保管自己的密码。</div>
       </div>
       <div className="space-y-3 text-sm">
         <div className="flex justify-between py-2 border-b border-neutral-100">
@@ -281,32 +262,68 @@ function PasswordBookTab() {
   )
 }
 
+function PasswordBookTab() {
+  const [unlocked, setUnlocked] = useState(false)
+
+  return (
+    <div className="py-8 px-8 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <Poem />
+      <div className="w-full">
+        {!unlocked ? (
+          <PasswordLock
+            prompt={
+              <div>
+                <p className="mb-1">🔑 密码本</p>
+                <p className="text-sm text-neutral-500">（1,8）（7,8）（7,9）（11,2）</p>
+              </div>
+            }
+            errorHint="看左边"
+            answer="别忘记我"
+            onUnlock={() => setUnlocked(true)}
+            className="min-h-[300px]"
+          />
+        ) : (
+          <PasswordList />
+        )}
+      </div>
+    </div>
+  )
+}
+
 // ===================== 迷宫 tab =====================
 function MazeTab() {
-  const { mazeCompleted, setFlag } = useStore()
+  const { setFlag } = useStore()
   const toast = useToast()
 
   const handleComplete = useCallback(() => {
     setFlag('mazeCompleted', true)
-    toast.show(<>恭喜你成功了！奖励：<b>key</b></>)
+    toast.show(<>恭喜你成功了！</>)
   }, [setFlag, toast])
 
   return (
     <div className="py-6 px-4 relative">
-      <MazeGame onComplete={handleComplete} completed={mazeCompleted} />
+      <MazeGame onComplete={handleComplete} />
       <Toast message={toast.message} visible={toast.visible} />
     </div>
   )
 }
 
 // ===================== 主组件 =====================
-export function WuYanNvWebsite() {
+const TABS = [
+  { key: 'passwords', label: '密码本' },
+  { key: 'diary', label: '日记本' },
+  { key: 'maze', label: '迷宫' },
+]
+
+export function PersonalSite() {
+  const { personalSiteUnlocked, setFlag } = useStore()
   const [fading, setFading] = useState(false)
-  const [hidden, setHidden] = useState(false)
+  const [hidden, setHidden] = useState(personalSiteUnlocked)
   const [showHearts, setShowHearts] = useState(false)
-  const [tab, setTab] = useState('welcome')
+  const [tab, setTab] = useState('passwords')
 
   const handleUnlock = () => {
+    setFlag('personalSiteUnlocked', true)
     setShowHearts(true)
     setFading(true)
     setTimeout(() => setHidden(true), 1200)
@@ -319,7 +336,7 @@ export function WuYanNvWebsite() {
       <div className="relative min-h-full bg-linear-to-b from-sky-50 to-pink-50">
         {/* Password overlay — absolute on top of content */}
         {!hidden && (
-          <div className={`absolute inset-0 z-10 bg-linear-to-b from-sky-50 to-pink-50 transition-opacity duration-1000 ${fading ? 'opacity-0' : 'opacity-100'}`}>
+          <div className={`absolute inset-0 z-10 flex items-center justify-center bg-linear-to-b from-sky-50 to-pink-50 transition-opacity duration-1000 ${fading ? 'opacity-0' : 'opacity-100'}`}>
             <HeartGridLock onUnlock={handleUnlock} />
           </div>
         )}
@@ -330,12 +347,7 @@ export function WuYanNvWebsite() {
             <div className="text-neutral-400 text-xs mt-1">采晴的秘密花园</div>
           </div>
           <div className="flex justify-center gap-6 py-3 border-b border-sky-200/50 text-sm">
-            {[
-              { key: 'welcome', label: '欢迎' },
-              { key: 'diary', label: '日记本' },
-              { key: 'passwords', label: '密码本' },
-              { key: 'maze', label: '迷宫' },
-            ].map((t) => (
+            {TABS.map((t) => (
               <span
                 key={t.key}
                 onClick={() => setTab(t.key)}
@@ -347,7 +359,6 @@ export function WuYanNvWebsite() {
               </span>
             ))}
           </div>
-          {tab === 'welcome' && <WelcomeTab />}
           {tab === 'diary' && <DiaryTab />}
           {tab === 'passwords' && <PasswordBookTab />}
           {tab === 'maze' && <MazeTab />}

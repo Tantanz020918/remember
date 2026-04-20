@@ -8,7 +8,7 @@ export const DECODE_FLOORS = [
       <>
         <p>救命啊！我在游戏里收到一封信，但是打开全是乱码，像这样：</p>
         <p className="my-2 px-3 py-2 bg-neutral-100 rounded font-mono text-xs break-all">
-          涓€涓贡鐮佺殑瀹炰緥
+          璋㈣阿澶у鏀寔鎴戠殑浣滃搧鍝堝搱鍝�
         </p>
         <p>完全看不懂啊！！有没有大佬知道这是什么意思？？</p>
       </>

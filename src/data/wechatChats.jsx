@@ -15,8 +15,10 @@ const CHATS = {
     { date: '一周前' },
     { mine: true, name: '姚如月', text: '下周搬家完准备去做个美甲，指甲又长长了' },
     { name: '青青', text: '还是去上次那家吗？' },
-    { mine: true, name: '姚如月', text: <>对，上次做的<Keyword>生日款</Keyword>很好看，就是款式复杂差点没赶上生日宴</> },
+    { mine: true, name: '姚如月', text: <>对，<Keyword>上次做的生日款</Keyword>很好看，就是款式复杂差点没赶上生日宴</> },
     { name: '青青', text: '确实，难免的' },
+    { name: '青青', text: <>你这次运气不错，生日就在<Keyword>周末</Keyword></> },
+    { mine: true, name: '姚如月', text: <>确实，不用请假了</> },
     { date: '昨天' },
     {
       name: '青青',

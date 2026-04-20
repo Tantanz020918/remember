@@ -15,8 +15,8 @@ import { BaitianPostScript } from './baitian/BaitianPostScript'
 import { BaitianPostEncrypted } from './baitian/BaitianPostEncrypted'
 import { ForumPostDecode } from './baitian/ForumPostDecode'
 import { CaiqingQZone } from './qzone/CaiqingQZone'
-import { BaiduSearchWuYanNv } from './baidu/BaiduSearchWuYanNv'
-import { WuYanNvWebsite } from './wuyannv/WuYanNvWebsite'
+import { BaiduSearchPersonalSite } from './baidu/BaiduSearchPersonalSite'
+import { PersonalSite } from './personalSite/PersonalSite'
 // CaiqingQQChat merged into QQ component — page 22 reuses QQ
 import { CaiqingQZoneDiary } from './qzone/CaiqingQZoneDiary'
 import { BaiduSearchDreamScholarship } from './baidu/BaiduSearchDreamScholarship'
@@ -52,8 +52,8 @@ export const PAGES = {
   17: { title: '百田加密帖子',           path: 'browser/aobi/post/encrypted-for-ruyue',     appType: 'browser', render: () => <BaitianPostEncrypted /> },
   18: { title: '乱码科普帖',             path: 'browser/aobi/post/decode-guide',            appType: 'browser', render: () => <ForumPostDecode /> },
   19: { title: '采晴的QQ空间',           path: 'browser/qzone/caiqing',                     appType: 'browser', render: () => <CaiqingQZone /> },
-  20: { title: '搜索「富士山下」',       path: 'browser/search/wuyannv',                    appType: 'browser', render: () => <BaiduSearchWuYanNv /> },
-  21: { title: '富士山下埋葬的の❤',     path: 'browser/wuyannv',                            appType: 'browser', render: () => <WuYanNvWebsite /> },
+  20: { title: '搜索「富士山下」',       path: 'browser/search/personal-site',              appType: 'browser', render: () => <BaiduSearchPersonalSite /> },
+  21: { title: '富士山下埋葬的の❤',     path: 'browser/personal-site',                      appType: 'browser', render: () => <PersonalSite /> },
   22: { title: '采晴的QQ聊天',           path: 'qq/caiqing-chat',                            appType: 'qq',      render: () => <QQ /> },
   23: { title: '采晴私密日志',           path: 'browser/qzone/caiqing/diary',                appType: 'browser', render: () => <CaiqingQZoneDiary /> },
   24: { title: '搜索「梦之奖学金」',     path: 'browser/search/dream-scholarship',           appType: 'browser', render: () => <BaiduSearchDreamScholarship /> },
