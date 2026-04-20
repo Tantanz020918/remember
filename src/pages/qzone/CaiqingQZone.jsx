@@ -233,7 +233,7 @@ export function CaiqingQZone() {
       {!caiqingSpaceUnlocked ? (
         <PasswordLock
           prompt="访问 TA 的空间需要回答问题：我叫什么名字？"
-          errorHint="看看 TA 的资料卡"
+          errorHint="搜索小学所在的城市"
           answer="胡采晴"
           onUnlock={() => setFlag('caiqingSpaceUnlocked', true)}
           className="min-h-[400px]"
