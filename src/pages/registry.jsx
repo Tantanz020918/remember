@@ -18,7 +18,7 @@ import { CaiqingQZone } from './qzone/CaiqingQZone'
 import { BaiduSearchPersonalSite } from './baidu/BaiduSearchPersonalSite'
 import { PersonalSite } from './personalSite/PersonalSite'
 // CaiqingQQChat merged into QQ component — page 22 reuses QQ
-import { CaiqingQZoneDiary } from './qzone/CaiqingQZoneDiary'
+// CaiqingQZoneDiary merged into CaiqingQZone's Journal tab — page 23 removed
 import { BaiduSearchDreamScholarship } from './baidu/BaiduSearchDreamScholarship'
 import { NewsDreamScholarship } from './news/NewsDreamScholarship'
 import { BaiduSearchLiGroup } from './baidu/BaiduSearchLiGroup'
@@ -55,7 +55,6 @@ export const PAGES = {
   20: { title: '搜索「富士山下」',       path: 'browser/search/personal-site',              appType: 'browser', render: () => <BaiduSearchPersonalSite /> },
   21: { title: '富士山下埋葬的の❤',     path: 'browser/personal-site',                      appType: 'browser', render: () => <PersonalSite /> },
   22: { title: '采晴的QQ聊天',           path: 'qq/caiqing-chat',                            appType: 'qq',      render: () => <QQ /> },
-  23: { title: '采晴私密日志',           path: 'browser/qzone/caiqing/diary',                appType: 'browser', render: () => <CaiqingQZoneDiary /> },
   24: { title: '搜索「梦之奖学金」',     path: 'browser/search/dream-scholarship',           appType: 'browser', render: () => <BaiduSearchDreamScholarship /> },
   25: { title: '梦之奖学金新闻',         path: 'browser/news/dream-scholarship',             appType: 'browser', render: () => <NewsDreamScholarship /> },
   26: { title: '搜索「李氏集团」',       path: 'browser/search/li-group',                    appType: 'browser', render: () => <BaiduSearchLiGroup /> },
@@ -65,7 +64,7 @@ export const PAGES = {
   30: { title: '粉丝可见帖子①',         path: 'browser/weibo/menghe-mh/fans-post-1',       appType: 'browser', render: () => <WeiboFansPost1 /> },
   31: { title: '粉丝可见帖子②',         path: 'browser/weibo/menghe-mh/fans-post-2',       appType: 'browser', render: () => <WeiboFansPost2 /> },
   32: { title: '等风说',                 path: 'browser/weibo/dengfengshuo',                 appType: 'browser', render: () => <WeiboDengFengShuo /> },
-  33: { title: '微博用户139293',         path: 'browser/weibo/user139293',                   appType: 'browser', render: () => <WeiboUser139293 /> },
+  33: { title: '安眠',         path: 'browser/weibo/user139293',                   appType: 'browser', render: () => <WeiboUser139293 /> },
   34: { title: '加锁帖子',               path: 'browser/weibo/user139293/locked-post',       appType: 'browser', render: () => <LockedPost /> },
   35: { title: '结局：原谅',             path: 'ending/forgive',                             appType: 'default', render: () => <EndingForgive /> },
   36: { title: '结局：沉默',             path: 'ending/silence',                             appType: 'default', render: () => <EndingSilence /> },

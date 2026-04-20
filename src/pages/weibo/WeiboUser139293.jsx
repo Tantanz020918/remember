@@ -9,7 +9,7 @@ export function WeiboUser139293() {
     <BrowserFrame>
       <WeiboFrame>
         <WeiboProfileHeader
-          name="微博用户139293"
+          name="安眠"
           bio=""
           followCount="3"
           fansCount="0"
@@ -20,7 +20,7 @@ export function WeiboUser139293() {
           <button className="px-5 py-1.5 bg-orange-500 text-white rounded-full text-sm cursor-pointer border-none font-medium">+ 关注</button>
         </WeiboProfileHeader>
         <WeiboPost
-          author="微博用户139293"
+          author="安眠"
           time="2022-01-04"
           authorFrom="#dfe6e9"
           authorTo="#b2bec3"

@@ -13,7 +13,7 @@ export function WeiboDengFengShuo() {
   const navigate = useGameNavigate()
 
   const LIKES = [
-    { name: '微博用户139293', time: '2023-05-18', onClick: () => navigate(33) },
+    { name: '安眠', time: '2023-05-18', onClick: () => navigate(33) },
     { name: '琴声悠扬', time: '2017-03-14' },
     { name: '音乐迷', time: '2017-03-14' },
     { name: '小花', time: '2017-03-14' },

@@ -5,6 +5,7 @@ import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboPostPage } from '../../browser/WeiboFrame'
 import { PasswordLock } from '../../components/ui'
 
+
 const POEM = `月亮，你看我，我也看你。
 你依旧皎洁，可我已满身污浊。
 因为我作恶太多，你的光照不进我荒芜的余生。
@@ -14,7 +15,6 @@ const POEM = `月亮，你看我，我也看你。
 
 function PostContent() {
   const navigate = useGameNavigate()
-  const { qqAccountSwitched } = useStore()
   const [showChoice, setShowChoice] = useState(false)
 
   const content = (
@@ -38,17 +38,9 @@ function PostContent() {
             <div className="text-sm text-neutral-500 mb-2">选择你的回应：</div>
             <button
               onClick={() => navigate(35)}
-              disabled={!qqAccountSwitched}
-              className={`block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border ${
-                qqAccountSwitched
-                  ? 'bg-green-50 border-green-200 cursor-pointer hover:bg-green-100'
-                  : 'bg-neutral-100 border-neutral-200 text-neutral-400 cursor-not-allowed'
-              }`}
+              className="block w-full text-left px-4 py-3 rounded-lg text-sm transition-colors border bg-green-50 border-green-200 cursor-pointer hover:bg-green-100"
             >
               「我们原谅你。」
-              {!qqAccountSwitched && (
-                <div className="text-xs text-red-400 mt-1">⚠️ 未获得采晴联系方式，无法代表她发言</div>
-              )}
             </button>
             <button
               onClick={() => navigate(36)}
@@ -64,7 +56,7 @@ function PostContent() {
 
   return (
     <WeiboPostPage
-      author="微博用户139293"
+      author="安眠"
       time="2022-01-04 23:15"
       authorFrom="#dfe6e9"
       authorTo="#b2bec3"
@@ -89,8 +81,8 @@ export function LockedPost() {
               </div>
             </div>
           }
-          errorHint="月亮 & 你 & 我"
-          answer={(v) => v.replace(/\s/g, '') === '2&8&9'}
+          errorHint="月亮+你+我"
+          answer={'19'}
           onUnlock={() => setFlag('lockedPostUnlocked', true)}
           className="min-h-[400px]"
         />

@@ -58,9 +58,6 @@ export function QQ() {
     setSelectedChat(c.key)
     if (c.key === 'fanquan') navigate(15)
     else if (currentPage === 15) navigate(3)
-    if (c.key === 'junior' && isCaiqing) {
-      toast.show('获得采晴的联系方式')
-    }
   }
 
   return (
