@@ -22,8 +22,8 @@ import { BaiduSearchPersonalSite } from './baidu/BaiduSearchPersonalSite'
 import { PersonalSite } from './personalSite/PersonalSite'
 // CaiqingQQChat merged into QQ component — PageId.QQ_CAIQING_CHAT reuses QQ
 // CaiqingQZoneDiary merged into CaiqingQZone's Journal tab
-import { BaiduSearchDreamScholarship } from './baidu/BaiduSearchDreamScholarship'
-import { NewsDreamScholarship } from './news/NewsDreamScholarship'
+import { BaiduSearchMengheFund } from './baidu/BaiduSearchMengheFund'
+import { NewsMengheFund } from './news/NewsMengheFund'
 import { BaiduSearchLiGroup } from './baidu/BaiduSearchLiGroup'
 import { WeiboLiGroupPost } from './weibo/WeiboLiGroupPost'
 import { MengheWeibo } from './weibo/MengheWeibo'
@@ -65,8 +65,8 @@ export const PAGES = {
   [PageId.SEARCH_PERSONAL_SITE]:     { title: '搜索「富士山下」',       path: 'browser/search/personal-site',             appType: 'browser', render: () => <BaiduSearchPersonalSite /> },
   [PageId.PERSONAL_SITE]:            { title: '富士山下埋葬的の❤',     path: 'browser/personal-site',                    appType: 'browser', render: () => <PersonalSite /> },
   [PageId.QQ_CAIQING_CHAT]:          { title: '采晴的 QQ 聊天',         path: 'qq/caiqing-chat',                          appType: 'qq',      render: () => <QQ /> },
-  [PageId.SEARCH_DREAM_SCHOLARSHIP]: { title: '搜索「梦之奖学金」',     path: 'browser/search/dream-scholarship',         appType: 'browser', render: () => <BaiduSearchDreamScholarship /> },
-  [PageId.NEWS_DREAM_SCHOLARSHIP]:   { title: '梦之奖学金新闻',         path: 'browser/news/dream-scholarship',           appType: 'browser', render: () => <NewsDreamScholarship /> },
+  [PageId.SEARCH_MENGHE_FUND]:       { title: '搜索「梦和基金」',       path: 'browser/search/menghe-fund',               appType: 'browser', render: () => <BaiduSearchMengheFund /> },
+  [PageId.NEWS_MENGHE_FUND]:         { title: '梦和基金新闻',           path: 'browser/news/menghe-fund',                 appType: 'browser', render: () => <NewsMengheFund /> },
   [PageId.SEARCH_LI_GROUP]:          { title: '搜索「李氏集团」',       path: 'browser/search/li-group',                  appType: 'browser', render: () => <BaiduSearchLiGroup /> },
   [PageId.WEIBO_LI_GROUP_POST]:      { title: '微博 · 李氏集团千金',   path: 'browser/weibo/post/li-group-princess',     appType: 'browser', render: () => <WeiboLiGroupPost /> },
   [PageId.MENGHE_WEIBO]:             { title: '梦和MH 微博',           path: 'browser/weibo/menghe-mh',                  appType: 'browser', render: () => <MengheWeibo /> },

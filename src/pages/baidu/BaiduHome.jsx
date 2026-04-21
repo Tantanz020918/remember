@@ -19,7 +19,7 @@ const QUERY_TO_PAGE = {
   金花小学: PageId.SEARCH_JINHUA,
   奥比岛: PageId.SEARCH_AOBI,
   富士山下: PageId.SEARCH_PERSONAL_SITE,
-  梦之奖学金: PageId.SEARCH_DREAM_SCHOLARSHIP,
+  梦和基金: PageId.SEARCH_MENGHE_FUND,
   李氏集团: PageId.SEARCH_LI_GROUP,
   荣德心理咨询所: PageId.SEARCH_RONGDE,
 }

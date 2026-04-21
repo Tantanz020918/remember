@@ -1,5 +1,5 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { ImagePlaceholder } from '../../components/ui'
+import { ImagePlaceholder, Keyword } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
 import { useStore } from '../../store'
 import { QZoneShell, QZonePasswordGate } from './QZoneShell'
@@ -142,6 +142,14 @@ const POSTS = [
     content: (
       <>
         超级开心的生日趴体~采晴的妈妈做饭太好吃啦，好幸福的家庭
+      </>
+    ),
+  },
+  {
+    time: '2010.5.20',
+    content: (
+      <>
+        今天老师给我们看了贫困山区纪录片，真的非常感动和心疼。跟爸爸妈妈分享后，他们准备设立一个<Keyword>基金</Keyword>来资助贫困学生读书，<Keyword>用我的名字命名</Keyword>，希望能够帮到大家
       </>
     ),
   },

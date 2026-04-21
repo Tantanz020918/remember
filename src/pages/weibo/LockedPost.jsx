@@ -7,8 +7,8 @@ import { PageId } from '../pageIds'
 
 export function LockedPost() {
   const navigate = useGameNavigate()
-  const { caiqingWechatAdded, reportsQueried, rumenglingSpaceVisited } = useStore()
-  const baseUnlocked = reportsQueried && rumenglingSpaceVisited
+  const { caiqingWechatAdded, reportsQueried } = useStore()
+  const baseUnlocked = reportsQueried
   const [showChoice, setShowChoice] = useState(false)
 
   const content = (
@@ -31,7 +31,7 @@ export function LockedPost() {
           <div className="space-y-3">
             <div className="text-sm text-neutral-500 mb-2">选择你的回应：</div>
 
-            {/* 我们原谅你 —— 需看心理报告 + 如梦令空间 + 添加采晴微信 */}
+            {/* 我们原谅你 —— 需看心理报告 + 添加采晴微信 */}
             {baseUnlocked && caiqingWechatAdded ? (
               <button
                 onClick={() => navigate(PageId.ENDING_FORGIVE)}
@@ -41,11 +41,9 @@ export function LockedPost() {
               </button>
             ) : (
               <Tooltip
-                text={!rumenglingSpaceVisited
-                  ? '先去看看她自己的独白'
-                  : !reportsQueried
-                    ? '先去了解她这些年经历过什么'
-                    : '需要知道采晴的态度，才能代表她回应'}
+                text={!reportsQueried
+                  ? '先去了解她这些年经历过什么'
+                  : '需要知道采晴的态度，才能代表她回应'}
                 wrapperClassName="block"
               >
                 <button
@@ -57,7 +55,7 @@ export function LockedPost() {
               </Tooltip>
             )}
 
-            {/* 我原谅你 —— 需看心理报告 + 如梦令空间 */}
+            {/* 我原谅你 —— 需看心理报告 */}
             {baseUnlocked ? (
               <button
                 onClick={() => navigate(PageId.ENDING_FORGIVE_ALONE)}
@@ -67,9 +65,7 @@ export function LockedPost() {
               </button>
             ) : (
               <Tooltip
-                text={!rumenglingSpaceVisited
-                  ? '先去看看她自己的独白'
-                  : '先去了解她这些年经历过什么'}
+                text="先去了解她这些年经历过什么"
                 wrapperClassName="block"
               >
                 <button
