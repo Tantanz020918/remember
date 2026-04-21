@@ -116,7 +116,7 @@ export function ReportCard({ report, censored = true }) {
           </div>
           <div className="text-right">
             <div className="text-sm font-bold text-sky-700"><Keyword>荣德心理咨询所</Keyword></div>
-            <div className="mt-1.5 text-[10px] text-neutral-500">身份证号</div>
+            <div className="mt-1.5 text-[10px] text-neutral-500"><Keyword>身份证号</Keyword></div>
             {censored ? (
               <div className="relative inline-block">
                 {/* 全 ID 打码：模糊滤镜 */}
@@ -127,7 +127,7 @@ export function ReportCard({ report, censored = true }) {
                 <div
                   aria-hidden
                   className="absolute right-0 bottom-0 text-[11px] font-mono text-neutral-600 tracking-[2px] select-none pointer-events-none"
-                  style={{ clipPath: 'polygon(100% 48%, 100% 100%, 25% 100%)' }}
+                  style={{ clipPath: 'polygon(100% 45%, 100% 100%, 25% 100%)' }}
                 >
                   50022720000229782X
                 </div>
