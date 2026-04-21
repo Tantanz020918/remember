@@ -2,10 +2,15 @@ import { Keyword, ImagePlaceholder, StoryLink } from '../components/ui'
 import { THEME_PARK } from '../assets/imageUrls'
 import { PageId } from '../pages/pageIds'
 
-function Comment({ author, children }) {
+function Comment({ author, authorTo, children }) {
+  const authorNode = authorTo ? (
+    <StoryLink to={authorTo} className="text-amber-400! hover:underline">{author}</StoryLink>
+  ) : (
+    <span className="text-amber-400">{author}</span>
+  )
   return (
     <div className="flex gap-2 py-1.5 text-xs">
-      <span className="text-amber-400 font-medium shrink-0">{author}：</span>
+      <span className="font-medium shrink-0">{authorNode}：</span>
       <span className="text-neutral-400">{children}</span>
     </div>
   )
@@ -81,7 +86,7 @@ export const TIMELINE_POSTS = [
     <>
       暑假快结束了，不想开学不想开学
       <div className="mt-2 bg-neutral-900/50 rounded p-2">
-        <Comment author={<Keyword>如梦令</Keyword>}><Keyword>马上就出去玩了！</Keyword></Comment>
+        <Comment author="如梦令" authorTo={PageId.RUMENGLING_QZONE}><Keyword>马上就出去玩了！</Keyword></Comment>
         <Comment author="雨季 回复 如梦令">期待期待</Comment>
       </div>
     </>

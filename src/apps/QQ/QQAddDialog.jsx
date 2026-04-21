@@ -24,7 +24,7 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
     const q = addInput.trim()
     if (q === '2932818921') setFoundGroup(true)
     else if (q === '12831682861') setFoundCaiqing(true)
-    else if (q === '如梦令' || q === '283648291') setFoundRumengling(true)
+    else if (q === '283648291') setFoundRumengling(true)
     else setErrorMsg('未找到相关用户或群。')
   }
 
@@ -46,7 +46,7 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
         {(!isCaiqing || addTab === 'search') && (
           <>
             <h3 className="font-bold mb-2.5">查找联系人 / 群</h3>
-            <input className="w-full px-2.5 py-2 border border-neutral-300 rounded my-2.5 outline-none" placeholder="QQ 号 / 用户名 / 群号" value={addInput} onChange={(e) => setAddInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && onSearch()} />
+            <input className="w-full px-2.5 py-2 border border-neutral-300 rounded my-2.5 outline-none" placeholder="QQ 号 / 群号" value={addInput} onChange={(e) => setAddInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && onSearch()} />
             <div className="flex gap-2 mt-2">
               <button onClick={onSearch} className="px-4 py-1.5 bg-sky-500 text-white rounded border-none cursor-pointer text-[13px]">查找</button>
               <button onClick={onClose} className="px-4 py-1.5 bg-white text-neutral-600 rounded border border-neutral-300 cursor-pointer text-[13px]">关闭</button>

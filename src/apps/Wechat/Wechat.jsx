@@ -20,7 +20,7 @@ function AddFriendView({ onAdded }) {
 
   const onSearch = () => {
     const q = input.trim()
-    if (q === 'hucaiqing0826') {
+    if (q === 'hcq12831682861') {
       setMatched(true)
       setErrorMsg('')
     } else {
@@ -60,7 +60,7 @@ function AddFriendView({ onAdded }) {
           />
           <div className="flex-1">
             <div className="font-bold text-sm">采晴</div>
-            <div className="text-neutral-400 text-xs">微信号：hucaiqing0826</div>
+            <div className="text-neutral-400 text-xs">微信号：hcq12831682861</div>
           </div>
           <button
             onClick={onAdded}

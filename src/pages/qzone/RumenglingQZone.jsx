@@ -206,7 +206,7 @@ export function RumenglingQZone() {
         <QZonePasswordGate
           name="如梦令"
           prompt="🎵 夜色轻轻落你窗前 🎵"
-          errorHint="简谱数字"
+          errorHint="简谱数字，低音和高音要加减"
           answer="01358653"
           onUnlock={() => setFlag('rumenglingSpaceVisited', true)}
         />
