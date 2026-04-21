@@ -11,6 +11,7 @@ import gameLocal from './imgs/others/game.webp'
 import catLocal from './imgs/others/cat.webp'
 import themeParkLocal from './imgs/others/theme-park.webp'
 import manicureLocal from './imgs/others/manicure.webp'
+import reportLocal from './imgs/report.webp'
 
 // CDN 链接结构：{CDN_PREFIX}/{key}/{path}
 // 图床每批上传会生成一个共享前缀 + 每张图一个随机 4 位 key。
@@ -30,6 +31,11 @@ const IMAGES = {
   cat:         { key: 'QJpD', path: '0X0/imgs/others/cat.webp',           fallback: catLocal },
   theme_park:  { key: 'O5Ux', path: '0X0/imgs/others/theme-park.webp',    fallback: themeParkLocal },
   manicure:    { key: 'WhMn', path: '0X0/imgs/others/manicure.webp',      fallback: manicureLocal },
+  report:      {
+    // 这张图在另一批上传里，完整 URL 与其它资源的 CDN_PREFIX 不同，这里直接覆写。
+    fullUrl: 'https://test.fukit.cn/autoupload/f/S9HLukMuH_jaG2-bgCx4dLKXl_QqVl-bpSwqP4fJO68/20260421/vwsd/0X0/imgs/report.webp',
+    fallback: reportLocal,
+  },
 }
 
 /**
@@ -40,7 +46,7 @@ export function getImage(name) {
   const entry = IMAGES[name]
   if (!entry) return { src: null, fallbackSrc: null }
   return {
-    src: `${CDN_PREFIX}/${entry.key}/${entry.path}`,
+    src: entry.fullUrl ?? `${CDN_PREFIX}/${entry.key}/${entry.path}`,
     fallbackSrc: entry.fallback,
   }
 }
@@ -58,6 +64,7 @@ export const GAME = getImage('game')
 export const CAT = getImage('cat')
 export const THEME_PARK = getImage('theme_park')
 export const MANICURE = getImage('manicure')
+export const REPORT_IMAGE = getImage('report')
 
 // ===== 精灵图头像系统 =====
 // 共 2 张精灵图 × 5×5 = 50 个头像，索引从 1 到 50

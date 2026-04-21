@@ -3,7 +3,7 @@ import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboProfileHeader, WeiboPost } from '../../browser/WeiboFrame'
 import { ImagePlaceholder, Modal } from '../../components/ui'
-import { getReport, ReportCard } from '../../data/rongdeReports'
+import { REPORT_IMAGE } from '../../assets/imageUrls'
 import { PageId } from '../pageIds'
 
 const POEM = `月亮，你看我，我也看你。
@@ -16,7 +16,6 @@ const POEM = `月亮，你看我，我也看你。
 export function WeiboAnmian() {
   const navigate = useGameNavigate()
   const [showReport, setShowReport] = useState(false)
-  const report2021 = getReport('2022-02')
 
   return (
     <BrowserFrame>
@@ -76,9 +75,14 @@ export function WeiboAnmian() {
 
       </WeiboFrame>
 
-      {showReport && report2021 && (
+      {showReport && (
         <Modal onClose={() => setShowReport(false)}>
-          <ReportCard report={report2021} />
+          <img
+            src={REPORT_IMAGE.src}
+            onError={(e) => { if (e.currentTarget.src !== REPORT_IMAGE.fallbackSrc) e.currentTarget.src = REPORT_IMAGE.fallbackSrc }}
+            alt="心理咨询报告"
+            className="max-w-[min(720px,calc(100vw-2rem))] max-h-[85vh] object-contain rounded shadow-xl bg-white"
+          />
         </Modal>
       )}
     </BrowserFrame>
