@@ -47,5 +47,4 @@ Thumbs.db
 
 # ============ Project-specific ============
 # Design doc / work notes stay local, not shared
-imgs.md
-game.md
+*.md
