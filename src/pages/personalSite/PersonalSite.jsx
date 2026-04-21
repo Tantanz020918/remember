@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { Keyword, PasswordLock, Toast, useToast } from '../../components/ui'
+import { Keyword, PasswordLock, Toast, useToast, Modal, ImagePlaceholder } from '../../components/ui'
 import { MazeGame } from '../../components/MazeGame'
 
 // ===================== 九宫格心形密码 =====================
@@ -184,7 +184,23 @@ function Poem() {
 }
 
 // ===================== 日记本 tab =====================
+function MengqingSheetPreview({ onClick }) {
+  return (
+    <div onClick={onClick} className="mt-2 rounded-lg overflow-hidden border border-amber-200 shadow-sm cursor-pointer">
+      <ImagePlaceholder
+        name={<span className="text-amber-700 text-xs">《梦晴》谱子 · 点击查看大图</span>}
+        width="100%"
+        height={140}
+        from="#fff3b0"
+        to="#ffd6a5"
+        style={{ width: '100%' }}
+      />
+    </div>
+  )
+}
+
 function DiaryTab() {
+  const [showSheet, setShowSheet] = useState(false)
   return (
     <div className="py-6 px-8 max-w-lg mx-auto space-y-6">
       <div>
@@ -214,8 +230,9 @@ function DiaryTab() {
        <div>
         <div className="text-neutral-400 text-xs mb-1">2016.8</div>
         <div className="text-sm text-neutral-700 leading-relaxed">
-          翻到了以前和如月、梦和一起写的小说，差点没给我笑死，我们每个人都给自己想了一个公主和精灵，而且画得特别丑
+          翻到了以前和如月、梦和一起写的小说，差点没给我笑死，我们每个人都给自己想了一个公主和精灵，而且画得特别丑。还翻到了梦和写给我的<Keyword>《梦晴》</Keyword>，她真的很有天赋。
         </div>
+        <MengqingSheetPreview onClick={() => setShowSheet(true)} />
       </div>
        <div>
         <div className="text-neutral-400 text-xs mb-1">2016.7</div>
@@ -229,6 +246,12 @@ function DiaryTab() {
           姐姐教我新建了一个网站，感觉好酷。
         </div>
       </div>
+
+      {showSheet && (
+        <Modal onClose={() => setShowSheet(false)}>
+          <MengqingSheet />
+        </Modal>
+      )}
     </div>
   )
 }
@@ -304,6 +327,76 @@ function MazeTab() {
     <div className="py-6 px-4 relative">
       <MazeGame onComplete={handleComplete} />
       <Toast message={toast.message} visible={toast.visible} />
+    </div>
+  )
+}
+
+// ===================== 《梦晴》简谱 =====================
+// 每个 note = { n: 1-7, oct: -1(低音) | 0(中音) | 1(高音) }
+const MENGQING_SHEET_LINES = [
+  {
+    notes: [
+      { n: 7, oct: -1 }, { n: 1, oct: 0 }, { n: 3, oct: 0 }, { n: 5, oct: 0 },
+      { n: 1, oct: 1 },  { n: 6, oct: 0 }, { n: 5, oct: 0 }, { n: 3, oct: 0 },
+    ],
+    lyrics: ['夜', '色', '轻', '轻', '落', '你', '窗', '前'],
+    isKeyword:true,
+  },
+  {
+    notes: [
+      { n: 3, oct: 0 }, { n: 2, oct: 0 }, { n: 1, oct: 0 }, { n: 2, oct: 0 },
+      { n: 3, oct: 0 }, { n: 5, oct: 0 }, { n: 1, oct: 1 },
+    ],
+    lyrics: ['偷', '偷', '藏', '进', '你', '梦', '里'],
+  },
+  {
+    notes: [
+      { n: 5, oct: 0 }, { n: 6, oct: 0 }, { n: 1, oct: 1 }, { n: 6, oct: 0 },
+      { n: 5, oct: 0 }, { n: 3, oct: 0 }, { n: 7, oct: -1 },
+    ],
+    lyrics: ['守', '你', '到', '时', '间', '尽', '头'],
+  },
+]
+
+function Note({ note }) {
+  return (
+    <div className="w-6 flex flex-col items-center leading-none">
+      <span className={`text-[6px] ${note.oct === 1 ? 'text-amber-700' : 'text-transparent'}`}>●</span>
+      <span className="text-lg font-bold text-amber-700">{note.n}</span>
+      <span className={`text-[6px] ${note.oct === -1 ? 'text-amber-700' : 'text-transparent'}`}>●</span>
+    </div>
+  )
+}
+
+function MengqingSheet() {
+  return (
+    <div className="bg-[#fffaf0] border-2 border-amber-200 rounded-lg p-6 w-[min(560px,calc(100vw-3rem))]">
+      <div className="text-center mb-4">
+        <div className="text-2xl font-bold text-amber-800">《梦晴》</div>
+        <div className="text-xs text-neutral-500 mt-1">词 / 曲：梦和 · 写给采晴</div>
+      </div>
+      <div className="bg-amber-100/60 border border-amber-200 rounded px-3 py-1.5 text-xs text-amber-800 mb-5 text-center leading-relaxed">
+        简谱记音 —— 数字上有点是高音，下有点是低音 🎵
+      </div>
+      <div className="space-y-5">
+        {MENGQING_SHEET_LINES.map((line, i) => (
+          <div key={i}>
+            <div className="flex gap-3 border-b-2 border-dashed border-amber-300 pb-1 font-mono">
+              {line.notes.map((note, j) => (
+                <Note key={j} note={note} />
+              ))}
+            </div>
+            <div className="flex gap-3 text-sm text-neutral-700 mt-1.5">
+              {line.lyrics.map((ch, j) => line.isKeyword?(
+                <span key={j} className="w-6 text-center"><Keyword>{ch}</Keyword></span>
+              ):(
+                <span key={j} className="w-6 text-center">{ch}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 text-right text-xs text-neutral-400 italic">PS: 这个谱子是 AI 生成的</div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useStore, TOTAL_PAGES, HIGHLIGHT_LABELS } from '../store'
+import { useStore, TOTAL_PAGES, HIGHLIGHT_MODES, HIGHLIGHT_LABELS, HINT_MODES, HINT_LABELS } from '../store'
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { useCurrentPage } from '../hooks/useCurrentPage'
 import { PAGES } from '../pages/registry'
@@ -7,10 +7,11 @@ import { PageId } from '../pages/pageIds'
 import { Modal } from './ui'
 
 export function TopBar() {
-  const { visited, highlightMode, cycleHighlight, resetGame } = useStore()
+  const { visited, highlightMode, hintMode, setFlag, resetGame } = useStore()
   const navigate = useGameNavigate()
   const pageId = useCurrentPage()
   const [open, setOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
   const [sortMode, setSortMode] = useState('time') // 'time' | 'id'
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const current = PAGES[pageId]
@@ -43,12 +44,43 @@ export function TopBar() {
           🗑 清除数据
         </span>
         <span
-          className="cursor-pointer opacity-90 hover:opacity-100 w-[78px] text-center"
-          title="点击切换高亮模式"
-          onClick={cycleHighlight}
+          className="cursor-pointer opacity-90 hover:opacity-100"
+          onClick={() => setSettingsOpen(!settingsOpen)}
         >
-          {HIGHLIGHT_LABELS[highlightMode]}
+          ⚙ 设置 ▾
         </span>
+        {settingsOpen && (
+          <div
+            className="absolute top-8 right-[180px] w-64 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 z-[200]"
+            onMouseLeave={() => setSettingsOpen(false)}
+          >
+            <div className="px-3 py-1 text-[11px] text-white/50 uppercase">关键词高亮</div>
+            {HIGHLIGHT_MODES.map((m) => (
+              <div
+                key={m}
+                className={`px-3 py-1.5 text-xs cursor-pointer ${
+                  m === highlightMode ? 'bg-sky-600/60' : 'hover:bg-white/10'
+                }`}
+                onClick={() => setFlag('highlightMode', m)}
+              >
+                {HIGHLIGHT_LABELS[m]}
+              </div>
+            ))}
+            <div className="border-t border-white/10 my-1" />
+            <div className="px-3 py-1 text-[11px] text-white/50 uppercase">密码锁错误提示</div>
+            {HINT_MODES.map((m) => (
+              <div
+                key={m}
+                className={`px-3 py-1.5 text-xs cursor-pointer ${
+                  m === hintMode ? 'bg-sky-600/60' : 'hover:bg-white/10'
+                }`}
+                onClick={() => setFlag('hintMode', m)}
+              >
+                {HINT_LABELS[m]}
+              </div>
+            ))}
+          </div>
+        )}
         <span
           className="cursor-pointer bg-white/10 px-2 py-0.5 rounded w-[100px] text-center tabular-nums"
           onClick={() => setOpen(!open)}

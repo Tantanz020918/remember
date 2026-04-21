@@ -10,7 +10,7 @@ export const TRANSFER_FLOORS = [
     userName: '采晴0826',
     userLv: 'Lv.8',
     userSign: '【楼主】天天开心',
-    meta: <>1 楼 · 2011-06-28 19:44</>,
+    meta: <>1 楼 · 2013-05-30 19:44</>,
     content: (
       <>
         <p>我最好的朋友前天转学走了。我们从一年级就一起，一起买辣条、一起出去玩，她爸妈管得比我松，所以总是她来找我玩。</p>
@@ -42,6 +42,6 @@ export const TRANSFER_FLOORS = [
   {
     avatarName: '闺蜜头像 2', avatarFrom: '#c8f0b8', avatarTo: '#8ed687',
     userName: '梦の伤', userLv: 'Lv.3', meta: '4 楼',
-    content: <p>她能看到的概率也太小了吧~~~</p>,
+    content: <p>呜呜呜呜，她能看到的概率也太小了吧~~~</p>,
   },
 ]

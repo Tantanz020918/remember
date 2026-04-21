@@ -16,6 +16,8 @@ import { BaitianPostScript } from './baitian/BaitianPostScript'
 import { BaitianPostEncrypted } from './baitian/BaitianPostEncrypted'
 import { ForumPostDecode } from './baitian/ForumPostDecode'
 import { CaiqingQZone } from './qzone/CaiqingQZone'
+import { BishanConfessionWall } from './qzone/BishanConfessionWall'
+import { RumenglingQZone } from './qzone/RumenglingQZone'
 import { BaiduSearchPersonalSite } from './baidu/BaiduSearchPersonalSite'
 import { PersonalSite } from './personalSite/PersonalSite'
 // CaiqingQQChat merged into QQ component — PageId.QQ_CAIQING_CHAT reuses QQ
@@ -52,12 +54,14 @@ export const PAGES = {
   [PageId.AOBI_USER_CAIQING]:        { title: '奥比岛圈 · 采晴0826',   path: 'browser/aobi/user/caiqing0826',            appType: 'browser', render: () => <BaitianUserCaiqing /> },
   [PageId.POST_CASTING]:             { title: '奥比岛言情大戏招人',     path: 'browser/aobi/post/casting-call',           appType: 'browser', render: () => <BaitianPostCasting /> },
   [PageId.POST_TRANSFER]:            { title: '朋友转学了好伤心',       path: 'browser/aobi/post/friend-transferred',     appType: 'browser', render: () => <BaitianPostTransfer /> },
-  [PageId.POST_PRINCESS]:            { title: '我画的三位公主',         path: 'browser/aobi/post/princess',               appType: 'browser', render: () => <BaitianPostPrincess /> },
+  [PageId.POST_PRINCESS]:            { title: '变身偶像设定集',         path: 'browser/aobi/post/princess',               appType: 'browser', render: () => <BaitianPostPrincess /> },
   [PageId.QQ_FANQUAN_GROUP]:         { title: '沐季千柠工作室粉丝群',   path: 'qq/group/mujiqianling',                    appType: 'qq',      render: () => <QQ /> },
   [PageId.POST_SCRIPT]:              { title: '永远的姐妹',             path: 'browser/aobi/post/eternal-sisters',        appType: 'browser', render: () => <BaitianPostScript /> },
   [PageId.POST_ENCRYPTED]:           { title: '百田加密帖子',           path: 'browser/aobi/post/encrypted-for-ruyue',    appType: 'browser', render: () => <BaitianPostEncrypted /> },
   [PageId.POST_DECODE]:              { title: '乱码科普帖',             path: 'browser/aobi/post/decode-guide',           appType: 'browser', render: () => <ForumPostDecode /> },
   [PageId.CAIQING_QZONE]:            { title: '采晴的 QQ 空间',         path: 'browser/qzone/caiqing',                    appType: 'browser', render: () => <CaiqingQZone /> },
+  [PageId.BISHAN_CONFESSION_WALL]:   { title: '璧山中学表白墙',         path: 'browser/qzone/bishan-confession-wall',     appType: 'browser', render: () => <BishanConfessionWall /> },
+  [PageId.RUMENGLING_QZONE]:         { title: '如梦令的 QQ 空间',       path: 'browser/qzone/rumengling',                 appType: 'browser', render: () => <RumenglingQZone /> },
   [PageId.SEARCH_PERSONAL_SITE]:     { title: '搜索「富士山下」',       path: 'browser/search/personal-site',             appType: 'browser', render: () => <BaiduSearchPersonalSite /> },
   [PageId.PERSONAL_SITE]:            { title: '富士山下埋葬的の❤',     path: 'browser/personal-site',                    appType: 'browser', render: () => <PersonalSite /> },
   [PageId.QQ_CAIQING_CHAT]:          { title: '采晴的 QQ 聊天',         path: 'qq/caiqing-chat',                          appType: 'qq',      render: () => <QQ /> },

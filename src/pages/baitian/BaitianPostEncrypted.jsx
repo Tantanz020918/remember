@@ -30,7 +30,7 @@ export function BaitianPostEncrypted() {
           avatarTo="#ff99cc"
           userName="采晴0826"
           userLv="Lv.8"
-          meta="2011-07-15"
+          meta="2013-07-15"
         >
           <p>如月，我们都好想你啊，你在新学校过得好吗，有交到新朋友吗？</p>
           <p>她们一定没有我和梦好！</p>

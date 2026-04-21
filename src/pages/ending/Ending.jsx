@@ -55,7 +55,7 @@ export function EndingForgiveAlone() {
           只有你的名字，没有采晴。你还没能再联系上她，不知道她是否也愿意。
         </p>
         <p className="text-neutral-300 leading-loose">
-          墨尔本的清晨，女孩看到这条评论，哭着回复：「谢谢你。替我跟采晴说声对不起，如果你有一天能再见到她。」
+          墨尔本的清晨，女孩看到这条评论，潸然泪下。
         </p>
         <p className="text-neutral-400 text-sm leading-loose">
           原谅是一个人的决定，但和解需要所有人。故事，也许还没完。

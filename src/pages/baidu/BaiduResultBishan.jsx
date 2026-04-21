@@ -24,6 +24,12 @@ export function BaiduResultBishan() {
           欢迎访问璧山区人民政府门户网站。最新政务信息、办事指南、政府公开……
         </BaiduResultItem>
         <BaiduResultItem
+          title={<DeadLink>【新闻】国务院批复同意重庆市璧山县撤县设区</DeadLink>}
+          url="news.cqjjnet.com · 2014-05-02"
+        >
+          经国务院批复，同意撤销璧山县设立璧山区。市民政局提醒：自 2014 年 10 月 1 日起，新办理的身份证号前 6 位 ……
+        </BaiduResultItem>
+        <BaiduResultItem
           title={<DeadLink>【旅游】璧山两日游攻略 - 小红书</DeadLink>}
           url="xiaohongshu.com"
           image={<ImagePlaceholder name="旅游照片" width={120} height={80} from="#ffe0a3" to="#f5a8a0" />}

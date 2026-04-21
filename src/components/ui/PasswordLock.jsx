@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useStore } from '../../store'
 
 export function PasswordLock({
   prompt,
@@ -11,6 +12,8 @@ export function PasswordLock({
 }) {
   const [value, setValue] = useState('')
   const [error, setError] = useState(false)
+  const [wrongCount, setWrongCount] = useState(0)
+  const { hintMode } = useStore()
 
   const check = () => {
     const trimmed = value.trim()
@@ -18,8 +21,14 @@ export function PasswordLock({
       onUnlock()
     } else {
       setError(true)
+      setWrongCount((c) => c + 1)
     }
   }
+
+  const showHint = error && errorHint && (
+    hintMode === 'always' ||
+    (hintMode === 'after5' && wrongCount >= 5)
+  )
 
   const form = (
     <>
@@ -42,7 +51,10 @@ export function PasswordLock({
       >
         确认
       </button>
-      {error && errorHint && (
+      {error && !showHint && (
+        <div className="mt-3 text-red-500 text-sm">答案不对哦</div>
+      )}
+      {showHint && (
         <div className="mt-3 text-red-500 text-sm">💡 提示：{errorHint}</div>
       )}
     </>

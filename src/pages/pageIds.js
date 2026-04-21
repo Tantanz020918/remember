@@ -30,6 +30,8 @@ const PAGE_KEYS = [
 
   // 采晴 QQ 空间 / 个人网站
   'CAIQING_QZONE',
+  'BISHAN_CONFESSION_WALL',
+  'RUMENGLING_QZONE',
   'SEARCH_PERSONAL_SITE',
   'PERSONAL_SITE',
   'QQ_CAIQING_CHAT',
@@ -48,11 +50,13 @@ const PAGE_KEYS = [
   // 安眠线
   'WEIBO_DENG_FENG_SHUO',
   'WEIBO_ANMIAN',
-  'WEIBO_ANMIAN_LOCKED',
 
   // 荣德心理咨询
   'SEARCH_RONGDE',
   'RONGDE_CENTER',
+
+  // 请求原谅页（放在心理报告之后，玩家需先看报告才能选择原谅）
+  'WEIBO_ANMIAN_LOCKED',
 
   // 结局
   'ENDING_FORGIVE',

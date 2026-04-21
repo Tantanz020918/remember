@@ -35,10 +35,10 @@ export const RUYUE_CHATS = [
 export const CAIQING_CHATS = [MINI_CHAT_LIST.qzoneVisitor]
 
 export const CAIQING_REQUESTS = [
-  { from: '申请添加「如梦令」为好友', time: '2018.1', reason: '梦和，我想跟你谈谈。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
-  { from: '申请添加「如梦令」为好友', time: '2017.10', reason: '梦和，或许我们可以聊一下。', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
-  { from: '「如梦令」申请添加你为好友', time: '2015.3', reason: '求求你了采晴，我不能没有你。', status: '已拒绝', statusColor: 'text-red-500' },
-  { from: '「如梦令」申请添加你为好友', time: '2015.3', reason: '我真的没想到会这样，听我解释采晴。', status: '已拒绝', statusColor: 'text-red-500' },
+  { from: '申请添加「如梦令」为好友', time: '2023.8', reason: '梦和，这些年我其实一直想听你解释。有空聊聊吗？', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
+  { from: '申请添加「如梦令」为好友', time: '2022.11', reason: '梦和，是我。加一下好吗？', status: '对方未处理', statusColor: 'text-amber-500', outgoing: true },
+  { from: '「如梦令」申请添加你为好友', time: '2018.3', reason: '采晴，就一次机会让我解释好不好？', status: '已拒绝', statusColor: 'text-red-500' },
+  { from: '「如梦令」申请添加你为好友', time: '2018.3', reason: '采晴，我真的不知道爸爸会那样做，求你听我说一句。', status: '已拒绝', statusColor: 'text-red-500' },
 ]
 
 export const GROUP_MEMBER_COUNT = ADMINS.length + MEMBERS.length

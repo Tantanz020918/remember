@@ -76,10 +76,10 @@ export function QQ() {
           <ImagePlaceholder sprite={spriteForUser(isCaiqing ? '雨季' : '姚如月')} width={36} height={36} round label={false} />
         </div>
         <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg bg-white/15 text-white">💬</div>
-        <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg text-white/80 hover:bg-white/10" title="QQ空间" onClick={() => isCaiqing && navigate(PageId.CAIQING_QZONE)}>⭐</div>
+        <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg  hover:bg-white/10" title="QQ空间" onClick={() => isCaiqing && navigate(PageId.CAIQING_QZONE)}>⭐</div>
         <div className="flex-1" />
-        <div className="w-9 h-9 flex items-center justify-center text-white/80 cursor-pointer hover:bg-white/10 rounded-md text-xs" title="切换账号" onClick={() => setShowSwitchDialog(true)}>🔄</div>
-        <div className="w-9 h-9 flex items-center justify-center text-white/80">⚙</div>
+        <div className="w-9 h-9 flex items-center justify-center  cursor-pointer hover:bg-white/10 rounded-md text-xs" title="切换账号" onClick={() => setShowSwitchDialog(true)}>🔄</div>
+        <div className="w-9 h-9 flex items-center justify-center ">⚙</div>
       </div>
 
       {/* List */}
@@ -133,6 +133,7 @@ export function QQ() {
           onClose={() => setShowAddDialog(false)}
           onJoinGroup={onJoinGroup}
           onVisitCaiqingSpace={() => { setShowAddDialog(false); navigate(PageId.CAIQING_QZONE) }}
+          onVisitRumengling={() => { setShowAddDialog(false); navigate(PageId.RUMENGLING_QZONE) }}
         />
       )}
 

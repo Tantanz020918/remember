@@ -21,6 +21,7 @@ export function TongxueluModal({ onClose }) {
           <div className="flex-1 bg-[#fffdf5] px-6 py-8 shadow font-serif text-[15px] leading-loose relative min-h-[320px] min-w-[260px]">
             <p>等你去了新学校，</p>
             <p>一定要想我们！！</p>
+            <p>么么哒~~~~~~</p>
             <p className="text-right mt-10">
               —— 你的好姐妹，<Keyword>梦</Keyword>
             </p>

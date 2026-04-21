@@ -2,7 +2,7 @@ import { useStore } from '../../store'
 
 // Highlighter-marker style: yellow fills only the bottom 1/3 of the line height.
 const HIGHLIGHT_STYLE = {
-  background: 'linear-gradient(to top, rgba(254, 240, 138, 0.85) 33%, transparent 33%)',
+  background: 'linear-gradient(to top, rgba(254, 240, 138, 0.5) 33%, transparent 33%)',
 }
 
 export function Keyword({ children }) {

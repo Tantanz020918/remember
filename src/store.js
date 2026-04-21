@@ -7,9 +7,18 @@ export { TOTAL_PAGES } from './pages/pageIds'
 export const HIGHLIGHT_MODES = ['off', 'bold', 'full']
 export const HIGHLIGHT_LABELS = { off: '🌑 关', bold: '🔅 加粗', full: '🔆 高亮' }
 
+// 密码锁错误提示显示模式
+export const HINT_MODES = ['off', 'after5', 'always']
+export const HINT_LABELS = {
+  off: '永不显示',
+  after5: '输错 5 次后显示',
+  always: '输错即显示',
+}
+
 const INITIAL_STATE = {
   visited: [1],
   highlightMode: 'bold', // 'off' | 'bold' | 'full'
+  hintMode: 'after5', // 'off' | 'after5' | 'always'
 
   // QQ state
   qqGroupJoined: false,
@@ -33,6 +42,9 @@ const INITIAL_STATE = {
 
   // psychology reports seen
   reportsQueried: false,
+
+  // 梦和 QQ 空间（如梦令）已解锁访问
+  rumenglingSpaceVisited: false,
 
   // once ending 1 is reached, a hidden moment shows in wechat 朋友圈 permanently
   ending1Reached: false,
@@ -66,6 +78,7 @@ export const useStore = create(
       partialize: (s) => ({
         visited: s.visited,
         highlightMode: s.highlightMode,
+        hintMode: s.hintMode,
         qqGroupJoined: s.qqGroupJoined,
         qqAccountSwitched: s.qqAccountSwitched,
         qqAccounts: s.qqAccounts,
@@ -79,6 +92,7 @@ export const useStore = create(
         followedMenghe: s.followedMenghe,
         caiqingWechatAdded: s.caiqingWechatAdded,
         reportsQueried: s.reportsQueried,
+        rumenglingSpaceVisited: s.rumenglingSpaceVisited,
         ending1Reached: s.ending1Reached,
       }),
     },

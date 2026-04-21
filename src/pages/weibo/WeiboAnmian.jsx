@@ -16,7 +16,7 @@ const POEM = `月亮，你看我，我也看你。
 export function WeiboAnmian() {
   const navigate = useGameNavigate()
   const [showReport, setShowReport] = useState(false)
-  const report2021 = getReport('2021-09')
+  const report2021 = getReport('2022-02')
 
   return (
     <BrowserFrame>
@@ -32,6 +32,25 @@ export function WeiboAnmian() {
         >
           <button className="px-5 py-1.5 bg-orange-500 text-white rounded-full text-sm cursor-pointer border-none font-medium">+ 关注</button>
         </WeiboProfileHeader>
+
+        <WeiboPost
+          author="安眠"
+          time="2022-02-07"
+          authorFrom="#dfe6e9"
+          authorTo="#b2bec3"
+        >
+         我真的走出来了吗
+          <div className="mt-2">
+            <ImagePlaceholder
+              name="心理咨询报告（点击查看大图）"
+              width={260}
+              height={180}
+              from="#c1e8ff"
+              to="#e4d4ff"
+              onClick={() => setShowReport(true)}
+            />
+          </div>
+        </WeiboPost>
 
         <WeiboPost
           author="安眠"
@@ -55,24 +74,6 @@ export function WeiboAnmian() {
           </div>
         </WeiboPost>
 
-        <WeiboPost
-          author="安眠"
-          time="2021-09-13"
-          authorFrom="#dfe6e9"
-          authorTo="#b2bec3"
-        >
-          两年了，好像终于能慢慢喘口气了。谢谢一直陪着我的人。
-          <div className="mt-2">
-            <ImagePlaceholder
-              name="心理咨询报告（点击查看大图）"
-              width={260}
-              height={180}
-              from="#c1e8ff"
-              to="#e4d4ff"
-              onClick={() => setShowReport(true)}
-            />
-          </div>
-        </WeiboPost>
       </WeiboFrame>
 
       {showReport && report2021 && (

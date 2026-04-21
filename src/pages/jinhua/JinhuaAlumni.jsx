@@ -9,7 +9,7 @@ export function JinhuaAlumni() {
   const [errorMsg, setErrorMsg] = useState('')
 
   const submit = () => {
-    if (year.trim() === '2012') {
+    if (year.trim() === '2014') {
       setShowResult(true)
       setErrorMsg('')
     } else {
@@ -71,10 +71,10 @@ export function JinhuaAlumni() {
           {showResult && (
             <div className="mt-5">
               <div className="mb-2.5 text-[13px] text-neutral-600">
-                2012 届毕业合影 · 六年级 (2) 班
+                2014 届毕业合影 · 六年级 (2) 班
               </div>
               <ImagePlaceholder
-                name="2012 届毕业合影"
+                name="2014 届毕业合影"
                 width="100%"
                 height={260}
                 from="#a8d0e6"

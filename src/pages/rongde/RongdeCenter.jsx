@@ -10,20 +10,23 @@ export function RongdeCenter() {
   const { setFlag } = useStore()
   const toast = useToast()
   const [name, setName] = useState('')
-  const [birth, setBirth] = useState('')
+  const [idNumber, setIdNumber] = useState('')
   const [showList, setShowList] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [viewingId, setViewingId] = useState(null)
 
   const onQuery = () => {
-    if (name.trim() === '李梦和' && birth.trim() === '20000229') {
+    if (name.trim() === '李梦和' && idNumber.trim().toUpperCase() === '50022720000229782X') {
       setShowList(true)
       setErrorMsg('')
       setFlag('reportsQueried', true)
-      toast.show('查询成功，共 5 条咨询记录')
+      toast.show(
+        '温馨提示：上网请注意保护隐私，只言片语也可以拼凑成完整的个人信息',
+        6000,
+      )
     } else {
       setShowList(false)
-      setErrorMsg('未查到相关报告。请核对姓名与生日是否正确。')
+      setErrorMsg('未查到相关报告。请核对姓名与身份证号是否正确。')
     }
   }
 
@@ -48,19 +51,21 @@ export function RongdeCenter() {
 
         <div className="px-10 pt-8 pb-12 max-w-[820px]">
           <h3 className="font-bold mb-2">咨询报告查询</h3>
-          <p className="text-neutral-600 text-[13px] mb-4">输入来访者姓名和出生日期（8 位数字，YYYYMMDD）查询历史咨询报告。</p>
+          <p className="text-neutral-600 text-[13px] mb-1">输入来访者姓名和身份证号查询历史咨询报告。</p>
+          <p className="text-neutral-400 text-[12px] mb-4">⚠️ 本游戏所涉及的身份证号均为虚构，无需符合「校验码算法」，不会对应任何现实中的人。</p>
           <div className="flex gap-2.5 mb-3">
             <input
               value={name}
               onChange={(e) => { setName(e.target.value); setErrorMsg('') }}
               placeholder="姓名"
-              className="px-3 py-2 border border-neutral-300 rounded text-[13px] outline-none focus:border-sky-500 w-40"
+              className="px-3 py-2 border border-neutral-300 rounded text-[13px] outline-none focus:border-sky-500 w-32"
+              onKeyDown={(e) => e.key === 'Enter' && onQuery()}
             />
             <input
-              value={birth}
-              onChange={(e) => { setBirth(e.target.value); setErrorMsg('') }}
-              placeholder="出生日期 YYYYMMDD"
-              className="px-3 py-2 border border-neutral-300 rounded text-[13px] outline-none focus:border-sky-500 w-56"
+              value={idNumber}
+              onChange={(e) => { setIdNumber(e.target.value); setErrorMsg('') }}
+              placeholder="身份证号（18 位）"
+              className="px-3 py-2 border border-neutral-300 rounded text-[13px] font-mono tracking-wider outline-none focus:border-sky-500 w-72"
               onKeyDown={(e) => e.key === 'Enter' && onQuery()}
             />
             <button
@@ -99,7 +104,7 @@ export function RongdeCenter() {
 
       {viewingReport && (
         <Modal onClose={() => setViewingId(null)}>
-          <ReportCard report={viewingReport} />
+          <ReportCard report={viewingReport} censored={false} />
         </Modal>
       )}
 

@@ -9,7 +9,7 @@ export const SCRIPT_FLOORS = [
     userName: '梦の伤',
     userLv: 'Lv.6',
     userSign: '编剧+女主',
-    meta: '发布于 2013-01-02 21:05',
+    meta: '发布于 2014-01-02 21:05',
     content: (
       <>
         <h4 className="mt-3 mb-2 text-[#d16b8a] text-sm font-bold border-b border-pink-100 pb-1">人物设定</h4>

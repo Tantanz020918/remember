@@ -3,12 +3,14 @@ import { Avatar, ImagePlaceholder, Keyword, Modal } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
 import { CAIQING_REQUESTS } from '../../data/qqData'
 
-export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpace }) {
+export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpace, onVisitRumengling }) {
   const [addTab, setAddTab] = useState(isCaiqing ? 'requests' : 'search')
   const [addInput, setAddInput] = useState('')
   const [foundGroup, setFoundGroup] = useState(false)
   const [foundCaiqing, setFoundCaiqing] = useState(false)
+  const [foundRumengling, setFoundRumengling] = useState(false)
   const [showCaiqingProfile, setShowCaiqingProfile] = useState(false)
+  const [showRumenglingProfile, setShowRumenglingProfile] = useState(false)
   const [askingQuestion, setAskingQuestion] = useState(false)
   const [answer, setAnswer] = useState('')
   const [friendRequestSent, setFriendRequestSent] = useState(false)
@@ -18,9 +20,11 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
     setErrorMsg('')
     setFoundCaiqing(false)
     setFoundGroup(false)
+    setFoundRumengling(false)
     const q = addInput.trim()
     if (q === '2932818921') setFoundGroup(true)
     else if (q === '12831682861') setFoundCaiqing(true)
+    else if (q === '如梦令' || q === '283648291') setFoundRumengling(true)
     else setErrorMsg('未找到相关用户或群。')
   }
 
@@ -42,7 +46,7 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
         {(!isCaiqing || addTab === 'search') && (
           <>
             <h3 className="font-bold mb-2.5">查找联系人 / 群</h3>
-            <input className="w-full px-2.5 py-2 border border-neutral-300 rounded my-2.5 outline-none" placeholder="QQ 号 / 群号" value={addInput} onChange={(e) => setAddInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && onSearch()} />
+            <input className="w-full px-2.5 py-2 border border-neutral-300 rounded my-2.5 outline-none" placeholder="QQ 号 / 用户名 / 群号" value={addInput} onChange={(e) => setAddInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && onSearch()} />
             <div className="flex gap-2 mt-2">
               <button onClick={onSearch} className="px-4 py-1.5 bg-sky-500 text-white rounded border-none cursor-pointer text-[13px]">查找</button>
               <button onClick={onClose} className="px-4 py-1.5 bg-white text-neutral-600 rounded border border-neutral-300 cursor-pointer text-[13px]">关闭</button>
@@ -67,6 +71,30 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
               </div>
             )}
 
+            {foundRumengling && !showRumenglingProfile && (
+              <div className="mt-3 flex gap-3 items-center p-3 bg-emerald-50 rounded-lg cursor-pointer hover:bg-emerald-100" onClick={() => setShowRumenglingProfile(true)}>
+                <ImagePlaceholder sprite={spriteForUser('如梦令')} width={44} height={44} round label={false} />
+                <div><div className="font-bold text-sm">如梦令</div><div className="text-neutral-400 text-xs">QQ 283648291</div></div>
+              </div>
+            )}
+            {foundRumengling && showRumenglingProfile && (
+              <div className="mt-3 bg-white rounded-xl overflow-hidden shadow-lg border border-neutral-200">
+                <div className="bg-linear-to-br from-emerald-400 to-emerald-600 text-white text-center pt-5 pb-3 px-5">
+                  <ImagePlaceholder sprite={spriteForUser('如梦令')} width={72} height={72} round label={false} className="mx-auto shadow-lg" />
+                  <h2 className="text-base font-bold mt-2">如梦令</h2>
+                  <div className="text-white/70 text-xs">QQ 283648291</div>
+                </div>
+                <div className="px-4 py-2 space-y-1.5 text-sm">
+                  <div className="flex py-1 border-b border-neutral-100"><b className="w-14 text-neutral-500 font-normal text-xs">签名</b><span className="text-xs text-neutral-400">这个人很懒，什么都没留下</span></div>
+                  <div className="flex py-1"><b className="w-14 text-neutral-500 font-normal text-xs">空间</b>
+                    <span className="text-emerald-600 text-xs cursor-pointer hover:underline font-bold" onClick={onVisitRumengling}>访问 →</span>
+                  </div>
+                </div>
+                <div className="px-4 pb-3">
+                  <button disabled className="w-full py-2 bg-neutral-200 text-neutral-400 border-none rounded-full text-sm cursor-not-allowed">对方暂时不接受好友申请</button>
+                </div>
+              </div>
+            )}
             {foundCaiqing && !showCaiqingProfile && (
               <div className="mt-3 flex gap-3 items-center p-3 bg-sky-50 rounded-lg cursor-pointer hover:bg-sky-100" onClick={() => setShowCaiqingProfile(true)}>
                 <ImagePlaceholder sprite={spriteForUser('雨季')} width={44} height={44} round label={false} />

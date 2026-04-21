@@ -93,18 +93,6 @@ export const CASTING_FLOORS_PAGE_2 = [
         userName: '沐季千柠', replyTo: '梦の伤',
         content: <>好呀好呀～有兴趣的都来加 QQ 群：<Keyword>2932818921</Keyword>，群里细聊！</>,
       },
-      {
-        userName: '梦の伤', replyTo: '沐季千柠',
-        content: <>我<Keyword>闺蜜</Keyword>也想加入，但是她没有红宝石可以吗</>,
-      },
-      {
-        userName: '沐季千柠', replyTo: '梦の伤',
-        content: <>不行哦，因为红宝石才可以改名字</>,
-      },
-      {
-        userName: '梦の伤', replyTo: '沐季千柠',
-        content: <>那好吧，那我让她帮我们<Keyword>宣传一下</Keyword></>,
-      },
     ],
   },
   {
