@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { WeiboFrame, WeiboProfileHeader, WeiboPost } from '../../browser/WeiboFrame'
-import { ImagePlaceholder, Modal } from '../../components/ui'
+import { ImagePlaceholder, Keyword, Modal } from '../../components/ui'
 import { REPORT_IMAGE } from '../../assets/imageUrls'
 import { PageId } from '../pageIds'
 
@@ -38,7 +38,7 @@ export function WeiboAnmian() {
           authorFrom="#dfe6e9"
           authorTo="#b2bec3"
         >
-         我真的走出来了吗
+         <Keyword>查了一下报告</Keyword>，我真的走出来了吗
           <div className="mt-2">
             <ImagePlaceholder
               name="心理咨询报告（点击查看大图）"
