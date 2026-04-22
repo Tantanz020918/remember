@@ -6,8 +6,8 @@ import { spriteForUser } from '../../assets/imageUrls'
 // 采晴、如梦令等 QQ 空间统一的密码入口。
 export function QZonePasswordGate({ name, prompt, errorHint, answer, onUnlock }) {
   return (
-    <div className="min-h-full bg-neutral-900 flex items-center justify-center py-10">
-      <div className="bg-neutral-800 rounded-xl shadow-lg p-8 max-w-md w-full">
+    <div className="min-h-full bg-neutral-900 flex items-center justify-center py-6 md:py-10 px-4">
+      <div className="bg-neutral-800 rounded-xl shadow-lg p-5 md:p-8 max-w-md w-full">
         <div className="text-center mb-4">
           <div className="text-lg font-bold text-amber-300">{name} 的 QQ 空间</div>
           <div className="text-xs text-neutral-500 mt-1">TA 设置了访问密码</div>
@@ -133,39 +133,39 @@ export function QZoneShell({
 
   return (
     <div className="min-h-full bg-neutral-900 text-neutral-200">
-      <div className="bg-neutral-800 border-b border-neutral-700 px-6 py-2 flex items-center gap-4 text-xs">
-        <span className="text-amber-400 font-bold">QQ空间</span>
-        <span className="text-neutral-500">个人中心</span>
-        <span className="text-neutral-500">好友动态</span>
-        <span className="text-neutral-500">消息</span>
-        <div className="flex-1" />
-        <span className="text-amber-300 flex items-center gap-1.5">
+      <div className="bg-neutral-800 border-b border-neutral-700 px-3 md:px-6 py-2 flex items-center gap-3 md:gap-4 text-xs overflow-x-auto whitespace-nowrap">
+        <span className="text-amber-400 font-bold shrink-0">QQ空间</span>
+        <span className="text-neutral-500 shrink-0">个人中心</span>
+        <span className="text-neutral-500 shrink-0 hidden md:inline">好友动态</span>
+        <span className="text-neutral-500 shrink-0 hidden md:inline">消息</span>
+        <div className="flex-1 hidden md:block" />
+        <span className="text-amber-300 flex items-center gap-1.5 shrink-0 ml-auto md:ml-0">
           <ImagePlaceholder sprite={spriteForUser(currentUser)} width={18} height={18} round label={false} />
           {currentUser}
         </span>
-        <span className="text-neutral-500">设置</span>
+        <span className="text-neutral-500 shrink-0 hidden md:inline">设置</span>
       </div>
 
-      <div className={`relative h-44 ${headerBg}`}>
-        <div className="absolute bottom-4 left-6 flex items-end gap-4">
-          <Avatar sprite={avatarSprite} from={avatarFrom} to={avatarTo} size={90} className="border-3 border-neutral-800 shadow-lg" />
-          <div className="pb-2">
-            <h2 className="text-xl font-bold text-white drop-shadow-md">{name}</h2>
-            <div className="text-xs text-neutral-200 mt-1 drop-shadow-md">{bio}</div>
+      <div className={`relative h-32 md:h-44 ${headerBg}`}>
+        <div className="absolute bottom-3 md:bottom-4 left-4 md:left-6 right-4 flex items-end gap-3 md:gap-4">
+          <Avatar sprite={avatarSprite} from={avatarFrom} to={avatarTo} size={72} className="border-3 border-neutral-800 shadow-lg md:!w-[90px] md:!h-[90px]" />
+          <div className="pb-1 md:pb-2 min-w-0 flex-1">
+            <h2 className="text-lg md:text-xl font-bold text-white drop-shadow-md truncate">{name}</h2>
+            <div className="text-xs text-neutral-200 mt-1 drop-shadow-md line-clamp-2">{bio}</div>
           </div>
         </div>
-        <div className="absolute top-4 right-6 text-neutral-400 text-xs flex gap-4">
+        <div className="absolute top-3 md:top-4 right-4 md:right-6 text-neutral-400 text-[10px] md:text-xs flex flex-col md:flex-row gap-1 md:gap-4 text-right">
           <span>今日访客 <b className="text-amber-300">{todayVisitors}</b></span>
           <span>相册访问 <b className="text-amber-300">{albumVisits}</b></span>
         </div>
       </div>
 
-      <div className="flex gap-1 px-6 pt-3 bg-neutral-800/50">
+      <div className="flex gap-1 px-3 md:px-6 pt-3 bg-neutral-800/50 overflow-x-auto whitespace-nowrap">
         {tabs.map((t) => (
           <span
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-4 py-2 cursor-pointer text-sm rounded-t ${
+            className={`px-3 md:px-4 py-2 cursor-pointer text-sm rounded-t shrink-0 ${
               tab === t.key
                 ? 'bg-neutral-900 text-amber-300 font-bold'
                 : 'text-neutral-400 hover:text-neutral-200'
@@ -176,8 +176,8 @@ export function QZoneShell({
         ))}
       </div>
 
-      <div className="flex gap-4 px-6 py-4">
-        <div className="w-48 shrink-0 space-y-3">
+      <div className="flex flex-col md:flex-row gap-4 px-3 md:px-6 py-4">
+        <div className="hidden md:block w-48 shrink-0 space-y-3">
           {leftSidebar ?? <DefaultLeftSidebar {...(leftSidebarProps || {})} />}
         </div>
 
@@ -185,7 +185,7 @@ export function QZoneShell({
           {active?.render({ isOwner: qqAccountSwitched })}
         </div>
 
-        <div className="w-44 shrink-0 space-y-3">
+        <div className="hidden md:block w-44 shrink-0 space-y-3">
           {rightSidebar ?? <DefaultRightSidebar {...(rightSidebarProps || {})} />}
         </div>
       </div>

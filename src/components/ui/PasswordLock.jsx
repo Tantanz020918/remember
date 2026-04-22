@@ -67,8 +67,8 @@ export function PasswordLock({
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center p-10 ${className}`}>
-      <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center text-neutral-700">
+    <div className={`flex flex-col items-center justify-center p-4 md:p-10 ${className}`}>
+      <div className="bg-white rounded-xl shadow-lg p-5 md:p-8 max-w-md w-full text-center text-neutral-700">
         {form}
       </div>
     </div>

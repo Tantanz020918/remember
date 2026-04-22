@@ -1,4 +1,5 @@
 import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { useIsMobile } from '../../hooks/useIsMobile'
 import { ImagePlaceholder, Avatar } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
 import { RUYUE_CHATS, FANQUAN_CHAT } from '../../data/qqData'
@@ -10,6 +11,30 @@ const CHATS = [FANQUAN_CHAT, ...RUYUE_CHATS]
 
 export function QQGroupChat() {
   const navigate = useGameNavigate()
+  const isMobile = useIsMobile()
+
+  if (isMobile) {
+    return (
+      <div className="flex flex-col h-full text-[13px] bg-sky-50/40">
+        <div className="flex items-center gap-2 px-3 py-2.5 bg-white border-b border-sky-100 shrink-0">
+          <button
+            onClick={() => navigate(PageId.QQ)}
+            className="text-neutral-600 text-base bg-transparent border-none cursor-pointer px-1"
+          >
+            ‹
+          </button>
+          <div className="flex-1 font-bold text-sm truncate">沐季千柠工作室粉丝群</div>
+          <div className="flex gap-2 text-neutral-500 shrink-0">
+            <span>📞</span><span>📹</span><span>⋯</span>
+          </div>
+        </div>
+        <QQAnnouncementBanner onViewDetails={() => navigate(PageId.POST_SCRIPT)} />
+        <div className="flex-1 px-3 py-3 overflow-y-auto bg-sky-50/40 min-h-0">
+          <FanquanMessages />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="flex h-full text-[13px] bg-sky-50/50">

@@ -170,7 +170,14 @@ export function MazeGame({ onComplete }) {
         <button onClick={() => setSelected(new Set())} className="px-3 py-1 bg-neutral-200 rounded text-xs cursor-pointer">重置</button>
         <span className="text-md mt-2">🦋小蝴蝶迷路了，你可以帮她找到正确的路吗？🦋</span>
         <span className="text-neutral-400 text-xs mt-2">点击或拖拽标记路径 · 🚩入口在左侧，🏁出口在右侧</span>
-      <div className="inline-grid touch-none bg-white border border-neutral-300 rounded mt-4" style={{ gridTemplateColumns: `repeat(${COLS}, 28px)`, gridTemplateRows: `repeat(${ROWS}, 28px)` }}>
+      <div
+        className="inline-grid touch-none bg-white border border-neutral-300 rounded mt-4"
+        style={/** @type {React.CSSProperties} */ ({
+          '--maze-cell': `min(28px, calc((100vw - 40px) / ${COLS}))`,
+          gridTemplateColumns: `repeat(${COLS}, var(--maze-cell))`,
+          gridTemplateRows: `repeat(${ROWS}, var(--maze-cell))`,
+        })}
+      >
         {Array.from({ length: ROWS }, (_, r) =>
           Array.from({ length: COLS }, (_, c) => {
             const k = key(r, c)

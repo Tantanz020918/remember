@@ -23,7 +23,7 @@ function useImageFallback(imageObj) {
 export function WeiboFrame({ children }) {
   return (
     <div className="min-h-full bg-neutral-50">
-      <div className="max-w-[720px] mx-auto px-4 py-4">{children}</div>
+      <div className="max-w-[720px] mx-auto px-2 py-2 md:px-4 md:py-4">{children}</div>
     </div>
   )
 }
@@ -51,30 +51,30 @@ export function WeiboProfileHeader({
 
   return (
     <div className="bg-white mb-2">
-      <div className="h-36 relative" style={bannerStyle}>
-        <div className="absolute -bottom-10 left-6">
-          <ImagePlaceholder name={name} src={avatarSrc} sprite={sprite} width={80} height={80} round from={bgFrom} to={bgTo} label={false} className="border-3 border-white shadow-md" />
+      <div className="h-28 md:h-36 relative" style={bannerStyle}>
+        <div className="absolute -bottom-8 md:-bottom-10 left-4 md:left-6">
+          <ImagePlaceholder name={name} src={avatarSrc} sprite={sprite} width={72} height={72} round from={bgFrom} to={bgTo} label={false} className="border-3 border-white shadow-md md:!w-20 md:!h-20" />
         </div>
       </div>
-      <div className="pt-2 pr-6 flex justify-end gap-2">{children}</div>
-      <div className="px-6 pt-4 pb-4">
+      <div className="pt-2 pr-4 md:pr-6 flex justify-end gap-2">{children}</div>
+      <div className="px-4 md:px-6 pt-3 md:pt-4 pb-4">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg font-bold">{name}</h2>
+          <h2 className="text-base md:text-lg font-bold">{name}</h2>
           {verified && <span className="text-orange-500 text-sm">⚡</span>}
         </div>
         {bio && <div className="text-neutral-500 text-sm mt-1">{bio}</div>}
-        <div className="flex gap-5 mt-3 text-sm">
+        <div className="flex gap-4 md:gap-5 mt-3 text-sm">
           <div><b className="text-neutral-800">{followCount || '—'}</b> <span className="text-neutral-400">关注</span></div>
           <div><b className="text-neutral-800">{fansCount || '—'}</b> <span className="text-neutral-400">粉丝</span></div>
           <div><b className="text-neutral-800">{postCount || '—'}</b> <span className="text-neutral-400">微博</span></div>
         </div>
       </div>
-      <div className="flex border-t border-neutral-100 px-6 text-sm">
-        <span className="py-2.5 px-4 text-orange-500 font-bold border-b-2 border-orange-500 cursor-pointer">微博</span>
-        <span className="py-2.5 px-4 text-neutral-500 cursor-pointer">视频</span>
-        <span className="py-2.5 px-4 text-neutral-500 cursor-pointer">话题</span>
-        <span className="py-2.5 px-4 text-neutral-500 cursor-pointer">音乐</span>
-        <span className="py-2.5 px-4 text-neutral-500 cursor-pointer">相册</span>
+      <div className="flex border-t border-neutral-100 px-2 md:px-6 text-sm overflow-x-auto whitespace-nowrap">
+        <span className="py-2.5 px-3 md:px-4 text-orange-500 font-bold border-b-2 border-orange-500 cursor-pointer shrink-0">微博</span>
+        <span className="py-2.5 px-3 md:px-4 text-neutral-500 cursor-pointer shrink-0">视频</span>
+        <span className="py-2.5 px-3 md:px-4 text-neutral-500 cursor-pointer shrink-0">话题</span>
+        <span className="py-2.5 px-3 md:px-4 text-neutral-500 cursor-pointer shrink-0">音乐</span>
+        <span className="py-2.5 px-3 md:px-4 text-neutral-500 cursor-pointer shrink-0">相册</span>
       </div>
     </div>
   )

@@ -43,7 +43,7 @@ export function BaiduHome() {
   return (
     <BrowserFrame>
       <div className="min-h-full bg-white">
-        <div className="flex items-center gap-5 px-7 py-4 text-[13px] text-neutral-700">
+        <div className="hidden md:flex items-center gap-5 px-7 py-4 text-[13px] text-neutral-700">
           <a className="cursor-pointer hover:text-sky-500">新闻</a>
           <a className="cursor-pointer hover:text-sky-500">hao123</a>
           <a className="cursor-pointer hover:text-sky-500">地图</a>
@@ -58,8 +58,8 @@ export function BaiduHome() {
           <a className="cursor-pointer">设置</a>
           <a className="cursor-pointer px-4 py-1 bg-sky-500 text-white rounded">登录</a>
         </div>
-        <div className="flex flex-col items-center pt-12 pb-10 px-5">
-          <div className="text-5xl font-bold tracking-wide text-[#2932e1] mb-6">
+        <div className="flex flex-col items-center pt-8 md:pt-12 pb-8 md:pb-10 px-4 md:px-5">
+          <div className="text-4xl md:text-5xl font-bold tracking-wide text-[#2932e1] mb-5 md:mb-6">
             Bai<span className="text-pink-500">du</span>百度
           </div>
           <div className="flex w-[640px] max-w-[90%] border-2 border-sky-500 rounded-xl overflow-hidden shadow-sm">

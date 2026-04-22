@@ -35,7 +35,7 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
 
   return (
     <Modal onClose={onClose}>
-      <div className="bg-white px-6 py-5 rounded-[10px] min-w-[380px] max-w-[420px]">
+      <div className="bg-white px-4 md:px-6 py-4 md:py-5 rounded-[10px] w-[92vw] max-w-[420px] md:min-w-[380px] max-h-[85vh] overflow-y-auto">
         {isCaiqing && (
           <div className="flex border-b border-neutral-200 mb-3 text-sm">
             <span className={`pb-2 px-3 cursor-pointer ${addTab === 'search' ? 'border-b-2 border-sky-500 font-bold text-sky-600' : 'text-neutral-500'}`} onClick={() => setAddTab('search')}>查找</span>

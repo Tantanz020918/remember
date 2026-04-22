@@ -36,41 +36,41 @@ export function RongdeCenter() {
   return (
     <BrowserFrame>
       <div className="bg-white text-[13px] min-h-full">
-        <div className="flex items-center gap-4 px-8 py-4 border-b-2 border-sky-600 bg-linear-to-r from-sky-50 to-white">
+        <div className="flex items-center gap-3 md:gap-4 px-4 md:px-8 py-3 md:py-4 border-b-2 border-sky-600 bg-linear-to-r from-sky-50 to-white">
           <div className="w-12 h-12 rounded-full bg-linear-to-br from-sky-500 to-sky-700 flex items-center justify-center text-white font-bold text-lg">荣</div>
           <div>
             <h1 className="text-[20px] font-bold text-sky-700 tracking-wider">荣德心理咨询所</h1>
             <div className="text-[11px] text-neutral-500">Rongde Psychological Consulting · 让心有所依</div>
           </div>
         </div>
-        <div className="flex gap-6 px-8 py-3 bg-sky-700 text-white text-[13px]">
+        <div className="flex gap-4 md:gap-6 px-4 md:px-8 py-3 bg-sky-700 text-white text-[13px] overflow-x-auto whitespace-nowrap">
           {NAV.map((n) => (
-            <a key={n} className={`cursor-pointer ${n === '报告查询' ? 'font-bold underline' : 'hover:opacity-80'}`}>{n}</a>
+            <a key={n} className={`cursor-pointer shrink-0 ${n === '报告查询' ? 'font-bold underline' : 'hover:opacity-80'}`}>{n}</a>
           ))}
         </div>
 
-        <div className="px-10 pt-8 pb-12 max-w-[820px]">
+        <div className="px-4 md:px-10 pt-5 md:pt-8 pb-8 md:pb-12 max-w-[820px]">
           <h3 className="font-bold mb-2">咨询报告查询</h3>
           <p className="text-neutral-600 text-[13px] mb-1">输入来访者姓名和身份证号查询历史咨询报告。</p>
           <p className="text-neutral-400 text-[12px] mb-4">⚠️ 本游戏所涉及的身份证号均为虚构，无需符合「校验码算法」，不会对应任何现实中的人。</p>
-          <div className="flex gap-2.5 mb-3">
+          <div className="flex flex-col md:flex-row gap-2.5 mb-3">
             <input
               value={name}
               onChange={(e) => { setName(e.target.value); setErrorMsg('') }}
               placeholder="姓名"
-              className="px-3 py-2 border border-neutral-300 rounded text-[13px] outline-none focus:border-sky-500 w-32"
+              className="px-3 py-2 border border-neutral-300 rounded text-[13px] outline-none focus:border-sky-500 w-full md:w-32"
               onKeyDown={(e) => e.key === 'Enter' && onQuery()}
             />
             <input
               value={idNumber}
               onChange={(e) => { setIdNumber(e.target.value); setErrorMsg('') }}
               placeholder="身份证号（18 位）"
-              className="px-3 py-2 border border-neutral-300 rounded text-[13px] font-mono tracking-wider outline-none focus:border-sky-500 w-72"
+              className="px-3 py-2 border border-neutral-300 rounded text-[13px] font-mono tracking-wider outline-none focus:border-sky-500 w-full md:w-72"
               onKeyDown={(e) => e.key === 'Enter' && onQuery()}
             />
             <button
               onClick={onQuery}
-              className="px-5 py-2 bg-sky-600 text-white border-none rounded cursor-pointer text-[13px] hover:bg-sky-700"
+              className="w-full md:w-auto px-5 py-2 bg-sky-600 text-white border-none rounded cursor-pointer text-[13px] hover:bg-sky-700"
             >
               查询
             </button>

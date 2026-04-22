@@ -3,9 +3,9 @@ import { Keyword, Modal, Tooltip } from '../../components/ui'
 export function TongxueluModal({ onClose }) {
   return (
     <Modal onClose={onClose} backdropClass="bg-black/70">
-      <div className="max-w-[90%] max-h-[90%]">
-        <div className="flex gap-4 p-6 rounded-lg bg-linear-to-br from-[#fff2cc] to-[#ffd8a8] shadow-2xl">
-          <div className="flex-1 bg-[#fffdf5] px-6 py-8 shadow font-serif text-[15px] leading-loose relative min-h-[320px] min-w-[260px]">
+      <div className="max-w-[92%] max-h-[90%] overflow-y-auto">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 p-3 md:p-6 rounded-lg bg-linear-to-br from-[#fff2cc] to-[#ffd8a8] shadow-2xl">
+          <div className="flex-1 bg-[#fffdf5] px-4 md:px-6 py-5 md:py-8 shadow font-serif text-[14px] md:text-[15px] leading-loose relative min-h-[220px] md:min-h-[320px] md:min-w-[260px]">
             <p>好姐妹一bei子，</p>
             <p>
               你有了电脸一定要来{' '}
@@ -18,7 +18,7 @@ export function TongxueluModal({ onClose }) {
               我的号：<Keyword>采晴0826</Keyword>，受你❤
             </p>
           </div>
-          <div className="flex-1 bg-[#fffdf5] px-6 py-8 shadow font-serif text-[15px] leading-loose relative min-h-[320px] min-w-[260px]">
+          <div className="flex-1 bg-[#fffdf5] px-4 md:px-6 py-5 md:py-8 shadow font-serif text-[14px] md:text-[15px] leading-loose relative min-h-[220px] md:min-h-[320px] md:min-w-[260px]">
             <p>等你去了新学校，</p>
             <p>一定要想我们！！</p>
             <p>么么哒~~~~~~</p>

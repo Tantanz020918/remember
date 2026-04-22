@@ -18,8 +18,8 @@ export function ForumFloor({
   const sprite = !isCharacter && !avatarSrc ? spriteForUser(userName) : null
 
   return (
-    <div className={`flex px-5 py-4 border-b border-dashed border-pink-100 ${owner ? 'bg-pink-50/40' : ''}`}>
-      <div className="w-[100px] text-center shrink-0 flex flex-col items-center">
+    <div className={`flex px-3 md:px-5 py-3 md:py-4 border-b border-dashed border-pink-100 ${owner ? 'bg-pink-50/40' : ''}`}>
+      <div className="w-[64px] md:w-[100px] text-center shrink-0 flex flex-col items-center">
         <ImagePlaceholder
           name={avatarName}
           src={avatarSrc}
@@ -39,7 +39,7 @@ export function ForumFloor({
         )}
         {userSign && <div className="text-[10px] text-neutral-400 mt-1">{userSign}</div>}
       </div>
-      <div className="flex-1 pl-4 border-l border-dashed border-pink-100 min-w-0">
+      <div className="flex-1 pl-3 md:pl-4 border-l border-dashed border-pink-100 min-w-0">
         <div className="text-neutral-400 text-[11px] mb-2">{meta}</div>
         <div className="text-[13px] leading-loose">{children}</div>
         {subReplies && subReplies.length > 0 && (

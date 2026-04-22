@@ -8,6 +8,9 @@ const NAMED_IMAGES = {
   '闺蜜头像 2': BESTIE_2,
 }
 
+const isContentImg = (round, width) =>
+  !round && typeof width === 'number' && width >= 120
+
 // Render a sprite cell using CSS background. Probes primary src; falls back to local on error.
 function SpriteCell({ sprite, width, height, round, onClick, className, style }) {
   const [url, setUrl] = useState(sprite.src)
@@ -91,6 +94,10 @@ export function ImagePlaceholder({
     resolvedSrc = resolvedSrc.src
   }
 
+  const contentCap = isContentImg(round, width)
+    ? { maxWidth: '100%', height: 'auto', aspectRatio: typeof height === 'number' ? `${width} / ${height}` : undefined }
+    : null
+
   if (resolvedSrc) {
     return (
       <SingleImg
@@ -102,7 +109,7 @@ export function ImagePlaceholder({
         round={round}
         onClick={onClick}
         className={className}
-        style={style}
+        style={{ ...contentCap, ...style }}
       />
     )
   }
@@ -118,6 +125,7 @@ export function ImagePlaceholder({
         height,
         background: `linear-gradient(135deg, ${from}, ${to})`,
         borderRadius: round ? '50%' : 6,
+        ...(contentCap || {}),
         ...style,
       }}
     >

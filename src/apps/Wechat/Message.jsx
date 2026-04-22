@@ -5,7 +5,7 @@ export function Message({ mine, name, children }) {
   return (
     <div className={`flex gap-2.5 my-2.5 items-start ${mine ? 'flex-row-reverse' : ''}`}>
       <ImagePlaceholder sprite={spriteForUser(name)} width={36} height={36} label={false} style={{ borderRadius: 6 }} />
-      <div className="max-w-[60%]">
+      <div className="max-w-[75%] md:max-w-[60%]">
         <div
           className={`${
             mine ? 'bg-[#95ec69]' : 'bg-white'

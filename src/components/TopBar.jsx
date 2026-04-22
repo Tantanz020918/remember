@@ -27,31 +27,33 @@ export function TopBar() {
   }
 
   return (
-    <div className="relative h-7 bg-neutral-900/70 backdrop-blur-xl flex items-center justify-between px-4 text-white text-[13px] z-[100]">
-      <div className="flex items-center gap-4">
-        <span className="text-sm"></span>
-        <span className="font-bold">{current?.title || '桌面'}</span>
-        <span className="cursor-pointer opacity-90 hover:opacity-100">文件</span>
-        <span className="cursor-pointer opacity-90 hover:opacity-100">编辑</span>
-        <span className="cursor-pointer opacity-90 hover:opacity-100">视图</span>
+    <div
+      className="relative h-7 bg-neutral-900/70 backdrop-blur-xl flex items-center justify-between px-1.5 md:px-4 text-white text-[11px] md:text-[13px] z-[100] gap-1.5"
+      style={{ paddingTop: 'env(safe-area-inset-top, 0px)', height: 'calc(28px + env(safe-area-inset-top, 0px))' }}
+    >
+      <div className="flex items-center gap-2 md:gap-4 min-w-0 flex-1">
+        <span className="font-bold truncate">{current?.title || '桌面'}</span>
+        <span className="hidden md:inline cursor-pointer opacity-90 hover:opacity-100">文件</span>
+        <span className="hidden md:inline cursor-pointer opacity-90 hover:opacity-100">编辑</span>
+        <span className="hidden md:inline cursor-pointer opacity-90 hover:opacity-100">视图</span>
       </div>
-      <div className="flex items-center gap-4 relative">
+      <div className="flex items-center gap-1.5 md:gap-4 relative shrink-0">
         <span
-          className="cursor-pointer opacity-90 hover:opacity-100 hover:text-red-300"
+          className="cursor-pointer opacity-90 hover:opacity-100 hover:text-red-300 whitespace-nowrap"
           title="清除所有游戏数据"
           onClick={() => setShowResetConfirm(true)}
         >
           🗑 清除数据
         </span>
         <span
-          className="cursor-pointer opacity-90 hover:opacity-100"
+          className="cursor-pointer opacity-90 hover:opacity-100 whitespace-nowrap"
           onClick={() => setSettingsOpen(!settingsOpen)}
         >
           ⚙ 设置 ▾
         </span>
         {settingsOpen && (
           <div
-            className="absolute top-8 right-[180px] w-64 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 z-[200]"
+            className="absolute top-8 right-0 md:right-[180px] w-56 md:w-64 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 z-[200]"
             onMouseLeave={() => setSettingsOpen(false)}
           >
             <div className="px-3 py-1 text-[11px] text-white/50 uppercase">关键词高亮</div>
@@ -82,15 +84,16 @@ export function TopBar() {
           </div>
         )}
         <span
-          className="cursor-pointer bg-white/10 px-2 py-0.5 rounded w-[100px] text-center tabular-nums"
+          className="cursor-pointer bg-white/10 px-1.5 md:px-2 py-0.5 rounded w-[58px] md:w-[100px] text-center tabular-nums whitespace-nowrap"
           onClick={() => setOpen(!open)}
         >
-          页面 {pageId}/{TOTAL_PAGES} ▾
+          <span className="md:hidden">{pageId}/{TOTAL_PAGES} ▾</span>
+          <span className="hidden md:inline">页面 {pageId}/{TOTAL_PAGES} ▾</span>
         </span>
-        <span className="tabular-nums">4/15 周三</span>
+        <span className="hidden md:inline tabular-nums">4/15 周三</span>
         {open && (
           <div
-            className="absolute top-8 right-28 w-72 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-1.5 max-h-96 overflow-y-auto z-[200]"
+            className="absolute top-8 right-0 md:right-28 w-64 md:w-72 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-1.5 max-h-[70vh] md:max-h-96 overflow-y-auto z-[200]"
             onMouseLeave={() => setOpen(false)}
           >
             <div className="px-3 py-1.5 flex justify-between items-center text-[11px] text-white/50">

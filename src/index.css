@@ -12,10 +12,31 @@ body,
   margin: 0;
 }
 
+body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+#root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button,
+  [role='button'],
+  a {
+    touch-action: manipulation;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -31,4 +52,28 @@ body,
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.35);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+/* Mobile: bump base font sizes for readability. */
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+  .text-xs { font-size: 14px !important; line-height: 1.45 !important; }
+  .text-sm { font-size: 16px !important; line-height: 1.55 !important; }
+  .text-base { font-size: 17px !important; }
+  .text-lg { font-size: 19px !important; }
+  .text-\[10px\] { font-size: 12px !important; }
+  .text-\[11px\] { font-size: 13px !important; }
+  .text-\[12px\] { font-size: 14.5px !important; }
+  .text-\[12\.5px\] { font-size: 15px !important; }
+  .text-\[13px\] { font-size: 15.5px !important; }
+  .text-\[14px\] { font-size: 16.5px !important; }
+  .text-\[15px\] { font-size: 17px !important; }
+  .text-\[17px\] { font-size: 18px !important; }
 }

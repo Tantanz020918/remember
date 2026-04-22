@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { Keyword, StoryLink, ImagePlaceholder } from '../../components/ui'
-import { PageId } from '../pageIds'
+import { Keyword, ImagePlaceholder } from '../../components/ui'
+import { JinhuaChrome } from './JinhuaChrome'
 
 export function JinhuaAlumni() {
   const [year, setYear] = useState('')
@@ -21,36 +21,12 @@ export function JinhuaAlumni() {
   return (
     <BrowserFrame>
       <div className="bg-white text-[13px]">
-        <div className="flex items-center gap-3.5 px-7 py-3.5 bg-linear-to-br from-[#fff3cd] to-[#ffe0a3] border-b-4 border-[#f5a8a0]">
-          <ImagePlaceholder
-            name="校徽"
-            width={56}
-            height={56}
-            from="#ff9800"
-            to="#ffc107"
-            round
-            label={false}
-          />
-          <div>
-            <h1 className="text-[22px] text-[#c43f1f] tracking-wider font-semibold">
-              璧山区金花小学 · 校友档案
-            </h1>
-            <div className="text-[11px] text-[#a0633e]">Alumni Archive</div>
-          </div>
-        </div>
-        <div className="flex gap-6 px-7 py-3 bg-[#c43f1f] text-white text-[13px]">
-          <StoryLink to={PageId.JINHUA_HOME} className="text-white!">
-            首页
-          </StoryLink>
-          <a className="cursor-pointer hover:opacity-80">学校概况</a>
-          <a className="cursor-pointer hover:opacity-80">师资风采</a>
-          <a className="cursor-pointer hover:opacity-80">新闻动态</a>
-          <a className="cursor-pointer hover:opacity-80">教学科研</a>
-          <a className="cursor-pointer hover:opacity-80">德育天地</a>
-          <a className="font-bold underline cursor-pointer">校友档案</a>
-          <a className="cursor-pointer hover:opacity-80">联系我们</a>
-        </div>
-        <div className="px-10 pt-5 pb-10 max-w-[820px]">
+        <JinhuaChrome
+          active="alumni"
+          subtitleZh="璧山区金花小学 · 校友档案"
+          subtitleEn="Alumni Archive"
+        />
+        <div className="px-4 md:px-10 pt-4 md:pt-5 pb-8 md:pb-10 max-w-[820px]">
           <h3 className="font-bold mb-2.5">毕业照查询</h3>
           <p className="text-neutral-600 text-[13px]">请输入届别（4 位年份），例如：2001</p>
           <div className="flex gap-2.5 my-3.5">

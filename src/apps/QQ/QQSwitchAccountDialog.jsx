@@ -15,7 +15,7 @@ export function QQSwitchAccountDialog({ isCaiqing, qqAccounts, onClose, onSwitch
 
   return (
     <Modal onClose={onClose}>
-      <div className="bg-white px-6 py-5 rounded-[10px] min-w-[340px]">
+      <div className="bg-white px-4 md:px-6 py-4 md:py-5 rounded-[10px] w-[92vw] max-w-[400px] md:min-w-[340px] max-h-[85vh] overflow-y-auto">
         <h3 className="font-bold mb-2.5">切换账号</h3>
         <div className="space-y-2 mb-3">
           <div className={`p-3 rounded-lg border flex gap-3 items-center cursor-pointer ${!isCaiqing ? 'bg-sky-50 border-sky-300' : 'hover:bg-neutral-50 border-neutral-200'}`} onClick={() => onSwitchToAccount('ruyue')}>

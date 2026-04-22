@@ -63,10 +63,10 @@ export function BaitianHome() {
   return (
     <BrowserFrame>
       <BaitianFrame>
-        <div className="bg-white rounded-lg px-5 py-3 mb-3 flex justify-between items-center border border-pink-200">
-          <div className="flex items-center">
+        <div className="bg-white rounded-lg px-4 md:px-5 py-3 mb-3 flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-3 border border-pink-200">
+          <div className="flex items-center gap-1.5">
             <input
-              className="px-3.5 py-1.5 border border-pink-200 rounded-full text-xs outline-none mr-1.5 w-[180px]"
+              className="flex-1 md:flex-none px-3.5 py-1.5 border border-pink-200 rounded-full text-xs outline-none md:w-[180px] min-w-0"
               placeholder="搜索用户 ID"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -74,7 +74,7 @@ export function BaitianHome() {
             />
             <button
               onClick={submit}
-              className="px-3.5 py-1.5 bg-[#e891b0] text-white border-none rounded-full cursor-pointer text-xs"
+              className="px-3.5 py-1.5 bg-[#e891b0] text-white border-none rounded-full cursor-pointer text-xs shrink-0"
             >
               搜索
             </button>
@@ -91,10 +91,10 @@ export function BaitianHome() {
           {POSTS.map((post, idx) => (
             <li
               key={idx}
-              className="px-4 py-2.5 border-b border-dashed border-pink-100 last:border-b-0 flex items-center gap-2.5 text-[13px]"
+              className="px-3 md:px-4 py-2.5 border-b border-dashed border-pink-100 last:border-b-0 flex flex-col md:flex-row md:items-center gap-1 md:gap-2.5 text-[13px]"
             >
-              {post.title}
-              <span className="ml-auto text-neutral-400 text-[11px]">{post.meta}</span>
+              <span className="flex-1 min-w-0">{post.title}</span>
+              <span className="md:ml-auto text-neutral-400 text-[11px]">{post.meta}</span>
             </li>
           ))}
         </ul>

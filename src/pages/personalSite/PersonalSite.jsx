@@ -3,6 +3,7 @@ import { useStore } from '../../store'
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { Keyword, PasswordLock, Toast, useToast, Modal, ImagePlaceholder } from '../../components/ui'
 import { MazeGame } from '../../components/MazeGame'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 // ===================== 九宫格心形密码 =====================
 // Heart shape edges (unordered pairs) — order of drawing doesn't matter
@@ -103,8 +104,8 @@ function HeartGridLock({ onUnlock }) {
   const reset = () => { setEdges([]); setLastDot(null); setError(''); setSuccess(false) }
 
   return (
-    <div className="p-10">
-      <div className="bg-white rounded-xl shadow-lg p-8 max-w-sm w-full text-center">
+    <div className="p-4 md:p-10">
+      <div className="bg-white rounded-xl shadow-lg p-5 md:p-8 max-w-sm w-full text-center">
         <div className="text-lg font-bold text-sky-700 mb-2">富士山下埋葬的の❤</div>
         <div className="text-neutral-500 text-sm mb-6">请点击画出访问密码</div>
         <div className="text-neutral-400 text-xs mb-4">提示：看网站名</div>
@@ -202,7 +203,7 @@ function MengqingSheetPreview({ onClick }) {
 function DiaryTab() {
   const [showSheet, setShowSheet] = useState(false)
   return (
-    <div className="py-6 px-8 max-w-lg mx-auto space-y-6">
+    <div className="py-5 px-4 md:py-6 md:px-8 max-w-lg mx-auto space-y-5 md:space-y-6">
       <div>
         <div className="text-neutral-400 text-xs mb-1">2020.11</div>
         <div className="text-sm text-neutral-700 leading-relaxed">
@@ -289,7 +290,7 @@ function PasswordBookTab() {
   const [unlocked, setUnlocked] = useState(false)
 
   return (
-    <div className="py-8 px-8 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div className="py-5 px-4 md:py-8 md:px-8 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
       <Poem />
       <div className="w-full">
         {!unlocked ? (
@@ -414,6 +415,8 @@ export function PersonalSite() {
   const [hidden, setHidden] = useState(personalSiteUnlocked)
   const [showHearts, setShowHearts] = useState(false)
   const [tab, setTab] = useState('passwords')
+  const isMobile = useIsMobile()
+  const showContent = hidden || !isMobile
 
   const handleUnlock = () => {
     setFlag('personalSiteUnlocked', true)
@@ -433,29 +436,32 @@ export function PersonalSite() {
             <HeartGridLock onUnlock={handleUnlock} />
           </div>
         )}
-        {/* Content always rendered underneath */}
-        <div className="min-h-full ">
-          <div className="text-center pt-6 pb-2">
-            <div className="text-2xl font-bold text-sky-600">富士山下埋葬的の❤</div>
-            <div className="text-neutral-400 text-xs mt-1">采晴的秘密花园</div>
+        {/* Content rendered underneath (skip on mobile while lock overlay is active,
+            otherwise long content would stretch the overlay container). */}
+        {showContent && (
+          <div className="min-h-full ">
+            <div className="text-center pt-6 pb-2">
+              <div className="text-2xl font-bold text-sky-600">富士山下埋葬的の❤</div>
+              <div className="text-neutral-400 text-xs mt-1">采晴的秘密花园</div>
+            </div>
+            <div className="flex justify-center gap-6 py-3 border-b border-sky-200/50 text-sm">
+              {TABS.map((t) => (
+                <span
+                  key={t.key}
+                  onClick={() => setTab(t.key)}
+                  className={`cursor-pointer px-3 py-1 rounded-full ${
+                    tab === t.key ? 'bg-sky-500 text-white' : 'text-neutral-500 hover:bg-sky-100'
+                  }`}
+                >
+                  {t.label}
+                </span>
+              ))}
+            </div>
+            {tab === 'diary' && <DiaryTab />}
+            {tab === 'passwords' && <PasswordBookTab />}
+            {tab === 'maze' && <MazeTab />}
           </div>
-          <div className="flex justify-center gap-6 py-3 border-b border-sky-200/50 text-sm">
-            {TABS.map((t) => (
-              <span
-                key={t.key}
-                onClick={() => setTab(t.key)}
-                className={`cursor-pointer px-3 py-1 rounded-full ${
-                  tab === t.key ? 'bg-sky-500 text-white' : 'text-neutral-500 hover:bg-sky-100'
-                }`}
-              >
-                {t.label}
-              </span>
-            ))}
-          </div>
-          {tab === 'diary' && <DiaryTab />}
-          {tab === 'passwords' && <PasswordBookTab />}
-          {tab === 'maze' && <MazeTab />}
-        </div>
+        )}
       </div>
     </BrowserFrame>
   )

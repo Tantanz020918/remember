@@ -1,7 +1,8 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
 import { StoryLink, DeadLink, ImagePlaceholder } from '../../components/ui'
-import { NAV_ITEMS, NEWS_CARDS, NOTICES, TEAM_MEMBERS, QUICK_LINKS } from '../../data/jinhuaHomeData'
+import { NEWS_CARDS, NOTICES, TEAM_MEMBERS, QUICK_LINKS } from '../../data/jinhuaHomeData'
 import { PageId } from '../pageIds'
+import { JinhuaChrome } from './JinhuaChrome'
 
 function NewsCard({ imageFrom, imageTo, imageName, title, date }) {
   return (
@@ -42,22 +43,9 @@ export function JinhuaHome() {
   return (
     <BrowserFrame>
       <div className="bg-white text-[13px]">
-        <div className="flex items-center gap-3.5 px-7 py-3.5 bg-linear-to-br from-[#fff3cd] to-[#ffe0a3] border-b-4 border-[#f5a8a0]">
-          <ImagePlaceholder name="校徽" width={56} height={56} from="#ff9800" to="#ffc107" round label={false} />
-          <div>
-            <h1 className="text-[22px] text-[#c43f1f] tracking-wider font-semibold">璧山区金花小学</h1>
-            <div className="text-[11px] text-[#a0633e]">Jinhua Primary School · 求真 · 向善 · 尚美</div>
-          </div>
-          <div className="flex-1" />
-        </div>
-        <div className="flex gap-6 px-7 py-3 bg-[#c43f1f] text-white text-[13px]">
-          {NAV_ITEMS.map((n) => (
-            <a key={n.label} className={`cursor-pointer ${n.active ? 'font-bold underline' : 'hover:opacity-80'}`}>{n.label}</a>
-          ))}
-          <StoryLink to={PageId.JINHUA_ALUMNI} className="text-white!">校友档案</StoryLink>
-        </div>
+        <JinhuaChrome active="home" />
         <ImagePlaceholder name="校园全景" width="100%" height={220} from="#4fc3f7" to="#66bb6a" style={{ width: '100%', borderRadius: 0 }} />
-        <div className="grid grid-cols-[2fr_1fr] gap-5 px-7 py-5">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5 px-4 md:px-7 py-4 md:py-5">
           <div>
             <div className="mb-6">
               <SectionHeader title="学校新闻" />
