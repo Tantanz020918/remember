@@ -51,9 +51,6 @@ const MAIN_PAGE_KEYS = [
   'WEIBO_DENG_FENG_SHUO',
   'WEIBO_ANMIAN',
 
-  // 身份证科普（供玩家从心理报告身份证号反推地区/出生日期）
-  'SEARCH_ID_CARD',
-
   // 荣德心理咨询
   'SEARCH_RONGDE',
   'RONGDE_CENTER',

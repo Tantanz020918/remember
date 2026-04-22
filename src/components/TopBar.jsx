@@ -40,9 +40,12 @@ export function TopBar() {
     }
   }, [open, settingsOpen])
 
+  // 过滤掉已不存在（或未注册）的页面 id —— 避免旧版持久化里的 id
+  // 在删除 extras / 重排枚举后变成孤儿条目，显示成 "50. " 空标题。
+  const liveVisited = visited.filter((id) => PAGES[id])
   const sortedVisited = sortMode === 'id'
-    ? [...visited].sort((a, b) => a - b)
-    : visited
+    ? [...liveVisited].sort((a, b) => a - b)
+    : liveVisited
 
   const handleReset = () => {
     resetGame()
