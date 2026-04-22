@@ -22,14 +22,16 @@ export default function EndingChoice() {
       background: 'rgba(0,0,0,0.8)',
       backdropFilter: 'blur(10px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 12,
+      overflowY: 'auto',
       animation: 'fadeIn 0.5s ease',
     }}>
-      <div style={{
-        maxWidth: 500, width: '90%',
+      <div className="max-h-full overflow-auto" style={{
+        maxWidth: 500, width: '100%',
         background: 'rgba(40,40,40,0.95)',
         borderRadius: 16,
         border: '1px solid rgba(255,255,255,0.1)',
-        padding: 32,
+        padding: 'clamp(20px, 5vw, 32px)',
         boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
       }}>
         <h2 style={{ fontSize: 20, marginBottom: 8, fontWeight: 600, textAlign: 'center' }}>

@@ -34,7 +34,6 @@ export function BaitianUserCaiqing() {
         </div>
         <ul className="list-none bg-white border border-pink-200 rounded-b-md overflow-hidden">
           <li className="px-3 md:px-4 py-2.5 border-b border-dashed border-pink-100 flex flex-col md:flex-row md:items-center gap-1 md:gap-2.5 text-[13px]">
-            <span className="px-1.5 py-0.5 rounded text-[11px] text-white bg-red-500">求</span>
             <DeadLink>【求助】求稀有衣服「星空长裙」能和谁换</DeadLink>
             <span className="md:ml-auto text-neutral-400 text-[11px]">2014-02-14 · 回复 12</span>
           </li>

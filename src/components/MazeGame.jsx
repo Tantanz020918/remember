@@ -186,7 +186,14 @@ export function MazeGame({ onComplete }) {
             return (
               <div
                 key={k}
-                onPointerDown={(e) => { e.preventDefault(); handleDown(r, c) }}
+                onPointerDown={(e) => {
+                  e.preventDefault()
+                  // Touch pointers are implicitly captured on pointerdown, which
+                  // stops subsequent pointerenter events from firing on sibling
+                  // cells during the drag. Release so the drag-over path works.
+                  try { e.currentTarget.releasePointerCapture(e.pointerId) } catch { /* no-op */ }
+                  handleDown(r, c)
+                }}
                 onPointerEnter={() => handleEnter(r, c)}
                 className="cursor-pointer flex items-center justify-center text-[10px]"
                 style={{

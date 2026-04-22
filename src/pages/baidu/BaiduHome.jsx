@@ -61,7 +61,7 @@ export function BaiduHome() {
             />
             <button
               onClick={search}
-              className="bg-sky-500 text-white border-none px-7 text-[15px] cursor-pointer"
+              className="bg-sky-500 text-white border-none px-1 md:px-7 text-[15px] cursor-pointer"
             >
               百度一下
             </button>

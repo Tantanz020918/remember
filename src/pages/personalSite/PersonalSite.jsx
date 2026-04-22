@@ -371,7 +371,7 @@ function Note({ note }) {
 
 function MengqingSheet() {
   return (
-    <div className="bg-[#fffaf0] border-2 border-amber-200 rounded-lg p-6 w-[min(560px,calc(100vw-3rem))]">
+    <div className="bg-[#fffaf0] border-2 border-amber-200 rounded-lg p-4 md:p-6 w-[min(560px,calc(100vw-2rem))] max-h-[85vh] overflow-auto">
       <div className="text-center mb-4">
         <div className="text-2xl font-bold text-amber-800">《梦晴》</div>
         <div className="text-xs text-neutral-500 mt-1">词 / 曲：梦和 · 写给采晴</div>

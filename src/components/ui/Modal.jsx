@@ -19,10 +19,12 @@ export function Modal({
 
   const content = (
     <div
-      className={`fixed inset-0 flex items-center justify-center ${backdropClass} ${zIndexClass}`}
+      className={`fixed inset-0 flex items-center justify-center p-3 md:p-4 overflow-y-auto ${backdropClass} ${zIndexClass}`}
       onClick={closeOnBackdrop ? onClose : undefined}
     >
-      <div onClick={(e) => e.stopPropagation()}>{children}</div>
+      <div onClick={(e) => e.stopPropagation()} className="max-w-full max-h-full">
+        {children}
+      </div>
     </div>
   )
 

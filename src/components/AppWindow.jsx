@@ -19,24 +19,12 @@ export function AppWindow({ title, appType = 'default', children }) {
   const sizeClass = SIZE_CLASSES[appType] || SIZE_CLASSES.default
 
   if (isMobile) {
+    // Mobile merges the window chrome into the global TopBar (back/home live there).
     return (
       <div
         className="absolute left-0 right-0 bg-white overflow-hidden flex flex-col z-10"
         style={{ top: MOBILE_TOP, bottom: MOBILE_BOTTOM }}
       >
-        <div className="h-8 bg-neutral-200 border-b border-neutral-300 flex items-center px-2 shrink-0">
-          <button
-            onClick={() => routerNavigate(-1)}
-            className="w-7 h-7 flex items-center justify-center rounded text-neutral-600 text-lg cursor-pointer bg-transparent border-none"
-            title="返回"
-          >
-            ←
-          </button>
-          <div className="flex-1 text-center text-[13px] font-semibold text-neutral-700 truncate px-2">
-            {title}
-          </div>
-          <div className="w-7" />
-        </div>
         <div className="flex-1 overflow-hidden bg-white">{children}</div>
       </div>
     )

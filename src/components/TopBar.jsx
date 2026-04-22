@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useStore, TOTAL_PAGES, HIGHLIGHT_MODES, HIGHLIGHT_LABELS, HINT_MODES, HINT_LABELS } from '../store'
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { useCurrentPage } from '../hooks/useCurrentPage'
@@ -8,13 +9,36 @@ import { Modal } from './ui'
 
 export function TopBar() {
   const { visited, highlightMode, hintMode, setFlag, resetGame } = useStore()
-  const navigate = useGameNavigate()
+  const gameNavigate = useGameNavigate()
+  const routerNavigate = useNavigate()
   const pageId = useCurrentPage()
   const [open, setOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [sortMode, setSortMode] = useState('time') // 'time' | 'id'
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const current = PAGES[pageId]
+
+  const settingsRef = useRef(/** @type {HTMLDivElement | null} */ (null))
+  const pageListRef = useRef(/** @type {HTMLDivElement | null} */ (null))
+
+  useEffect(() => {
+    if (!open && !settingsOpen) return
+    const onDocDown = (/** @type {Event} */ e) => {
+      const target = /** @type {Node} */ (e.target)
+      if (settingsOpen && settingsRef.current && !settingsRef.current.contains(target)) {
+        setSettingsOpen(false)
+      }
+      if (open && pageListRef.current && !pageListRef.current.contains(target)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onDocDown)
+    document.addEventListener('touchstart', onDocDown)
+    return () => {
+      document.removeEventListener('mousedown', onDocDown)
+      document.removeEventListener('touchstart', onDocDown)
+    }
+  }, [open, settingsOpen])
 
   const sortedVisited = sortMode === 'id'
     ? [...visited].sort((a, b) => a - b)
@@ -23,8 +47,11 @@ export function TopBar() {
   const handleReset = () => {
     resetGame()
     setShowResetConfirm(false)
-    navigate(PageId.DESKTOP)
+    setSettingsOpen(false)
+    gameNavigate(PageId.DESKTOP)
   }
+
+  const inApp = pageId !== PageId.DESKTOP
 
   return (
     <div
@@ -32,95 +59,115 @@ export function TopBar() {
       style={{ paddingTop: 'env(safe-area-inset-top, 0px)', height: 'calc(28px + env(safe-area-inset-top, 0px))' }}
     >
       <div className="flex items-center gap-2 md:gap-4 min-w-0 flex-1">
-        <span className="font-bold truncate">{current?.title || '桌面'}</span>
+        {/* Mobile in-app: back + home buttons replace title. Desktop keeps title + menus. */}
+        {inApp && (
+          <>
+            <button
+              onClick={() => routerNavigate(-1)}
+              className="md:hidden bg-transparent border-none text-white text-base leading-none cursor-pointer px-1"
+              title="返回"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => gameNavigate(PageId.DESKTOP)}
+              className="md:hidden bg-transparent border-none text-white text-sm leading-none cursor-pointer px-1"
+              title="回到桌面"
+            >
+              🏠
+            </button>
+          </>
+        )}
+        <span className="font-bold truncate hidden md:inline">{current?.title || '桌面'}</span>
         <span className="hidden md:inline cursor-pointer opacity-90 hover:opacity-100">文件</span>
         <span className="hidden md:inline cursor-pointer opacity-90 hover:opacity-100">编辑</span>
         <span className="hidden md:inline cursor-pointer opacity-90 hover:opacity-100">视图</span>
       </div>
       <div className="flex items-center gap-1.5 md:gap-4 relative shrink-0">
-        <span
-          className="cursor-pointer opacity-90 hover:opacity-100 hover:text-red-300 whitespace-nowrap"
-          title="清除所有游戏数据"
-          onClick={() => setShowResetConfirm(true)}
-        >
-          🗑 清除数据
-        </span>
-        <span
-          className="cursor-pointer opacity-90 hover:opacity-100 whitespace-nowrap"
-          onClick={() => setSettingsOpen(!settingsOpen)}
-        >
-          ⚙ 设置 ▾
-        </span>
-        {settingsOpen && (
-          <div
-            className="absolute top-8 right-0 md:right-[180px] w-56 md:w-64 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 z-[200]"
-            onMouseLeave={() => setSettingsOpen(false)}
+        <div ref={settingsRef} className="relative">
+          <span
+            className="cursor-pointer opacity-90 hover:opacity-100 whitespace-nowrap"
+            onClick={() => setSettingsOpen((v) => !v)}
           >
-            <div className="px-3 py-1 text-[11px] text-white/50 uppercase">关键词高亮</div>
-            {HIGHLIGHT_MODES.map((m) => (
+            ⚙ 设置 ▾
+          </span>
+          {settingsOpen && (
+            <div className="absolute top-8 right-0 w-56 md:w-64 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 z-[200]">
+              <div className="px-3 py-1 text-[11px] text-white/50 uppercase">关键词高亮</div>
+              {HIGHLIGHT_MODES.map((m) => (
+                <div
+                  key={m}
+                  className={`px-3 py-1.5 text-xs cursor-pointer ${
+                    m === highlightMode ? 'bg-sky-600/60' : 'hover:bg-white/10'
+                  }`}
+                  onClick={() => setFlag('highlightMode', m)}
+                >
+                  {HIGHLIGHT_LABELS[m]}
+                </div>
+              ))}
+              <div className="border-t border-white/10 my-1" />
+              <div className="px-3 py-1 text-[11px] text-white/50 uppercase">密码锁错误提示</div>
+              {HINT_MODES.map((m) => (
+                <div
+                  key={m}
+                  className={`px-3 py-1.5 text-xs cursor-pointer ${
+                    m === hintMode ? 'bg-sky-600/60' : 'hover:bg-white/10'
+                  }`}
+                  onClick={() => setFlag('hintMode', m)}
+                >
+                  {HINT_LABELS[m]}
+                </div>
+              ))}
+              <div className="border-t border-white/10 my-1" />
               <div
-                key={m}
-                className={`px-3 py-1.5 text-xs cursor-pointer ${
-                  m === highlightMode ? 'bg-sky-600/60' : 'hover:bg-white/10'
-                }`}
-                onClick={() => setFlag('highlightMode', m)}
-              >
-                {HIGHLIGHT_LABELS[m]}
-              </div>
-            ))}
-            <div className="border-t border-white/10 my-1" />
-            <div className="px-3 py-1 text-[11px] text-white/50 uppercase">密码锁错误提示</div>
-            {HINT_MODES.map((m) => (
-              <div
-                key={m}
-                className={`px-3 py-1.5 text-xs cursor-pointer ${
-                  m === hintMode ? 'bg-sky-600/60' : 'hover:bg-white/10'
-                }`}
-                onClick={() => setFlag('hintMode', m)}
-              >
-                {HINT_LABELS[m]}
-              </div>
-            ))}
-          </div>
-        )}
-        <span
-          className="cursor-pointer bg-white/10 px-1.5 md:px-2 py-0.5 rounded w-[58px] md:w-[100px] text-center tabular-nums whitespace-nowrap"
-          onClick={() => setOpen(!open)}
-        >
-          <span className="md:hidden">{pageId}/{TOTAL_PAGES} ▾</span>
-          <span className="hidden md:inline">页面 {pageId}/{TOTAL_PAGES} ▾</span>
-        </span>
-        <span className="hidden md:inline tabular-nums">4/15 周三</span>
-        {open && (
-          <div
-            className="absolute top-8 right-0 md:right-28 w-64 md:w-72 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-1.5 max-h-[70vh] md:max-h-96 overflow-y-auto z-[200]"
-            onMouseLeave={() => setOpen(false)}
-          >
-            <div className="px-3 py-1.5 flex justify-between items-center text-[11px] text-white/50">
-              <span className="uppercase">已访问页面</span>
-              <span
-                className="cursor-pointer text-sky-300 hover:text-sky-200 normal-case"
-                onClick={() => setSortMode(sortMode === 'time' ? 'id' : 'time')}
-              >
-                {sortMode === 'time' ? '按时间 ⇅' : '按编号 ⇅'}
-              </span>
-            </div>
-            {sortedVisited.map((id) => (
-              <div
-                key={id}
-                className={`px-3 py-1.5 cursor-pointer truncate ${
-                  id === pageId ? 'bg-sky-600/60' : 'hover:bg-white/10'
-                }`}
+                className="px-3 py-1.5 text-xs text-red-300 cursor-pointer hover:bg-red-500/20"
                 onClick={() => {
-                  navigate(id)
-                  setOpen(false)
+                  setSettingsOpen(false)
+                  setShowResetConfirm(true)
                 }}
               >
-                {id}. {PAGES[id]?.title}
+                🗑 清除数据
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
+        <div ref={pageListRef} className="relative">
+          <span
+            className="cursor-pointer bg-white/10 px-1.5 md:px-2 py-0.5 rounded w-[58px] md:w-[100px] text-center tabular-nums whitespace-nowrap inline-block"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="md:hidden">{pageId}/{TOTAL_PAGES} ▾</span>
+            <span className="hidden md:inline">页面 {pageId}/{TOTAL_PAGES} ▾</span>
+          </span>
+          {open && (
+            <div className="absolute top-8 right-0 w-64 md:w-72 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-1.5 max-h-[70vh] md:max-h-96 overflow-y-auto z-[200]">
+              <div className="px-3 py-1.5 flex justify-between items-center text-[11px] text-white/50">
+                <span className="uppercase">已访问页面</span>
+                <span
+                  className="cursor-pointer text-sky-300 hover:text-sky-200 normal-case"
+                  onClick={() => setSortMode(sortMode === 'time' ? 'id' : 'time')}
+                >
+                  {sortMode === 'time' ? '按时间 ⇅' : '按编号 ⇅'}
+                </span>
+              </div>
+              {sortedVisited.map((id) => (
+                <div
+                  key={id}
+                  className={`px-3 py-1.5 cursor-pointer truncate ${
+                    id === pageId ? 'bg-sky-600/60' : 'hover:bg-white/10'
+                  }`}
+                  onClick={() => {
+                    gameNavigate(id)
+                    setOpen(false)
+                  }}
+                >
+                  {id}. {PAGES[id]?.title}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <span className="hidden md:inline tabular-nums">4/15 周三</span>
       </div>
 
       {showResetConfirm && (
