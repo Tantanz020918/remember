@@ -172,7 +172,7 @@ export function TopBar() {
 
       {showResetConfirm && (
         <Modal onClose={() => setShowResetConfirm(false)} usePortal zIndexClass="z-[2000]">
-          <div className="bg-white text-neutral-800 rounded-lg shadow-2xl p-6 max-w-sm w-full mx-4">
+          <div className="bg-white text-neutral-800 rounded-lg shadow-2xl p-6 max-w-[80%] w-full mx-auto">
             <div className="text-lg font-bold mb-2">⚠️ 清除数据</div>
             <div className="text-sm text-neutral-600 mb-5 leading-relaxed">
               点击后将删除所有记忆内容，从头开始游玩，确定吗？
