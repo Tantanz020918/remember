@@ -20,7 +20,12 @@ const POSTS = [
         【招募】奥比岛短剧招人啦～
       </StoryLink>
     ),
-    meta: '沐季千柠 · 2012-08-20 · 回复 89',
+    meta: (
+      <>
+        <StoryLink to={PageId.EXTRA_MUJIQIANLING_USER}>沐季千柠</StoryLink>
+        {' · 2012-08-20 · 回复 89'}
+      </>
+    ),
   },
   {
     title: <DeadLink>【活动】夏日派对签到帖</DeadLink>,
@@ -44,6 +49,10 @@ const POSTS = [
     title: <DeadLink>【图片】我家奥比的超可爱变装秀</DeadLink>,
     meta: '奥比小王子 · 2013-03-17 · 回复 312',
   },
+  {
+    title: <DeadLink>有人喜欢看查理九世吗~~~~</DeadLink>,
+    meta: '小侦探 · 2013-04-12 · 回复 24',
+  },
 ]
 
 export function BaitianHome() {
@@ -55,6 +64,8 @@ export function BaitianHome() {
     const value = query.trim()
     if (value === '采晴0826') {
       navigate(PageId.AOBI_USER_CAIQING)
+    } else if (value === '沐季千柠' || value === '待你回眸一笑') {
+      navigate(PageId.EXTRA_MUJIQIANLING_USER)
     } else {
       setErrorMsg('无搜索结果，用户可能隐藏了个人信息。')
     }

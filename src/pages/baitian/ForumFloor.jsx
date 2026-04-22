@@ -1,5 +1,32 @@
 import { ImagePlaceholder } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
+import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { PageId } from '../pageIds'
+
+// Baitian 用户名 → 对应用户主页。命中时名字会变成可点击链接。
+const USER_PAGE = {
+  '沐季千柠': PageId.EXTRA_MUJIQIANLING_USER,
+  '采晴0826': PageId.AOBI_USER_CAIQING,
+}
+
+function UserName({ name, className = '' }) {
+  const navigate = useGameNavigate()
+  if (typeof name !== 'string') {
+    return <span className={className}>{name}</span>
+  }
+  const target = USER_PAGE[name]
+  if (!target) return <span className={className}>{name}</span>
+  return (
+    <span
+      role="button"
+      tabIndex={0}
+      onClick={() => navigate(target)}
+      className={`cursor-pointer hover:underline ${className}`}
+    >
+      {name}
+    </span>
+  )
+}
 
 export function ForumFloor({
   owner,
@@ -31,7 +58,9 @@ export function ForumFloor({
           to={avatarTo}
           label={false}
         />
-        <div className="font-bold text-[#d16b8a] mt-1.5 text-xs break-all">{userName}</div>
+        <div className="font-bold text-[#d16b8a] mt-1.5 text-xs break-all">
+          <UserName name={userName} />
+        </div>
         {userLv && (
           <div className="inline-block bg-[#e891b0] text-white text-[10px] px-1.5 py-px rounded mt-1">
             {userLv}
@@ -46,8 +75,13 @@ export function ForumFloor({
           <div className="mt-3 bg-pink-50/60 rounded border border-pink-100">
             {subReplies.map((reply, idx) => (
               <div key={idx} className={`px-3 py-2 text-[12px] ${idx > 0 ? 'border-t border-dashed border-pink-100' : ''}`}>
-                <span className="font-bold text-[#d16b8a]">{reply.userName}</span>
-                {reply.replyTo && <span className="text-neutral-400"> 回复 <span className="font-bold text-[#d16b8a]">{reply.replyTo}</span></span>}
+                <UserName name={reply.userName} className="font-bold text-[#d16b8a]" />
+                {reply.replyTo && (
+                  <span className="text-neutral-400">
+                    {' 回复 '}
+                    <UserName name={reply.replyTo} className="font-bold text-[#d16b8a]" />
+                  </span>
+                )}
                 <span className="text-neutral-400">：</span>
                 <span className="text-neutral-700">{reply.content}</span>
               </div>

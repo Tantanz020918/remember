@@ -4,7 +4,7 @@ import { useStore, TOTAL_PAGES, HIGHLIGHT_MODES, HIGHLIGHT_LABELS, HINT_MODES, H
 import { useGameNavigate } from '../hooks/useGameNavigate'
 import { useCurrentPage } from '../hooks/useCurrentPage'
 import { PAGES } from '../pages/registry'
-import { PageId } from '../pages/pageIds'
+import { PageId, isExtraPage, pageLabel } from '../pages/pageIds'
 import { Modal } from './ui'
 
 export function TopBar() {
@@ -133,11 +133,20 @@ export function TopBar() {
         </div>
         <div ref={pageListRef} className="relative">
           <span
-            className="cursor-pointer bg-white/10 px-1.5 md:px-2 py-0.5 rounded w-[58px] md:w-[100px] text-center tabular-nums whitespace-nowrap inline-block"
+            className="cursor-pointer bg-white/10 px-1.5 md:px-2 py-0.5 rounded w-[58px] md:w-[110px] text-center tabular-nums whitespace-nowrap inline-block"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="md:hidden">{pageId}/{TOTAL_PAGES} ▾</span>
-            <span className="hidden md:inline">页面 {pageId}/{TOTAL_PAGES} ▾</span>
+            {isExtraPage(pageId) ? (
+              <>
+                <span className="md:hidden">{pageLabel(pageId)} ▾</span>
+                <span className="hidden md:inline">{pageLabel(pageId)} ▾</span>
+              </>
+            ) : (
+              <>
+                <span className="md:hidden">{pageId}/{TOTAL_PAGES} ▾</span>
+                <span className="hidden md:inline">页面 {pageId}/{TOTAL_PAGES} ▾</span>
+              </>
+            )}
           </span>
           {open && (
             <div className="absolute top-8 right-0 w-64 md:w-72 bg-neutral-800/95 backdrop-blur-xl border border-white/10 rounded-lg py-1.5 max-h-[70vh] md:max-h-96 overflow-y-auto z-[200]">
@@ -161,7 +170,7 @@ export function TopBar() {
                     setOpen(false)
                   }}
                 >
-                  {id}. {PAGES[id]?.title}
+                  {pageLabel(id)}. {PAGES[id]?.title}
                 </div>
               ))}
             </div>

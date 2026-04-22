@@ -37,6 +37,8 @@ import { EndingForgive, EndingForgiveAlone, EndingSilence } from './ending/Endin
 import { BaiduSearchRongde } from './baidu/BaiduSearchRongde'
 import { RongdeCenter } from './rongde/RongdeCenter'
 import { WeiboLiGroupFamilyEdu } from './weibo/WeiboLiGroupFamilyEdu'
+import { MujiqianlingUser } from './baitian/MujiqianlingUser'
+import { MujiqianlingDramaPost } from './baitian/MujiqianlingDramaPost'
 import { PageId } from './pageIds'
 
 export const PAGES = {
@@ -83,6 +85,13 @@ export const PAGES = {
   [PageId.ENDING_SILENCE]:           { title: '结局：沉默',             path: 'ending/silence',                           appType: 'default', render: () => <EndingSilence /> },
   [PageId.WEIBO_LI_GROUP_FAMILY_EDU]:{ title: '李氏集团家教观察',       path: 'browser/weibo/li-group-family-edu',        appType: 'browser', render: () => <WeiboLiGroupFamilyEdu /> },
   [PageId.WECHAT_MOMENTS]:           { title: '微信 · 朋友圈',          path: 'wechat/moments',                           appType: 'wechat',  render: () => <Wechat initialView="moments" /> },
+
+  // === Extra 彩蛋：沐季千柠 · 待你回眸一笑 ===
+  [PageId.EXTRA_MUJIQIANLING_USER]:  { title: '奥比岛圈 · 沐季千柠',    path: 'browser/aobi/user/mujiqianling',           appType: 'browser', render: () => <MujiqianlingUser /> },
+  [PageId.EXTRA_DRAMA_INTRO]:        { title: '待你回眸一笑 · 剧目介绍', path: 'browser/aobi/drama/intro',                 appType: 'browser', render: () => <MujiqianlingDramaPost postKey="intro" /> },
+  [PageId.EXTRA_DRAMA_EP1]:          { title: '待你回眸一笑 · 第一集',  path: 'browser/aobi/drama/ep1',                   appType: 'browser', render: () => <MujiqianlingDramaPost postKey="ep1" /> },
+  [PageId.EXTRA_DRAMA_EP2]:          { title: '待你回眸一笑 · 第二集',  path: 'browser/aobi/drama/ep2',                   appType: 'browser', render: () => <MujiqianlingDramaPost postKey="ep2" /> },
+  [PageId.EXTRA_DRAMA_EP3]:          { title: '待你回眸一笑 · 第三集',  path: 'browser/aobi/drama/ep3',                   appType: 'browser', render: () => <MujiqianlingDramaPost postKey="ep3" /> },
 }
 
 export const PATH_TO_ID = {}
