@@ -79,6 +79,9 @@ export const TIMELINE_POSTS = [
         <div className="mt-2">
           <ImagePlaceholder name="游乐园" src={THEME_PARK.src} fallbackSrc={THEME_PARK.fallbackSrc} width={240} height={160} />
         </div>
+         <div className="mt-2 bg-neutral-900/50 rounded p-2">
+        <Comment author="如梦令" authorTo={PageId.RUMENGLING_QZONE}>真的很开心~~~~~</Comment>
+      </div>
       </>
     ),
   },
@@ -86,7 +89,7 @@ export const TIMELINE_POSTS = [
     <>
       暑假快结束了，不想开学不想开学
       <div className="mt-2 bg-neutral-900/50 rounded p-2">
-        <Comment author="如梦令" authorTo={PageId.RUMENGLING_QZONE}><Keyword>马上就出去玩了！</Keyword></Comment>
+        <Comment author="如梦令" authorTo={PageId.RUMENGLING_QZONE}>马上就出去玩了！</Comment>
         <Comment author="雨季 回复 如梦令">期待期待</Comment>
       </div>
     </>
@@ -112,10 +115,11 @@ export const TIMELINE_POSTS = [
     time: '2012.10.5',
     content: (
       <>
-        梦和今天又买新绝版了，羡慕死本晴了💦 网上居然有人传她是去电话亭偷充值卡……拜托她家富得流油好吗！
+        梦和今天又买新绝版了，羡慕死本晴了💦 网上居然有人传她是去电话亭偷充值卡……拜托人家就是很有实力好吗！
         <div className="mt-2 bg-neutral-900/50 rounded p-2">
           <Comment author="氢气球">那种帖子别去看了，气到的是自己</Comment>
           <Comment author="抹茶子">谁呀？点名让我骂</Comment>
+          <Comment author="如梦令" authorTo={PageId.RUMENGLING_QZONE}>呜呜呜，抱~~</Comment>
         </div>
       </>
     ),
@@ -125,6 +129,10 @@ export const TIMELINE_POSTS = [
     content: (
       <>
         三人组今天又更新了一集偶像剧！如月画好了图，梦和把主题曲词都写出来了，我来负责唱……虽然跑调但我觉得还挺好听的哼！
+         <div className="mt-2 bg-neutral-900/50 rounded p-2">
+          <Comment author="如梦令" authorTo={PageId.RUMENGLING_QZONE}>明明很好听哇</Comment>
+          <Comment author="雨季 回复 如梦令">哈哈哈别闹</Comment>
+        </div>
       </>
     ),
   },

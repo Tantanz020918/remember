@@ -48,7 +48,7 @@ export function QQGroupChat() {
       {/* Left chat list */}
       <div className="w-[220px] bg-white border-r border-sky-100 flex flex-col">
         <div className="px-2.5 py-2.5 border-b border-sky-100">
-          <input placeholder="搜索" className="w-full px-2.5 py-1.5 border border-sky-100 rounded-full bg-sky-50/60 text-xs outline-none" />
+          <input disabled placeholder="搜索" className="w-full px-2.5 py-1.5 border border-sky-100 rounded-full bg-sky-50/60 text-xs outline-none" />
         </div>
         <div className="flex-1 overflow-y-auto">
           {CHATS.map((c) => (

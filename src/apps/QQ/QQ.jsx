@@ -16,7 +16,7 @@ function QQChatList({ chatList, selectedChat, onSelectChat, onAdd }) {
   return (
     <>
       <div className="flex gap-1.5 px-2.5 py-2.5 border-b border-sky-100 shrink-0">
-        <input placeholder="搜索" className="flex-1 px-2.5 py-1.5 border border-sky-100 rounded-full bg-sky-50/60 text-xs outline-none" />
+        <input disabled placeholder="搜索" className="flex-1 px-2.5 py-1.5 border border-sky-100 rounded-full bg-sky-50/60 text-xs outline-none" />
         <button onClick={onAdd} className="w-7 h-7 rounded-full bg-sky-100 border-none text-sky-700 text-sm cursor-pointer">＋</button>
       </div>
       <div className="flex-1 overflow-y-auto">
@@ -157,7 +157,7 @@ export function QQ() {
                 <div className="flex gap-3 text-neutral-600 text-base py-1 overflow-x-auto whitespace-nowrap">
                   <span>😀</span><span>🖼</span><span>✂</span><span>📁</span><span>🎤</span>
                 </div>
-                <textarea className="w-full border-none outline-none resize-none font-sans text-[13px] min-h-[32px] max-h-20 py-0.5" />
+                <textarea disabled className="chat-input w-full border-none outline-none resize-none font-sans text-[13px] min-h-[32px] max-h-20 py-0.5" />
               </div>
             </div>
           )}
@@ -227,7 +227,7 @@ export function QQ() {
             <div className="flex gap-3.5 text-neutral-600 text-base py-1.5">
               <span>😀</span><span>🖼</span><span>✂</span><span>📁</span><span>🎤</span>
             </div>
-            <textarea className="w-full border-none outline-none resize-none font-sans text-[13px] min-h-[40px]" />
+            <textarea disabled className="chat-input w-full border-none outline-none resize-none font-sans text-[13px] min-h-[40px]" />
           </div>
         </div>
       </div>

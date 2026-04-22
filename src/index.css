@@ -61,6 +61,29 @@ body {
   }
 }
 
+/* Decorative (non-functional) inputs/textareas: visually disabled. */
+input:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+  color: #a3a3a3;
+  border-color: #e5e5e5;
+}
+input:disabled::placeholder,
+textarea:disabled::placeholder {
+  color: #a3a3a3;
+}
+/* Chat message textareas keep their native white/transparent look even when
+   disabled — only the not-allowed cursor carries over. */
+textarea.chat-input:disabled {
+  background-color: transparent;
+  color: inherit;
+  border-color: inherit;
+}
+textarea.chat-input:disabled::placeholder {
+  color: #a3a3a3;
+}
+
 /* Mobile: bump base font sizes for readability. */
 @media (max-width: 767px) {
   body { font-size: 16px; }

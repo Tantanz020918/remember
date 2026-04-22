@@ -1,10 +1,11 @@
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { ImagePlaceholder } from '../../components/ui'
+import { ImagePlaceholder, Keyword } from '../../components/ui'
 import { QZoneShell } from './QZoneShell'
 
 const COMMENTS = [
   { author: '八班路人', text: '大小姐还敢表白？人家估计连 QQ 都不用吧，你去 ins 上面找还差不多' },
   { author: '吃瓜群众', text: '她应该没有 QQ 吧，反正我们班同学都没加到' },
+  { author: '朵朵', text: <>她<Keyword>以前有用 QQ</Keyword>，现在没用了，以前她还评论过我发的东西</> },
   { author: '匿名', text: '醒醒，这种家庭的女儿是看不到你的👻' },
 ]
 

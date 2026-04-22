@@ -80,6 +80,7 @@ function ChatListPanel({ chatList, chatKey, onSelect, onAddClick }) {
     <>
       <div className="flex gap-1.5 px-2.5 py-2.5 border-b border-neutral-300 shrink-0">
         <input
+          disabled
           placeholder="搜索"
           className="flex-1 px-2.5 py-1 border border-neutral-300 bg-white rounded text-xs outline-none"
         />
@@ -201,7 +202,8 @@ export function Wechat({ initialView = 'chats' }) {
                 </div>
                 <div className="flex gap-2 items-end">
                   <textarea
-                    className="flex-1 border-none outline-none resize-none font-sans text-[13px] py-1 min-h-[36px] max-h-20 bg-transparent"
+                    disabled
+                    className="chat-input flex-1 border-none outline-none resize-none font-sans text-[13px] py-1 min-h-[36px] max-h-20 bg-transparent"
                     placeholder=""
                   />
                   <button className="bg-[#07c160] text-white border-none px-3 py-1 rounded cursor-pointer text-xs shrink-0">

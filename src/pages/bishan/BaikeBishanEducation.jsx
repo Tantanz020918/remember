@@ -9,6 +9,7 @@ export function BaikeBishanEducation() {
         <div className="flex items-center gap-5 px-10 py-3 bg-neutral-100 border-b border-neutral-200">
           <div className="font-bold text-lg text-[#2932e1]">百度百科</div>
           <input
+            disabled
             className="flex-1 max-w-[400px] px-3.5 py-2 border border-neutral-300 rounded outline-none"
             placeholder="搜索词条"
           />

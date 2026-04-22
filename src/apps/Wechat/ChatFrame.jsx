@@ -19,7 +19,8 @@ export function ChatFrame({ name, children }) {
           <span>📹</span>
         </div>
         <textarea
-          className="flex-1 border-none outline-none resize-none font-sans text-[13px] py-1 md:py-1.5 min-h-[36px] md:min-h-[40px] bg-transparent"
+          disabled
+          className="chat-input flex-1 border-none outline-none resize-none font-sans text-[13px] py-1 md:py-1.5 min-h-[36px] md:min-h-[40px] bg-transparent"
           placeholder=""
         />
         <div className="text-right">
