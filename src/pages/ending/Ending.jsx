@@ -1,11 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useStore } from '../../store'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { PageId } from '../pageIds'
+import { Ending1Timeline } from './Ending1Timeline'
 
 export function EndingForgive() {
   const navigate = useGameNavigate()
   const { setFlag } = useStore()
+  const [showTimeline, setShowTimeline] = useState(false)
 
   // 进入结局一即永久解锁隐藏朋友圈
   useEffect(() => {
@@ -28,7 +30,13 @@ export function EndingForgive() {
         <p className="text-neutral-400 text-sm leading-loose">
           有些伤痕不会消失，但原谅是给彼此的一个机会——不是说「没关系」，而是说「我愿意往前走」。
         </p>
-        <div className="pt-6">
+        <div className="pt-6 flex gap-3 justify-center">
+          <button
+            onClick={() => setShowTimeline(true)}
+            className="px-6 py-2 bg-amber-500/20 border border-amber-400/40 rounded-full text-sm cursor-pointer hover:bg-amber-500/30 text-amber-100"
+          >
+            📜 回顾时间线
+          </button>
           <button
             onClick={onBack}
             className="px-6 py-2 bg-white/10 border border-white/20 rounded-full text-sm cursor-pointer hover:bg-white/20"
@@ -37,6 +45,8 @@ export function EndingForgive() {
           </button>
         </div>
       </div>
+
+      {showTimeline && <Ending1Timeline onClose={() => setShowTimeline(false)} />}
     </div>
   )
 }

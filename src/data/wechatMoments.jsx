@@ -1,5 +1,5 @@
 import { Keyword } from '../components/ui'
-import { MANICURE, CAT, HAMSTER, HANDMADE, GAME } from '../assets/imageUrls'
+import { MANICURE, CAT, HAMSTER, HANDMADE, GAME, GROUP_PHOTO } from '../assets/imageUrls'
 
 export const MOMENTS = [
   // 达到结局一后解锁，永久显示
@@ -7,8 +7,8 @@ export const MOMENTS = [
     name: '姚如月',
     text: '十五年前的三姐妹，再次相聚啦~~',
     imageName: '三姐妹合影',
-    imageFrom: '#ffd1dc',
-    imageTo: '#c1e8ff',
+    imageSrc: GROUP_PHOTO.src,
+    imageFallbackSrc: GROUP_PHOTO.fallbackSrc,
     meta: '4月19日',
     location: '璧山',
     hiddenUntilEnding1: true,

@@ -12,6 +12,7 @@ import catLocal from './imgs/others/cat.webp'
 import themeParkLocal from './imgs/others/theme-park.webp'
 import manicureLocal from './imgs/others/manicure.webp'
 import reportLocal from './imgs/report.webp'
+import groupPhotoLocal from './imgs/group_photo.webp'
 
 // CDN 链接结构：{CDN_PREFIX}/{key}/{path}
 // 图床每批上传会生成一个共享前缀 + 每张图一个随机 4 位 key。
@@ -35,6 +36,10 @@ const IMAGES = {
     // 这张图在另一批上传里，完整 URL 与其它资源的 CDN_PREFIX 不同，这里直接覆写。
     fullUrl: 'https://test.fukit.cn/autoupload/f/S9HLukMuH_jaG2-bgCx4dLKXl_QqVl-bpSwqP4fJO68/20260421/vwsd/0X0/imgs/report.webp',
     fallback: reportLocal,
+  },
+  group_photo: {
+    fullUrl: 'https://test.fukit.cn/autoupload/f/S9HLukMuH_jaG2-bgCx4dLKXl_QqVl-bpSwqP4fJO68/20260422/kBqn/0X0/group_photo.webp',
+    fallback: groupPhotoLocal,
   },
 }
 
@@ -65,6 +70,7 @@ export const CAT = getImage('cat')
 export const THEME_PARK = getImage('theme_park')
 export const MANICURE = getImage('manicure')
 export const REPORT_IMAGE = getImage('report')
+export const GROUP_PHOTO = getImage('group_photo')
 
 // ===== 精灵图头像系统 =====
 // 共 2 张精灵图 × 5×5 = 50 个头像，索引从 1 到 50
