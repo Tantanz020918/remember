@@ -1,4 +1,28 @@
+import { useEffect, useState } from 'react'
+import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { resolveBaiduQuery } from './baiduSearch'
+
 export function BaiduResultLayout({ query, count, children }) {
+  const navigate = useGameNavigate()
+  const [input, setInput] = useState(query ?? '')
+  const [noResult, setNoResult] = useState(false)
+
+  // Keep the input in sync when navigating between result pages.
+  useEffect(() => {
+    setInput(query ?? '')
+    setNoResult(false)
+  }, [query])
+
+  const search = () => {
+    const pageId = resolveBaiduQuery(input)
+    if (pageId) {
+      setNoResult(false)
+      navigate(pageId)
+    } else {
+      setNoResult(true)
+    }
+  }
+
   return (
     <div className="w-full max-w-[780px] px-3 md:px-10 pt-4 md:pt-5 pb-8 md:pb-10 mx-auto">
       <div className="flex items-center gap-2 md:gap-3.5">
@@ -7,9 +31,22 @@ export function BaiduResultLayout({ query, count, children }) {
         </div>
         <input
           className="flex-1 min-w-0 px-2.5 md:px-3.5 py-1.5 md:py-2 border-2 border-sky-500 rounded-lg text-sm outline-none"
-          defaultValue={query}
+          value={input}
+          onChange={(e) => { setInput(e.target.value); setNoResult(false) }}
+          onKeyDown={(e) => e.key === 'Enter' && search()}
         />
+        <button
+          onClick={search}
+          className="shrink-0 px-3 md:px-4 py-1.5 md:py-2 bg-sky-500 text-white border-none rounded-lg cursor-pointer text-sm"
+        >
+          搜索
+        </button>
       </div>
+      {noResult && (
+        <div className="mt-2 text-neutral-500 text-[13px]">
+          没有找到与「{input.trim()}」相关的结果，请换个关键词试试。
+        </div>
+      )}
       <div className="flex gap-3 md:gap-5 mt-3 md:mt-4 pb-2 md:pb-2.5 border-b border-neutral-200 text-[13px] text-neutral-500 overflow-x-auto whitespace-nowrap">
         <span className="text-sky-500 font-semibold cursor-pointer shrink-0">网页</span>
         <span className="cursor-pointer shrink-0">资讯</span>

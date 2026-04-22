@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
 import { BrowserFrame } from '../../browser/BrowserFrame'
-import { PageId } from '../pageIds'
+import { resolveBaiduQuery } from './baiduSearch'
 
 const HOT_ITEMS = [
   { rank: 1, text: '五一假期出行指南' },
@@ -14,24 +14,13 @@ const HOT_ITEMS = [
   { rank: 8, text: '社保缴费基数调整通知' },
 ]
 
-const QUERY_TO_PAGE = {
-  璧山: PageId.SEARCH_BISHAN,
-  金花小学: PageId.SEARCH_JINHUA,
-  奥比岛: PageId.SEARCH_AOBI,
-  富士山下: PageId.SEARCH_PERSONAL_SITE,
-  梦和基金: PageId.SEARCH_MENGHE_FUND,
-  李氏集团: PageId.SEARCH_LI_GROUP,
-  荣德心理咨询所: PageId.SEARCH_RONGDE,
-}
-
 export function BaiduHome() {
   const navigate = useGameNavigate()
   const [query, setQuery] = useState('')
   const [noResult, setNoResult] = useState(false)
 
   const search = () => {
-    const q = query.trim()
-    const pageId = QUERY_TO_PAGE[q]
+    const pageId = resolveBaiduQuery(query)
     if (pageId) {
       setNoResult(false)
       navigate(pageId)
