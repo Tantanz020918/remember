@@ -33,6 +33,37 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
     else setErrorMsg('答案不正确。')
   }
 
+  // 从好友申请列表里点「如梦令」：跳到查找 Tab，直接展示她的 profile（复用雨季那套渲染）。
+  const jumpToRumenglingProfile = () => {
+    setAddTab('search')
+    setAddInput('283648291')
+    setFoundGroup(false)
+    setFoundCaiqing(false)
+    setFoundRumengling(true)
+    setShowRumenglingProfile(true)
+    setErrorMsg('')
+    setAskingQuestion(false)
+  }
+
+  // 把一段文字中的「如梦令」渲染成可点击的 Keyword。
+  const renderWithRumenglingLink = (text) => {
+    const marker = '如梦令'
+    const pieces = text.split(marker)
+    return pieces.flatMap((piece, i) => {
+      if (i === 0) return [piece]
+      return [
+        <span
+          key={`rml-${i}`}
+          className="cursor-pointer hover:underline"
+          onClick={jumpToRumenglingProfile}
+        >
+          <Keyword>{marker}</Keyword>
+        </span>,
+        piece,
+      ]
+    })
+  }
+
   return (
     <Modal onClose={onClose}>
       <div className="bg-white px-4 md:px-6 py-4 md:py-5 rounded-[10px] w-[92vw] max-w-[420px] md:min-w-[380px] max-h-[85vh] overflow-y-auto">
@@ -130,7 +161,10 @@ export function QQAddDialog({ isCaiqing, onClose, onJoinGroup, onVisitCaiqingSpa
             <h3 className="font-bold mb-2">好友申请记录</h3>
             {CAIQING_REQUESTS.map((r, i) => (
               <div key={i} className={`p-3 rounded-lg border text-xs ${r.outgoing ? 'bg-sky-50 border-sky-100' : 'bg-red-50 border-red-100'}`}>
-                <div className="flex justify-between"><span className="font-bold">{r.from}</span><span className="text-neutral-400">{r.time}</span></div>
+                <div className="flex justify-between gap-2">
+                  <span className="font-bold">{renderWithRumenglingLink(r.from)}</span>
+                  <span className="text-neutral-400 shrink-0">{r.time}</span>
+                </div>
                 <div className="text-neutral-600 mt-1">申请理由：{r.reason}</div>
                 <div className={`mt-1 ${r.statusColor}`}>{r.outgoing ? '⏳' : '✕'} {r.status}</div>
               </div>
