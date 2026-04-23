@@ -18,9 +18,21 @@ export function BaiduResultBishan() {
             </>
           }
         >
-          璧山区，重庆市下辖区，位于重庆主城区西部。幅员面积 915 平方公里，辖 6 个街道、9 个镇。
+          璧山区，<Keyword>重庆市辖区</Keyword>，位于长江上游地区、重庆市西部，地处川东南弧形构造带，华蓥山复式背斜中的温塘峡背斜与沥鼻峡背斜之间，属长江上游亚热带湿润季风气候区，四季分明，气候温和，降雨量充足，总面积914.55平方千米。截至2024年3月，璧山区辖6个街道、9个镇。 截至2023年末，璧山区常住人口76.56万人。
         </BaiduResultItem>
-        <BaiduResultItem title={<DeadLink>璧山区政府官网</DeadLink>} url="bs.cq.gov.cn">
+        <BaiduResultItem
+          title={
+            <a
+              href="https://www.bishan.gov.cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sky-700 hover:underline"
+            >
+              璧山区政府官网
+            </a>
+          }
+          url="https://www.bishan.gov.cn/"
+        >
           欢迎访问璧山区人民政府门户网站。最新政务信息、办事指南、政府公开……
         </BaiduResultItem>
         <BaiduResultItem
