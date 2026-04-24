@@ -4,6 +4,7 @@ import { useCurrentPage } from '../hooks/useCurrentPage'
 import { useIsMobile } from '../hooks/useIsMobile'
 
 const CONTACT_URL = 'http://xhslink.com/o/5yjWbFvKdfX'
+const WALKTHROUGH_URL = 'http://xhslink.com/o/1AzMpZqTaST'
 
 const GAMEPLAY_TIPS = [
   '右上角「页面」按钮可快速切换访问过的页面，每个页面有自己的编号，数字越大离结局越近。',
@@ -67,27 +68,64 @@ export function DesktopTips() {
             </div>
 
             <div className="pt-3 border-t border-neutral-200/60">
-              <div className="text-neutral-500 text-[11px] mb-2 text-center">
-                有问题请联系我 ↓
+              <div className="flex justify-center gap-3">
+                <div className="flex flex-col items-center min-w-0">
+                  <div className="text-neutral-500 text-[11px] mb-1.5 text-center">
+                    有问题请联系我
+                  </div>
+                  <a
+                    href={CONTACT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={CONTACT_URL}
+                    className="w-24 h-24 md:w-28 md:h-28 bg-white rounded-lg flex items-center justify-center border border-neutral-300 p-1.5"
+                  >
+                    <QRCodeSVG
+                      value={CONTACT_URL}
+                      size={120}
+                      level="M"
+                      className="w-full h-full"
+                    />
+                  </a>
+                  <a
+                    href={CONTACT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sky-700 hover:underline text-[10px] mt-1 text-center"
+                  >
+                    或点击此处打开
+                  </a>
+                </div>
+                <div className="flex flex-col items-center min-w-0">
+                  <div className="text-neutral-500 text-[11px] mb-1.5 text-center">
+                    攻略
+                  </div>
+                  <a
+                    href={WALKTHROUGH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={WALKTHROUGH_URL}
+                    className="w-24 h-24 md:w-28 md:h-28 bg-white rounded-lg flex items-center justify-center border border-neutral-300 p-1.5"
+                  >
+                    <QRCodeSVG
+                      value={WALKTHROUGH_URL}
+                      size={120}
+                      level="M"
+                      className="w-full h-full"
+                    />
+                  </a>
+                  <a
+                    href={WALKTHROUGH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sky-700 hover:underline text-[10px] mt-1 text-center"
+                  >
+                    或点击此处打开
+                  </a>
+                </div>
               </div>
-              <div className="flex justify-center">
-                <a
-                  href={CONTACT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={CONTACT_URL}
-                  className="w-28 h-28 md:w-32 md:h-32 bg-white rounded-lg flex items-center justify-center border border-neutral-300 p-1.5"
-                >
-                  <QRCodeSVG
-                    value={CONTACT_URL}
-                    size={120}
-                    level="M"
-                    className="w-full h-full"
-                  />
-                </a>
-              </div>
-              <div className="text-neutral-400 text-[10px] mt-1.5 text-center break-all">
-                {CONTACT_URL}
+              <div className="mt-3 text-[10px] text-neutral-400 text-right italic">
+                by Tantanz
               </div>
             </div>
           </div>
