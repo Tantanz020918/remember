@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { QRCodeSVG } from 'qrcode.react'
 import { useCurrentPage } from '../hooks/useCurrentPage'
 import { useIsMobile } from '../hooks/useIsMobile'
+
+const CONTACT_URL = 'http://xhslink.com/o/5yjWbFvKdfX'
 
 const GAMEPLAY_TIPS = [
   '右上角「页面」按钮可快速切换访问过的页面，每个页面有自己的编号，数字越大离结局越近。',
@@ -68,9 +71,23 @@ export function DesktopTips() {
                 有问题请联系我 ↓
               </div>
               <div className="flex justify-center">
-                <div className="w-28 h-28 md:w-32 md:h-32 bg-linear-to-br from-neutral-200 to-neutral-300 rounded-lg flex items-center justify-center text-neutral-500 text-xs border border-neutral-300">
-                  [二维码]
-                </div>
+                <a
+                  href={CONTACT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={CONTACT_URL}
+                  className="w-28 h-28 md:w-32 md:h-32 bg-white rounded-lg flex items-center justify-center border border-neutral-300 p-1.5"
+                >
+                  <QRCodeSVG
+                    value={CONTACT_URL}
+                    size={120}
+                    level="M"
+                    className="w-full h-full"
+                  />
+                </a>
+              </div>
+              <div className="text-neutral-400 text-[10px] mt-1.5 text-center break-all">
+                {CONTACT_URL}
               </div>
             </div>
           </div>
