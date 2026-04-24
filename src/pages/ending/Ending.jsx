@@ -25,7 +25,7 @@ export function EndingForgive() {
           你以如月和采晴的名义写下了回复：「我们原谅你。」
         </p>
         <p className="text-neutral-300 leading-loose">
-          屏幕那头，是墨尔本清晨六点的阳光。一个女孩看到了这条评论，哭了很久很久。
+          屏幕那头，一个女孩多年的心结终于被解开。
         </p>
         <p className="text-neutral-400 text-sm leading-loose">
           有些伤痕不会消失，但原谅是给彼此的一个机会——不是说「没关系」，而是说「我愿意往前走」。

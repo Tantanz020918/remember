@@ -13,7 +13,7 @@ export function WeiboFansPost2() {
   return (
     <WeiboPostPage
       author="梦和MH"
-      time="2018-03-11 02:17"
+      time="2018-03-06 02:17"
       authorFrom="#2c3e50"
       authorTo="#4ca1af"
       content={
