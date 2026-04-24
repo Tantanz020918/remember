@@ -3,10 +3,18 @@ import { useStore } from '../../store'
 import { ImagePlaceholder, Toast, useToast } from '../../components/ui'
 import { spriteForUser } from '../../assets/imageUrls'
 import { useIsMobile } from '../../hooks/useIsMobile'
+import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { PageId } from '../../pages/pageIds'
 import { ChatFrame } from './ChatFrame'
 import { Moments } from './Moments'
 import { TongxueluModal } from './TongxueluModal'
 import { WECHAT_CHAT_LIST, CAIQING_CHAT, WechatChat } from '../../data/wechatChats'
+
+// Mapping rail views → page routes so the top-right history tracks the switch.
+const VIEW_TO_PAGE = {
+  chats: PageId.WECHAT,
+  moments: PageId.WECHAT_MOMENTS,
+}
 
 const RAIL_ICONS = [
   { key: 'chats', icon: '💬', label: '消息' },
@@ -138,6 +146,15 @@ export function Wechat({ initialView = 'chats' }) {
   const [showBigImg, setShowBigImg] = useState(false)
   const toast = useToast()
   const isMobile = useIsMobile()
+  const gameNavigate = useGameNavigate()
+
+  // Click a rail icon: switch view and keep URL in sync so the visited-pages
+  // dropdown tracks whichever panel is currently shown.
+  const switchView = (key) => {
+    setView(key)
+    const pageId = VIEW_TO_PAGE[key]
+    if (pageId) gameNavigate(pageId)
+  }
 
   useEffect(() => {
     setView(initialView)
@@ -223,7 +240,7 @@ export function Wechat({ initialView = 'chats' }) {
             {RAIL_ICONS.map((item) => (
               <div
                 key={item.key}
-                onClick={() => setView(item.key)}
+                onClick={() => switchView(item.key)}
                 className={`flex-1 flex flex-col items-center justify-center py-1.5 cursor-pointer text-[10px] ${
                   view === item.key ? 'text-[#07c160]' : 'text-neutral-400'
                 }`}
@@ -251,7 +268,7 @@ export function Wechat({ initialView = 'chats' }) {
         {RAIL_ICONS.map((item) => (
           <div
             key={item.key}
-            onClick={() => setView(item.key)}
+            onClick={() => switchView(item.key)}
             className={`w-10 h-10 flex items-center justify-center rounded-md cursor-pointer text-xl ${
               view === item.key
                 ? 'bg-white/10 text-[#07c160]'

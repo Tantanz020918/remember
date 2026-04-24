@@ -39,9 +39,9 @@ export function EndingForgive() {
           </button>
           <button
             onClick={onBack}
-            className="px-6 py-2 bg-white/10 border border-white/20 rounded-full text-sm cursor-pointer hover:bg-white/20"
+            className="px-6 py-2 bg-[#07c160] border border-[#07c160] rounded-full text-sm font-medium cursor-pointer hover:bg-[#06ad56] text-white"
           >
-            回到桌面
+            💬 打开朋友圈
           </button>
         </div>
       </div>

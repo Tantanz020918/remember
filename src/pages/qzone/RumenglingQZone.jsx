@@ -205,8 +205,13 @@ export function RumenglingQZone() {
       <BrowserFrame>
         <QZonePasswordGate
           name="如梦令"
-          prompt="🎵 夜色轻轻落你窗前 🎵"
-          errorHint="简谱数字，低音和高音要在原数字上加或减"
+          prompt={
+            <div className="space-y-1">
+              <div>🎵 输入这句歌词的简谱 🎵</div>
+              <div className="text-sm text-neutral-400">「夜色轻轻落你窗前」</div>
+            </div>
+          }
+          errorHint="高音在原数字上 +7，低音类推"
           answer="01358653"
           onUnlock={() => setFlag('rumenglingSpaceVisited', true)}
         />
