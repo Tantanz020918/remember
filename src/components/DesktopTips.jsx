@@ -7,14 +7,13 @@ const CONTACT_URL = 'http://xhslink.com/o/5yjWbFvKdfX'
 const WALKTHROUGH_URL = 'http://xhslink.com/o/1AzMpZqTaST'
 
 const GAMEPLAY_TIPS = [
+  '本游戏所有内容纯属虚构，和现实无关！部分场景需要站外搜索信息，其他情况均不需要下载/打开任何 app。',
   '右上角「页面」按钮可快速切换访问过的页面，每个页面有自己的编号，数字越大离结局越近。',
   '右上角设置按钮可更改提示强度，调整游戏难度。',
   '不可输入的纯装饰输入框做了禁用处理。',
-  '部分场景需要站外搜索。',
 ]
 
 const DECLARATIONS = [
-  '本游戏所有内容纯属虚构，和现实无关！',
   '部分图片来源于网络或由 AI 生成，若有侵权，请联系我删除。',
   '图片资源可能会挂掉，若无法加载请联系我。',
 ]

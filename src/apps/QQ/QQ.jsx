@@ -112,6 +112,13 @@ export function QQ() {
               ⭐
             </button>
             <button
+              onClick={() => setShowAddDialog(true)}
+              className="w-8 h-8 flex items-center justify-center rounded-md text-sm text-white/90 bg-transparent border-none cursor-pointer"
+              title="添加好友 / 加群"
+            >
+              ➕
+            </button>
+            <button
               onClick={() => setShowSwitchDialog(true)}
               className="w-8 h-8 flex items-center justify-center rounded-md text-sm text-white/90 bg-transparent border-none cursor-pointer"
               title="切换账号"
@@ -195,6 +202,13 @@ export function QQ() {
         </div>
         <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg bg-white/15 text-white">💬</div>
         <div className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg  hover:bg-white/10" title="QQ空间" onClick={() => isCaiqing && navigate(PageId.CAIQING_QZONE)}>⭐</div>
+        <div
+          className="w-9 h-9 flex items-center justify-center rounded-md cursor-pointer text-lg text-white/90 hover:bg-white/10"
+          title="添加好友 / 加群"
+          onClick={() => setShowAddDialog(true)}
+        >
+          ➕
+        </div>
         <div className="flex-1" />
         <div className="w-9 h-9 flex items-center justify-center  cursor-pointer hover:bg-white/10 rounded-md text-xs" title="切换账号" onClick={() => setShowSwitchDialog(true)}>🔄</div>
         <div className="w-9 h-9 flex items-center justify-center ">⚙</div>
