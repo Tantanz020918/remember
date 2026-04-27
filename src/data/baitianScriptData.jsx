@@ -9,7 +9,7 @@ export const SCRIPT_FLOORS = [
     userName: '梦の伤',
     userLv: 'Lv.6',
     userSign: '编剧+女主',
-    meta: '发布于 2014-01-02 21:05',
+    meta: '发布于 2013-06-01 21:05',
     content: (
       <>
         <p className="text-[12px] text-neutral-500 mb-3">
@@ -18,7 +18,7 @@ export const SCRIPT_FLOORS = [
 
         <h4 className="mt-3 mb-2 text-[#d16b8a] text-sm font-bold border-b border-pink-100 pb-1">女主团</h4>
         <div className="py-1.5 leading-loose text-[13px]">
-          <b>慕容梦和</b>（女主）：温柔善良、重感情，<Keyword>四年才过一次生日</Keyword>。家境殷实，心底柔软，总把朋友放在比自己更重要的位置。
+          <b><Keyword>慕容梦和</Keyword></b>（女主）：温柔善良、重感情，<Keyword>四年才过一次生日</Keyword>。家境殷实，心底柔软，总把朋友放在比自己更重要的位置。
         </div>
         <div className="py-1.5 leading-loose text-[13px]">
           <b>李采殇</b>：活泼开朗，和慕容梦和从小一起长大，喜欢画画。会把最大一颗糖留给朋友的女孩。

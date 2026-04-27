@@ -37,8 +37,8 @@ export function BaikeBishanEducation() {
           </p>
           <h2 className="text-base mt-5 mb-2 pl-2.5 border-l-4 border-sky-500">二、初级中学</h2>
           <p className="leading-loose">
-            <DeadLink>青杠初级中学</DeadLink>、<DeadLink>丁家中学</DeadLink>、
-            <DeadLink>三合中学</DeadLink>
+            <DeadLink>璧山中学</DeadLink>（含初中部）、<DeadLink>青杠初级中学</DeadLink>、
+            <DeadLink>丁家中学</DeadLink>、<DeadLink>三合中学</DeadLink>
           </p>
           <h2 className="text-base mt-5 mb-2 pl-2.5 border-l-4 border-sky-500">三、小学</h2>
           <p className="leading-loose">

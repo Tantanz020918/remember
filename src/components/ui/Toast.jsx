@@ -16,11 +16,12 @@ export function useToast() {
   const [visible, setVisible] = useState(false)
   const timers = useRef([])
 
-  const show = useCallback((msg, duration = 2500) => {
+  const show = useCallback((msg, duration = 3000) => {
     timers.current.forEach(clearTimeout)
     timers.current = []
     setMessage(msg)
-    setVisible(true)
+    setVisible(false) // start hidden so the next-frame flip triggers a fade-in
+    timers.current.push(setTimeout(() => setVisible(true), 16))
     timers.current.push(setTimeout(() => setVisible(false), duration))
     timers.current.push(setTimeout(() => setMessage(''), duration + 500))
   }, [])

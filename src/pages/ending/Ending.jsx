@@ -1,23 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../../store'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { Toast, useToast } from '../../components/ui'
 import { PageId } from '../pageIds'
 import { Ending1Timeline } from './Ending1Timeline'
 
 export function EndingForgive() {
   const navigate = useGameNavigate()
-  const { setFlag } = useStore()
+  const { setFlag, highlightMode, hintMode } = useStore()
   const [showTimeline, setShowTimeline] = useState(false)
+  const toast = useToast()
+  const toastShownRef = useRef(false)
 
   // 进入结局一即永久解锁隐藏朋友圈
   useEffect(() => {
     setFlag('ending1Reached', true)
   }, [setFlag])
 
+  // 全程未开任何提示 → 高难度成就 toast（只触发一次）
+  useEffect(() => {
+    if (toastShownRef.current) return
+    if (highlightMode === 'off' && hintMode === 'off') {
+      toastShownRef.current = true
+      toast.show('成就解锁：高难度通关 · 全程未开任何提示')
+    }
+  }, [highlightMode, hintMode, toast])
+
   const onBack = () => navigate(PageId.WECHAT_MOMENTS)
 
   return (
     <div className="min-h-full flex flex-col items-center justify-center bg-linear-to-b from-neutral-900 to-neutral-800 text-white p-10">
+      <Toast
+        message={toast.message}
+        visible={toast.visible}
+        icon="🏆"
+        className="bg-linear-to-r! from-amber-500! to-yellow-400! text-amber-950! border border-amber-200"
+      />
       <div className="max-w-lg text-center space-y-6">
         <div className="text-5xl mb-4">🌕</div>
         <h1 className="text-2xl font-bold">结局一：我们原谅你</h1>

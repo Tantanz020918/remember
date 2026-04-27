@@ -14,6 +14,7 @@ export function QZonePasswordGate({ name, prompt, errorHint, answer, onUnlock })
         </div>
         <PasswordLock
           bare
+          dark
           prompt={
             <div className="text-neutral-300">
               <p className="text-sm mb-2">访问问题：</p>

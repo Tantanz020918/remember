@@ -9,6 +9,7 @@ export function PasswordLock({
   className = '',
   inputPlaceholder = '请输入密码',
   bare = false,
+  dark = false,
 }) {
   const [value, setValue] = useState('')
   const [error, setError] = useState(false)
@@ -36,7 +37,7 @@ export function PasswordLock({
       <div className="mb-6 leading-relaxed">{prompt}</div>
       <input
         className={`w-full px-4 py-2.5 rounded-lg text-center text-sm outline-none mb-3 ${
-          bare
+          dark
             ? 'bg-neutral-900/40 border border-neutral-600 text-neutral-100 placeholder:text-neutral-500 focus:border-sky-400'
             : 'border border-neutral-300 focus:border-sky-400'
         }`}

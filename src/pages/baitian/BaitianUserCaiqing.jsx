@@ -47,7 +47,7 @@ export function BaitianUserCaiqing() {
             <DeadLink>
               【帮转】奥比岛言情大戏「<Keyword>待你回眸一笑</Keyword>」开播啦！
             </DeadLink>
-            <span className="md:ml-auto text-neutral-400 text-[11px]">2014-03-08 · 回复 8</span>
+            <span className="md:ml-auto text-neutral-400 text-[11px]">2012-12-15 · 回复 8</span>
           </li>
           <li className="px-3 md:px-4 py-2.5 border-b border-dashed border-pink-100 flex flex-col md:flex-row md:items-center gap-1 md:gap-2.5 text-[13px]">
             <StoryLink to={PageId.POST_PRINCESS}>【原创】⭐️偶像公主设定⭐️</StoryLink>

@@ -1,15 +1,40 @@
 import { useState } from 'react'
 import { useStore } from '../../store'
 import { useGameNavigate } from '../../hooks/useGameNavigate'
+import { BrowserFrame } from '../../browser/BrowserFrame'
 import { WeiboPostPage } from '../../browser/WeiboFrame'
-import { Tooltip } from '../../components/ui'
+import { Tooltip, PasswordLock } from '../../components/ui'
 import { PageId } from '../pageIds'
 
 export function LockedPost() {
   const navigate = useGameNavigate()
-  const { caiqingWechatAdded, reportsQueried } = useStore()
+  const { caiqingWechatAdded, reportsQueried, lockedPostUnlocked, setFlag } = useStore()
   const baseUnlocked = reportsQueried
   const [showChoice, setShowChoice] = useState(false)
+
+  if (!lockedPostUnlocked) {
+    return (
+      <BrowserFrame>
+        <div className="flex flex-col items-center justify-center min-h-[60vh] p-6">
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-md w-full text-center text-neutral-700 border border-neutral-200">
+            <div className="text-sm text-neutral-500 mb-4">
+            </div>
+            <PasswordLock
+              bare
+              prompt={
+                <div className="space-y-1 text-neutral-700">
+                  <div>🎵 夜色轻轻落你窗前 🎵</div>
+                </div>
+              }
+              errorHint="简谱在「富士上下」个人网站中。高音在原数字上 +7，低音类推"
+              answer="01358653"
+              onUnlock={() => setFlag('lockedPostUnlocked', true)}
+            />
+          </div>
+        </div>
+      </BrowserFrame>
+    )
+  }
 
   const content = (
     <div>

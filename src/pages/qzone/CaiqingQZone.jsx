@@ -85,6 +85,7 @@ function Journal({ isOwner }) {
       {!diaryUnlocked ? (
         <PasswordLock
           bare
+          dark
           prompt={
             <div className="text-neutral-300">
               <p className="text-lg mb-2">私密日志</p>

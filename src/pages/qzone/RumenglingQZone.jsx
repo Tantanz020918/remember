@@ -207,12 +207,11 @@ export function RumenglingQZone() {
           name="如梦令"
           prompt={
             <div className="space-y-1">
-              <div>🎵 输入这句歌词的简谱 🎵</div>
-              <div className="text-sm text-neutral-400">「夜色轻轻落你窗前」</div>
+              <div>我给自己取的名字是什么？</div>
             </div>
           }
-          errorHint="高音在原数字上 +7，低音类推"
-          answer="01358653"
+          errorHint="「永远的姐妹」"
+          answer="慕容梦和"
           onUnlock={() => setFlag('rumenglingSpaceVisited', true)}
         />
       </BrowserFrame>
